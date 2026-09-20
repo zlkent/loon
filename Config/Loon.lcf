@@ -1,0 +1,65 @@
+# zlkent 的 Loon 配置；规则来自 https://github.com/luestr/ShuntRules
+# 导入后在手机添加私人节点订阅，并选择可用节点。
+[General]
+ip-mode = v4-only
+ipv6-vif = off
+dns-server = system,223.5.5.5,119.29.29.29
+allow-wifi-access = false
+test-timeout = 5
+interface-mode = auto
+proxy-test-url = http://www.gstatic.com/generate_204
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local
+
+[Proxy]
+
+[Remote Proxy]
+# 私人订阅只在本机添加，不提交到公共仓库。
+# 我的订阅 = https://example.com/your-subscription,enabled=true
+
+[Remote Filter]
+全部节点 = NameRegex, FilterKey=".*"
+
+[Proxy Group]
+节点选择 = select,全部节点
+Google = select,节点选择,全部节点
+Telegram = select,节点选择,全部节点
+GitHub = select,节点选择,全部节点
+YouTube = select,节点选择,全部节点
+OpenAI = select,节点选择,全部节点
+Claude = select,节点选择,全部节点
+Gemini = select,节点选择,全部节点
+广告拦截 = select,REJECT,DIRECT
+兜底策略 = select,节点选择,DIRECT
+
+[Rule]
+FINAL,兜底策略
+
+[Remote Rule]
+# 广告优先；发生误拦截可将“广告拦截”切换到 DIRECT 排查。
+https://rule.kelee.one/Loon/Advertising.lsr, policy=广告拦截, tag=Advertising, enabled=true
+https://rule.kelee.one/Loon/WeChat.lsr, policy=DIRECT, tag=WeChat, enabled=true
+https://rule.kelee.one/Loon/Apple.lsr, policy=DIRECT, tag=Apple, enabled=true
+# 细分服务在大集合之前：Gemini、YouTube 在 Google 前，国内兜底最后。
+https://rule.kelee.one/Loon/OpenAI.lsr, policy=OpenAI, tag=OpenAI, enabled=true
+https://rule.kelee.one/Loon/Claude.lsr, policy=Claude, tag=Claude, enabled=true
+https://rule.kelee.one/Loon/Gemini.lsr, policy=Gemini, tag=Gemini, enabled=true
+https://rule.kelee.one/Loon/YouTube.lsr, policy=YouTube, tag=YouTube, enabled=true
+https://rule.kelee.one/Loon/Telegram.lsr, policy=Telegram, tag=Telegram, enabled=true
+https://rule.kelee.one/Loon/GitHub.lsr, policy=GitHub, tag=GitHub, enabled=true
+https://rule.kelee.one/Loon/Google.lsr, policy=Google, tag=Google, enabled=true
+https://rule.kelee.one/Loon/Lan.lsr, policy=DIRECT, tag=LAN, enabled=true
+https://rule.kelee.one/Loon/ChinaMax.lsr, policy=DIRECT, tag=ChinaMax, enabled=true
+
+[Host]
+
+[Rewrite]
+
+[Script]
+
+[Plugin]
+
+[MITM]
+hostname =
+ca-p12 =
+ca-passphrase =
+skip-server-cert-verify = false

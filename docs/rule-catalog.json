@@ -1,0 +1,2678 @@
+{
+  "source": "https://github.com/luestr/ShuntRules",
+  "retrieved_at": "2026-09-20",
+  "rules": [
+    {
+      "name": "115",
+      "url": "https://rule.kelee.one/Loon/115.lsr"
+    },
+    {
+      "name": "12306",
+      "url": "https://rule.kelee.one/Loon/12306.lsr"
+    },
+    {
+      "name": "1337x",
+      "url": "https://rule.kelee.one/Loon/1337x.lsr"
+    },
+    {
+      "name": "17173",
+      "url": "https://rule.kelee.one/Loon/17173.lsr"
+    },
+    {
+      "name": "178",
+      "url": "https://rule.kelee.one/Loon/178.lsr"
+    },
+    {
+      "name": "17zuoye",
+      "url": "https://rule.kelee.one/Loon/17zuoye.lsr"
+    },
+    {
+      "name": "2KGames",
+      "url": "https://rule.kelee.one/Loon/2KGames.lsr"
+    },
+    {
+      "name": "360",
+      "url": "https://rule.kelee.one/Loon/360.lsr"
+    },
+    {
+      "name": "36kr",
+      "url": "https://rule.kelee.one/Loon/36kr.lsr"
+    },
+    {
+      "name": "3Type",
+      "url": "https://rule.kelee.one/Loon/3Type.lsr"
+    },
+    {
+      "name": "3dm",
+      "url": "https://rule.kelee.one/Loon/3dm.lsr"
+    },
+    {
+      "name": "4399",
+      "url": "https://rule.kelee.one/Loon/4399.lsr"
+    },
+    {
+      "name": "4Paradigm",
+      "url": "https://rule.kelee.one/Loon/4Paradigm.lsr"
+    },
+    {
+      "name": "4chan",
+      "url": "https://rule.kelee.one/Loon/4chan.lsr"
+    },
+    {
+      "name": "51Job",
+      "url": "https://rule.kelee.one/Loon/51Job.lsr"
+    },
+    {
+      "name": "51nod",
+      "url": "https://rule.kelee.one/Loon/51nod.lsr"
+    },
+    {
+      "name": "56",
+      "url": "https://rule.kelee.one/Loon/56.lsr"
+    },
+    {
+      "name": "58TongCheng",
+      "url": "https://rule.kelee.one/Loon/58TongCheng.lsr"
+    },
+    {
+      "name": "6JianFang",
+      "url": "https://rule.kelee.one/Loon/6JianFang.lsr"
+    },
+    {
+      "name": "6park",
+      "url": "https://rule.kelee.one/Loon/6park.lsr"
+    },
+    {
+      "name": "8btc",
+      "url": "https://rule.kelee.one/Loon/8btc.lsr"
+    },
+    {
+      "name": "9News",
+      "url": "https://rule.kelee.one/Loon/9News.lsr"
+    },
+    {
+      "name": "9to5",
+      "url": "https://rule.kelee.one/Loon/9to5.lsr"
+    },
+    {
+      "name": "ABC",
+      "url": "https://rule.kelee.one/Loon/ABC.lsr"
+    },
+    {
+      "name": "AFP",
+      "url": "https://rule.kelee.one/Loon/AFP.lsr"
+    },
+    {
+      "name": "ALJazeera",
+      "url": "https://rule.kelee.one/Loon/ALJazeera.lsr"
+    },
+    {
+      "name": "AMD",
+      "url": "https://rule.kelee.one/Loon/AMD.lsr"
+    },
+    {
+      "name": "AMP",
+      "url": "https://rule.kelee.one/Loon/AMP.lsr"
+    },
+    {
+      "name": "AOL",
+      "url": "https://rule.kelee.one/Loon/AOL.lsr"
+    },
+    {
+      "name": "APKCombo",
+      "url": "https://rule.kelee.one/Loon/APKCombo.lsr"
+    },
+    {
+      "name": "ATTWatchTV",
+      "url": "https://rule.kelee.one/Loon/ATTWatchTV.lsr"
+    },
+    {
+      "name": "Abema",
+      "url": "https://rule.kelee.one/Loon/Abema.lsr"
+    },
+    {
+      "name": "AbemaTV",
+      "url": "https://rule.kelee.one/Loon/AbemaTV.lsr"
+    },
+    {
+      "name": "AcFun",
+      "url": "https://rule.kelee.one/Loon/AcFun.lsr"
+    },
+    {
+      "name": "Accuweather",
+      "url": "https://rule.kelee.one/Loon/Accuweather.lsr"
+    },
+    {
+      "name": "Acer",
+      "url": "https://rule.kelee.one/Loon/Acer.lsr"
+    },
+    {
+      "name": "Acplay",
+      "url": "https://rule.kelee.one/Loon/Acplay.lsr"
+    },
+    {
+      "name": "Actalis",
+      "url": "https://rule.kelee.one/Loon/Actalis.lsr"
+    },
+    {
+      "name": "AdColony",
+      "url": "https://rule.kelee.one/Loon/AdColony.lsr"
+    },
+    {
+      "name": "AdGuardSDNSFilter",
+      "url": "https://rule.kelee.one/Loon/AdGuardSDNSFilter.lsr"
+    },
+    {
+      "name": "AddToAny",
+      "url": "https://rule.kelee.one/Loon/AddToAny.lsr"
+    },
+    {
+      "name": "Addthis",
+      "url": "https://rule.kelee.one/Loon/Addthis.lsr"
+    },
+    {
+      "name": "Adidas",
+      "url": "https://rule.kelee.one/Loon/Adidas.lsr"
+    },
+    {
+      "name": "Adobe",
+      "url": "https://rule.kelee.one/Loon/Adobe.lsr"
+    },
+    {
+      "name": "AdobeActivation",
+      "url": "https://rule.kelee.one/Loon/AdobeActivation.lsr"
+    },
+    {
+      "name": "Advertising",
+      "url": "https://rule.kelee.one/Loon/Advertising.lsr"
+    },
+    {
+      "name": "AdvertisingLite",
+      "url": "https://rule.kelee.one/Loon/AdvertisingLite.lsr"
+    },
+    {
+      "name": "AdvertisingMiTV",
+      "url": "https://rule.kelee.one/Loon/AdvertisingMiTV.lsr"
+    },
+    {
+      "name": "AdvertisingTest",
+      "url": "https://rule.kelee.one/Loon/AdvertisingTest.lsr"
+    },
+    {
+      "name": "Aerogard",
+      "url": "https://rule.kelee.one/Loon/Aerogard.lsr"
+    },
+    {
+      "name": "Afdian",
+      "url": "https://rule.kelee.one/Loon/Afdian.lsr"
+    },
+    {
+      "name": "Agora",
+      "url": "https://rule.kelee.one/Loon/Agora.lsr"
+    },
+    {
+      "name": "AiQiCha",
+      "url": "https://rule.kelee.one/Loon/AiQiCha.lsr"
+    },
+    {
+      "name": "AirChina",
+      "url": "https://rule.kelee.one/Loon/AirChina.lsr"
+    },
+    {
+      "name": "AirWick",
+      "url": "https://rule.kelee.one/Loon/AirWick.lsr"
+    },
+    {
+      "name": "Akamai",
+      "url": "https://rule.kelee.one/Loon/Akamai.lsr"
+    },
+    {
+      "name": "Ali213",
+      "url": "https://rule.kelee.one/Loon/Ali213.lsr"
+    },
+    {
+      "name": "AliPay",
+      "url": "https://rule.kelee.one/Loon/AliPay.lsr"
+    },
+    {
+      "name": "Alibaba",
+      "url": "https://rule.kelee.one/Loon/Alibaba.lsr"
+    },
+    {
+      "name": "All4",
+      "url": "https://rule.kelee.one/Loon/All4.lsr"
+    },
+    {
+      "name": "Amazon",
+      "url": "https://rule.kelee.one/Loon/Amazon.lsr"
+    },
+    {
+      "name": "AmazonCN",
+      "url": "https://rule.kelee.one/Loon/AmazonCN.lsr"
+    },
+    {
+      "name": "AmazonIP",
+      "url": "https://rule.kelee.one/Loon/AmazonIP.lsr"
+    },
+    {
+      "name": "AmazonPrimeVideo",
+      "url": "https://rule.kelee.one/Loon/AmazonPrimeVideo.lsr"
+    },
+    {
+      "name": "AmazonTrust",
+      "url": "https://rule.kelee.one/Loon/AmazonTrust.lsr"
+    },
+    {
+      "name": "Americasvoice",
+      "url": "https://rule.kelee.one/Loon/Americasvoice.lsr"
+    },
+    {
+      "name": "AnTianKeJi",
+      "url": "https://rule.kelee.one/Loon/AnTianKeJi.lsr"
+    },
+    {
+      "name": "Anaconda",
+      "url": "https://rule.kelee.one/Loon/Anaconda.lsr"
+    },
+    {
+      "name": "AnandTech",
+      "url": "https://rule.kelee.one/Loon/AnandTech.lsr"
+    },
+    {
+      "name": "Android",
+      "url": "https://rule.kelee.one/Loon/Android.lsr"
+    },
+    {
+      "name": "Anime",
+      "url": "https://rule.kelee.one/Loon/Anime.lsr"
+    },
+    {
+      "name": "Anjuke",
+      "url": "https://rule.kelee.one/Loon/Anjuke.lsr"
+    },
+    {
+      "name": "Anonv",
+      "url": "https://rule.kelee.one/Loon/Anonv.lsr"
+    },
+    {
+      "name": "Anthropic",
+      "url": "https://rule.kelee.one/Loon/Anthropic.lsr"
+    },
+    {
+      "name": "Antutu",
+      "url": "https://rule.kelee.one/Loon/Antutu.lsr"
+    },
+    {
+      "name": "Apifox",
+      "url": "https://rule.kelee.one/Loon/Apifox.lsr"
+    },
+    {
+      "name": "Apkpure",
+      "url": "https://rule.kelee.one/Loon/Apkpure.lsr"
+    },
+    {
+      "name": "AppLovin",
+      "url": "https://rule.kelee.one/Loon/AppLovin.lsr"
+    },
+    {
+      "name": "AppStore",
+      "url": "https://rule.kelee.one/Loon/AppStore.lsr"
+    },
+    {
+      "name": "Apple",
+      "url": "https://rule.kelee.one/Loon/Apple.lsr"
+    },
+    {
+      "name": "AppleDaily",
+      "url": "https://rule.kelee.one/Loon/AppleDaily.lsr"
+    },
+    {
+      "name": "AppleDev",
+      "url": "https://rule.kelee.one/Loon/AppleDev.lsr"
+    },
+    {
+      "name": "AppleFirmware",
+      "url": "https://rule.kelee.one/Loon/AppleFirmware.lsr"
+    },
+    {
+      "name": "AppleHardware",
+      "url": "https://rule.kelee.one/Loon/AppleHardware.lsr"
+    },
+    {
+      "name": "AppleID",
+      "url": "https://rule.kelee.one/Loon/AppleID.lsr"
+    },
+    {
+      "name": "AppleMail",
+      "url": "https://rule.kelee.one/Loon/AppleMail.lsr"
+    },
+    {
+      "name": "AppleMedia",
+      "url": "https://rule.kelee.one/Loon/AppleMedia.lsr"
+    },
+    {
+      "name": "AppleMusic",
+      "url": "https://rule.kelee.one/Loon/AppleMusic.lsr"
+    },
+    {
+      "name": "AppleNews",
+      "url": "https://rule.kelee.one/Loon/AppleNews.lsr"
+    },
+    {
+      "name": "AppleProxy",
+      "url": "https://rule.kelee.one/Loon/AppleProxy.lsr"
+    },
+    {
+      "name": "AppleTV",
+      "url": "https://rule.kelee.one/Loon/AppleTV.lsr"
+    },
+    {
+      "name": "Arphic",
+      "url": "https://rule.kelee.one/Loon/Arphic.lsr"
+    },
+    {
+      "name": "Asahi",
+      "url": "https://rule.kelee.one/Loon/Asahi.lsr"
+    },
+    {
+      "name": "AsianMedia",
+      "url": "https://rule.kelee.one/Loon/AsianMedia.lsr"
+    },
+    {
+      "name": "Atlassian",
+      "url": "https://rule.kelee.one/Loon/Atlassian.lsr"
+    },
+    {
+      "name": "Atomdata",
+      "url": "https://rule.kelee.one/Loon/Atomdata.lsr"
+    },
+    {
+      "name": "BBC",
+      "url": "https://rule.kelee.one/Loon/BBC.lsr"
+    },
+    {
+      "name": "BMW",
+      "url": "https://rule.kelee.one/Loon/BMW.lsr"
+    },
+    {
+      "name": "BOC",
+      "url": "https://rule.kelee.one/Loon/BOC.lsr"
+    },
+    {
+      "name": "BOCOM",
+      "url": "https://rule.kelee.one/Loon/BOCOM.lsr"
+    },
+    {
+      "name": "Bahamut",
+      "url": "https://rule.kelee.one/Loon/Bahamut.lsr"
+    },
+    {
+      "name": "BaiDuTieBa",
+      "url": "https://rule.kelee.one/Loon/BaiDuTieBa.lsr"
+    },
+    {
+      "name": "BaiFenDian",
+      "url": "https://rule.kelee.one/Loon/BaiFenDian.lsr"
+    },
+    {
+      "name": "BaiShanYunKeJi",
+      "url": "https://rule.kelee.one/Loon/BaiShanYunKeJi.lsr"
+    },
+    {
+      "name": "Baidu",
+      "url": "https://rule.kelee.one/Loon/Baidu.lsr"
+    },
+    {
+      "name": "BaoFengYingYin",
+      "url": "https://rule.kelee.one/Loon/BaoFengYingYin.lsr"
+    },
+    {
+      "name": "BardAI",
+      "url": "https://rule.kelee.one/Loon/BardAI.lsr"
+    },
+    {
+      "name": "Battle",
+      "url": "https://rule.kelee.one/Loon/Battle.lsr"
+    },
+    {
+      "name": "BeStore",
+      "url": "https://rule.kelee.one/Loon/BeStore.lsr"
+    },
+    {
+      "name": "Beats",
+      "url": "https://rule.kelee.one/Loon/Beats.lsr"
+    },
+    {
+      "name": "BesTV",
+      "url": "https://rule.kelee.one/Loon/BesTV.lsr"
+    },
+    {
+      "name": "Bestbuy",
+      "url": "https://rule.kelee.one/Loon/Bestbuy.lsr"
+    },
+    {
+      "name": "BianFeng",
+      "url": "https://rule.kelee.one/Loon/BianFeng.lsr"
+    },
+    {
+      "name": "BiliBili",
+      "url": "https://rule.kelee.one/Loon/BiliBili.lsr"
+    },
+    {
+      "name": "BiliBiliIntl",
+      "url": "https://rule.kelee.one/Loon/BiliBiliIntl.lsr"
+    },
+    {
+      "name": "Binance",
+      "url": "https://rule.kelee.one/Loon/Binance.lsr"
+    },
+    {
+      "name": "Bing",
+      "url": "https://rule.kelee.one/Loon/Bing.lsr"
+    },
+    {
+      "name": "Blizzard",
+      "url": "https://rule.kelee.one/Loon/Blizzard.lsr"
+    },
+    {
+      "name": "BlockHttpDNS",
+      "url": "https://rule.kelee.one/Loon/BlockHttpDNS.lsr"
+    },
+    {
+      "name": "Bloomberg",
+      "url": "https://rule.kelee.one/Loon/Bloomberg.lsr"
+    },
+    {
+      "name": "Blued",
+      "url": "https://rule.kelee.one/Loon/Blued.lsr"
+    },
+    {
+      "name": "BoXun",
+      "url": "https://rule.kelee.one/Loon/BoXun.lsr"
+    },
+    {
+      "name": "Bootcss",
+      "url": "https://rule.kelee.one/Loon/Bootcss.lsr"
+    },
+    {
+      "name": "BrightCove",
+      "url": "https://rule.kelee.one/Loon/BrightCove.lsr"
+    },
+    {
+      "name": "BritboxUK",
+      "url": "https://rule.kelee.one/Loon/BritboxUK.lsr"
+    },
+    {
+      "name": "Buypass",
+      "url": "https://rule.kelee.one/Loon/Buypass.lsr"
+    },
+    {
+      "name": "ByteDance",
+      "url": "https://rule.kelee.one/Loon/ByteDance.lsr"
+    },
+    {
+      "name": "CAS",
+      "url": "https://rule.kelee.one/Loon/CAS.lsr"
+    },
+    {
+      "name": "CBS",
+      "url": "https://rule.kelee.one/Loon/CBS.lsr"
+    },
+    {
+      "name": "CCB",
+      "url": "https://rule.kelee.one/Loon/CCB.lsr"
+    },
+    {
+      "name": "CCTV",
+      "url": "https://rule.kelee.one/Loon/CCTV.lsr"
+    },
+    {
+      "name": "CEB",
+      "url": "https://rule.kelee.one/Loon/CEB.lsr"
+    },
+    {
+      "name": "CETV",
+      "url": "https://rule.kelee.one/Loon/CETV.lsr"
+    },
+    {
+      "name": "CGB",
+      "url": "https://rule.kelee.one/Loon/CGB.lsr"
+    },
+    {
+      "name": "CHT",
+      "url": "https://rule.kelee.one/Loon/CHT.lsr"
+    },
+    {
+      "name": "CIBN",
+      "url": "https://rule.kelee.one/Loon/CIBN.lsr"
+    },
+    {
+      "name": "CKJR",
+      "url": "https://rule.kelee.one/Loon/CKJR.lsr"
+    },
+    {
+      "name": "CMB",
+      "url": "https://rule.kelee.one/Loon/CMB.lsr"
+    },
+    {
+      "name": "CNKI",
+      "url": "https://rule.kelee.one/Loon/CNKI.lsr"
+    },
+    {
+      "name": "CNN",
+      "url": "https://rule.kelee.one/Loon/CNN.lsr"
+    },
+    {
+      "name": "CNNIC",
+      "url": "https://rule.kelee.one/Loon/CNNIC.lsr"
+    },
+    {
+      "name": "CSDN",
+      "url": "https://rule.kelee.one/Loon/CSDN.lsr"
+    },
+    {
+      "name": "CWSeed",
+      "url": "https://rule.kelee.one/Loon/CWSeed.lsr"
+    },
+    {
+      "name": "CableTV",
+      "url": "https://rule.kelee.one/Loon/CableTV.lsr"
+    },
+    {
+      "name": "CaiNiao",
+      "url": "https://rule.kelee.one/Loon/CaiNiao.lsr"
+    },
+    {
+      "name": "CaiXinChuanMei",
+      "url": "https://rule.kelee.one/Loon/CaiXinChuanMei.lsr"
+    },
+    {
+      "name": "Cake",
+      "url": "https://rule.kelee.one/Loon/Cake.lsr"
+    },
+    {
+      "name": "Camera360",
+      "url": "https://rule.kelee.one/Loon/Camera360.lsr"
+    },
+    {
+      "name": "Canon",
+      "url": "https://rule.kelee.one/Loon/Canon.lsr"
+    },
+    {
+      "name": "ChengTongWangPan",
+      "url": "https://rule.kelee.one/Loon/ChengTongWangPan.lsr"
+    },
+    {
+      "name": "China",
+      "url": "https://rule.kelee.one/Loon/China.lsr"
+    },
+    {
+      "name": "ChinaASN",
+      "url": "https://rule.kelee.one/Loon/ChinaASN.lsr"
+    },
+    {
+      "name": "ChinaDNS",
+      "url": "https://rule.kelee.one/Loon/ChinaDNS.lsr"
+    },
+    {
+      "name": "ChinaIPs",
+      "url": "https://rule.kelee.one/Loon/ChinaIPs.lsr"
+    },
+    {
+      "name": "ChinaIPsBGP",
+      "url": "https://rule.kelee.one/Loon/ChinaIPsBGP.lsr"
+    },
+    {
+      "name": "ChinaIPs_No_IPv6",
+      "url": "https://rule.kelee.one/Loon/ChinaIPs_No_IPv6.lsr"
+    },
+    {
+      "name": "ChinaMax",
+      "url": "https://rule.kelee.one/Loon/ChinaMax.lsr"
+    },
+    {
+      "name": "ChinaMaxNoIP",
+      "url": "https://rule.kelee.one/Loon/ChinaMaxNoIP.lsr"
+    },
+    {
+      "name": "ChinaMaxNoMedia",
+      "url": "https://rule.kelee.one/Loon/ChinaMaxNoMedia.lsr"
+    },
+    {
+      "name": "ChinaMax_No_IPv6",
+      "url": "https://rule.kelee.one/Loon/ChinaMax_No_IPv6.lsr"
+    },
+    {
+      "name": "ChinaMedia",
+      "url": "https://rule.kelee.one/Loon/ChinaMedia.lsr"
+    },
+    {
+      "name": "ChinaMobile",
+      "url": "https://rule.kelee.one/Loon/ChinaMobile.lsr"
+    },
+    {
+      "name": "ChinaNews",
+      "url": "https://rule.kelee.one/Loon/ChinaNews.lsr"
+    },
+    {
+      "name": "ChinaNoMedia",
+      "url": "https://rule.kelee.one/Loon/ChinaNoMedia.lsr"
+    },
+    {
+      "name": "ChinaTelecom",
+      "url": "https://rule.kelee.one/Loon/ChinaTelecom.lsr"
+    },
+    {
+      "name": "ChinaTest",
+      "url": "https://rule.kelee.one/Loon/ChinaTest.lsr"
+    },
+    {
+      "name": "ChinaUnicom",
+      "url": "https://rule.kelee.one/Loon/ChinaUnicom.lsr"
+    },
+    {
+      "name": "Chromecast",
+      "url": "https://rule.kelee.one/Loon/Chromecast.lsr"
+    },
+    {
+      "name": "ChuangKeTie",
+      "url": "https://rule.kelee.one/Loon/ChuangKeTie.lsr"
+    },
+    {
+      "name": "ChunYou",
+      "url": "https://rule.kelee.one/Loon/ChunYou.lsr"
+    },
+    {
+      "name": "Cisco",
+      "url": "https://rule.kelee.one/Loon/Cisco.lsr"
+    },
+    {
+      "name": "Civitai",
+      "url": "https://rule.kelee.one/Loon/Civitai.lsr"
+    },
+    {
+      "name": "Classic",
+      "url": "https://rule.kelee.one/Loon/Classic.lsr"
+    },
+    {
+      "name": "Claude",
+      "url": "https://rule.kelee.one/Loon/Claude.lsr"
+    },
+    {
+      "name": "Cloudflare",
+      "url": "https://rule.kelee.one/Loon/Cloudflare.lsr"
+    },
+    {
+      "name": "Cloudflarecn",
+      "url": "https://rule.kelee.one/Loon/Cloudflarecn.lsr"
+    },
+    {
+      "name": "Clubhouse",
+      "url": "https://rule.kelee.one/Loon/Clubhouse.lsr"
+    },
+    {
+      "name": "ClubhouseIP",
+      "url": "https://rule.kelee.one/Loon/ClubhouseIP.lsr"
+    },
+    {
+      "name": "Cnet",
+      "url": "https://rule.kelee.one/Loon/Cnet.lsr"
+    },
+    {
+      "name": "Collabora",
+      "url": "https://rule.kelee.one/Loon/Collabora.lsr"
+    },
+    {
+      "name": "Comodo",
+      "url": "https://rule.kelee.one/Loon/Comodo.lsr"
+    },
+    {
+      "name": "Contentful",
+      "url": "https://rule.kelee.one/Loon/Contentful.lsr"
+    },
+    {
+      "name": "Coolapk",
+      "url": "https://rule.kelee.one/Loon/Coolapk.lsr"
+    },
+    {
+      "name": "Copilot",
+      "url": "https://rule.kelee.one/Loon/Copilot.lsr"
+    },
+    {
+      "name": "Crypto",
+      "url": "https://rule.kelee.one/Loon/Crypto.lsr"
+    },
+    {
+      "name": "Cryptocurrency",
+      "url": "https://rule.kelee.one/Loon/Cryptocurrency.lsr"
+    },
+    {
+      "name": "CyberTrust",
+      "url": "https://rule.kelee.one/Loon/CyberTrust.lsr"
+    },
+    {
+      "name": "DAZN",
+      "url": "https://rule.kelee.one/Loon/DAZN.lsr"
+    },
+    {
+      "name": "DMM",
+      "url": "https://rule.kelee.one/Loon/DMM.lsr"
+    },
+    {
+      "name": "DNS",
+      "url": "https://rule.kelee.one/Loon/DNS.lsr"
+    },
+    {
+      "name": "DaMai",
+      "url": "https://rule.kelee.one/Loon/DaMai.lsr"
+    },
+    {
+      "name": "Dailymail",
+      "url": "https://rule.kelee.one/Loon/Dailymail.lsr"
+    },
+    {
+      "name": "Dailymotion",
+      "url": "https://rule.kelee.one/Loon/Dailymotion.lsr"
+    },
+    {
+      "name": "DanDanZan",
+      "url": "https://rule.kelee.one/Loon/DanDanZan.lsr"
+    },
+    {
+      "name": "Dandanplay",
+      "url": "https://rule.kelee.one/Loon/Dandanplay.lsr"
+    },
+    {
+      "name": "DangDang",
+      "url": "https://rule.kelee.one/Loon/DangDang.lsr"
+    },
+    {
+      "name": "Dedao",
+      "url": "https://rule.kelee.one/Loon/Dedao.lsr"
+    },
+    {
+      "name": "Deepin",
+      "url": "https://rule.kelee.one/Loon/Deepin.lsr"
+    },
+    {
+      "name": "Deezer",
+      "url": "https://rule.kelee.one/Loon/Deezer.lsr"
+    },
+    {
+      "name": "Dell",
+      "url": "https://rule.kelee.one/Loon/Dell.lsr"
+    },
+    {
+      "name": "Developer",
+      "url": "https://rule.kelee.one/Loon/Developer.lsr"
+    },
+    {
+      "name": "DiDi",
+      "url": "https://rule.kelee.one/Loon/DiDi.lsr"
+    },
+    {
+      "name": "DiLianWangLuo",
+      "url": "https://rule.kelee.one/Loon/DiLianWangLuo.lsr"
+    },
+    {
+      "name": "DiSiFanShi",
+      "url": "https://rule.kelee.one/Loon/DiSiFanShi.lsr"
+    },
+    {
+      "name": "DiabloIII",
+      "url": "https://rule.kelee.one/Loon/DiabloIII.lsr"
+    },
+    {
+      "name": "DianCeWangKe",
+      "url": "https://rule.kelee.one/Loon/DianCeWangKe.lsr"
+    },
+    {
+      "name": "DigiCert",
+      "url": "https://rule.kelee.one/Loon/DigiCert.lsr"
+    },
+    {
+      "name": "DigitalOcean",
+      "url": "https://rule.kelee.one/Loon/DigitalOcean.lsr"
+    },
+    {
+      "name": "DingTalk",
+      "url": "https://rule.kelee.one/Loon/DingTalk.lsr"
+    },
+    {
+      "name": "DingXiangYuan",
+      "url": "https://rule.kelee.one/Loon/DingXiangYuan.lsr"
+    },
+    {
+      "name": "Direct",
+      "url": "https://rule.kelee.one/Loon/Direct.lsr"
+    },
+    {
+      "name": "Discord",
+      "url": "https://rule.kelee.one/Loon/Discord.lsr"
+    },
+    {
+      "name": "DiscoveryPlus",
+      "url": "https://rule.kelee.one/Loon/DiscoveryPlus.lsr"
+    },
+    {
+      "name": "Disney",
+      "url": "https://rule.kelee.one/Loon/Disney.lsr"
+    },
+    {
+      "name": "Disqus",
+      "url": "https://rule.kelee.one/Loon/Disqus.lsr"
+    },
+    {
+      "name": "Docker",
+      "url": "https://rule.kelee.one/Loon/Docker.lsr"
+    },
+    {
+      "name": "Domob",
+      "url": "https://rule.kelee.one/Loon/Domob.lsr"
+    },
+    {
+      "name": "Dood",
+      "url": "https://rule.kelee.one/Loon/Dood.lsr"
+    },
+    {
+      "name": "DouBan",
+      "url": "https://rule.kelee.one/Loon/DouBan.lsr"
+    },
+    {
+      "name": "DouYin",
+      "url": "https://rule.kelee.one/Loon/DouYin.lsr"
+    },
+    {
+      "name": "Douyu",
+      "url": "https://rule.kelee.one/Loon/Douyu.lsr"
+    },
+    {
+      "name": "Download",
+      "url": "https://rule.kelee.one/Loon/Download.lsr"
+    },
+    {
+      "name": "Dropbox",
+      "url": "https://rule.kelee.one/Loon/Dropbox.lsr"
+    },
+    {
+      "name": "DtDNS",
+      "url": "https://rule.kelee.one/Loon/DtDNS.lsr"
+    },
+    {
+      "name": "Dubox",
+      "url": "https://rule.kelee.one/Loon/Dubox.lsr"
+    },
+    {
+      "name": "Duckduckgo",
+      "url": "https://rule.kelee.one/Loon/Duckduckgo.lsr"
+    },
+    {
+      "name": "DuoWan",
+      "url": "https://rule.kelee.one/Loon/DuoWan.lsr"
+    },
+    {
+      "name": "Duolingo",
+      "url": "https://rule.kelee.one/Loon/Duolingo.lsr"
+    },
+    {
+      "name": "DynDNS",
+      "url": "https://rule.kelee.one/Loon/DynDNS.lsr"
+    },
+    {
+      "name": "Dynu",
+      "url": "https://rule.kelee.one/Loon/Dynu.lsr"
+    },
+    {
+      "name": "EA",
+      "url": "https://rule.kelee.one/Loon/EA.lsr"
+    },
+    {
+      "name": "EHGallery",
+      "url": "https://rule.kelee.one/Loon/EHGallery.lsr"
+    },
+    {
+      "name": "EastMoney",
+      "url": "https://rule.kelee.one/Loon/EastMoney.lsr"
+    },
+    {
+      "name": "EasyPrivacy",
+      "url": "https://rule.kelee.one/Loon/EasyPrivacy.lsr"
+    },
+    {
+      "name": "Electron",
+      "url": "https://rule.kelee.one/Loon/Electron.lsr"
+    },
+    {
+      "name": "Eleme",
+      "url": "https://rule.kelee.one/Loon/Eleme.lsr"
+    },
+    {
+      "name": "Embl",
+      "url": "https://rule.kelee.one/Loon/Embl.lsr"
+    },
+    {
+      "name": "Emby",
+      "url": "https://rule.kelee.one/Loon/Emby.lsr"
+    },
+    {
+      "name": "Emojipedia",
+      "url": "https://rule.kelee.one/Loon/Emojipedia.lsr"
+    },
+    {
+      "name": "EncoreTVB",
+      "url": "https://rule.kelee.one/Loon/EncoreTVB.lsr"
+    },
+    {
+      "name": "Entrust",
+      "url": "https://rule.kelee.one/Loon/Entrust.lsr"
+    },
+    {
+      "name": "Epic",
+      "url": "https://rule.kelee.one/Loon/Epic.lsr"
+    },
+    {
+      "name": "Espn",
+      "url": "https://rule.kelee.one/Loon/Espn.lsr"
+    },
+    {
+      "name": "FOXNOW",
+      "url": "https://rule.kelee.one/Loon/FOXNOW.lsr"
+    },
+    {
+      "name": "FOXPlus",
+      "url": "https://rule.kelee.one/Loon/FOXPlus.lsr"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://rule.kelee.one/Loon/Facebook.lsr"
+    },
+    {
+      "name": "FanFou",
+      "url": "https://rule.kelee.one/Loon/FanFou.lsr"
+    },
+    {
+      "name": "FangZhengDianZi",
+      "url": "https://rule.kelee.one/Loon/FangZhengDianZi.lsr"
+    },
+    {
+      "name": "Faronics",
+      "url": "https://rule.kelee.one/Loon/Faronics.lsr"
+    },
+    {
+      "name": "FeiZhu",
+      "url": "https://rule.kelee.one/Loon/FeiZhu.lsr"
+    },
+    {
+      "name": "FengHuangWang",
+      "url": "https://rule.kelee.one/Loon/FengHuangWang.lsr"
+    },
+    {
+      "name": "FengXiaWangLuo",
+      "url": "https://rule.kelee.one/Loon/FengXiaWangLuo.lsr"
+    },
+    {
+      "name": "Figma",
+      "url": "https://rule.kelee.one/Loon/Figma.lsr"
+    },
+    {
+      "name": "Fiio",
+      "url": "https://rule.kelee.one/Loon/Fiio.lsr"
+    },
+    {
+      "name": "FindMy",
+      "url": "https://rule.kelee.one/Loon/FindMy.lsr"
+    },
+    {
+      "name": "FitnessPlus",
+      "url": "https://rule.kelee.one/Loon/FitnessPlus.lsr"
+    },
+    {
+      "name": "FlipBoard",
+      "url": "https://rule.kelee.one/Loon/FlipBoard.lsr"
+    },
+    {
+      "name": "Flurry",
+      "url": "https://rule.kelee.one/Loon/Flurry.lsr"
+    },
+    {
+      "name": "Fox",
+      "url": "https://rule.kelee.one/Loon/Fox.lsr"
+    },
+    {
+      "name": "FreeCodeCamp",
+      "url": "https://rule.kelee.one/Loon/FreeCodeCamp.lsr"
+    },
+    {
+      "name": "FuboTV",
+      "url": "https://rule.kelee.one/Loon/FuboTV.lsr"
+    },
+    {
+      "name": "Funshion",
+      "url": "https://rule.kelee.one/Loon/Funshion.lsr"
+    },
+    {
+      "name": "Game",
+      "url": "https://rule.kelee.one/Loon/Game.lsr"
+    },
+    {
+      "name": "GaoDe",
+      "url": "https://rule.kelee.one/Loon/GaoDe.lsr"
+    },
+    {
+      "name": "Garena",
+      "url": "https://rule.kelee.one/Loon/Garena.lsr"
+    },
+    {
+      "name": "Geely",
+      "url": "https://rule.kelee.one/Loon/Geely.lsr"
+    },
+    {
+      "name": "Gemini",
+      "url": "https://rule.kelee.one/Loon/Gemini.lsr"
+    },
+    {
+      "name": "Gettyimages",
+      "url": "https://rule.kelee.one/Loon/Gettyimages.lsr"
+    },
+    {
+      "name": "Gigabyte",
+      "url": "https://rule.kelee.one/Loon/Gigabyte.lsr"
+    },
+    {
+      "name": "GitBook",
+      "url": "https://rule.kelee.one/Loon/GitBook.lsr"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://rule.kelee.one/Loon/GitHub.lsr"
+    },
+    {
+      "name": "GitLab",
+      "url": "https://rule.kelee.one/Loon/GitLab.lsr"
+    },
+    {
+      "name": "Gitee",
+      "url": "https://rule.kelee.one/Loon/Gitee.lsr"
+    },
+    {
+      "name": "Global",
+      "url": "https://rule.kelee.one/Loon/Global.lsr"
+    },
+    {
+      "name": "GlobalMedia",
+      "url": "https://rule.kelee.one/Loon/GlobalMedia.lsr"
+    },
+    {
+      "name": "GlobalScholar",
+      "url": "https://rule.kelee.one/Loon/GlobalScholar.lsr"
+    },
+    {
+      "name": "GlobalSign",
+      "url": "https://rule.kelee.one/Loon/GlobalSign.lsr"
+    },
+    {
+      "name": "Gog",
+      "url": "https://rule.kelee.one/Loon/Gog.lsr"
+    },
+    {
+      "name": "Google",
+      "url": "https://rule.kelee.one/Loon/Google.lsr"
+    },
+    {
+      "name": "GoogleDrive",
+      "url": "https://rule.kelee.one/Loon/GoogleDrive.lsr"
+    },
+    {
+      "name": "GoogleEarth",
+      "url": "https://rule.kelee.one/Loon/GoogleEarth.lsr"
+    },
+    {
+      "name": "GoogleFCM",
+      "url": "https://rule.kelee.one/Loon/GoogleFCM.lsr"
+    },
+    {
+      "name": "GoogleSearch",
+      "url": "https://rule.kelee.one/Loon/GoogleSearch.lsr"
+    },
+    {
+      "name": "GoogleVoice",
+      "url": "https://rule.kelee.one/Loon/GoogleVoice.lsr"
+    },
+    {
+      "name": "GovCN",
+      "url": "https://rule.kelee.one/Loon/GovCN.lsr"
+    },
+    {
+      "name": "Gucci",
+      "url": "https://rule.kelee.one/Loon/Gucci.lsr"
+    },
+    {
+      "name": "GuiGuDongLi",
+      "url": "https://rule.kelee.one/Loon/GuiGuDongLi.lsr"
+    },
+    {
+      "name": "HBO",
+      "url": "https://rule.kelee.one/Loon/HBO.lsr"
+    },
+    {
+      "name": "HBOAsia",
+      "url": "https://rule.kelee.one/Loon/HBOAsia.lsr"
+    },
+    {
+      "name": "HBOHK",
+      "url": "https://rule.kelee.one/Loon/HBOHK.lsr"
+    },
+    {
+      "name": "HBOUSA",
+      "url": "https://rule.kelee.one/Loon/HBOUSA.lsr"
+    },
+    {
+      "name": "HKBN",
+      "url": "https://rule.kelee.one/Loon/HKBN.lsr"
+    },
+    {
+      "name": "HKOpenTV",
+      "url": "https://rule.kelee.one/Loon/HKOpenTV.lsr"
+    },
+    {
+      "name": "HKedcity",
+      "url": "https://rule.kelee.one/Loon/HKedcity.lsr"
+    },
+    {
+      "name": "HP",
+      "url": "https://rule.kelee.one/Loon/HP.lsr"
+    },
+    {
+      "name": "HWTV",
+      "url": "https://rule.kelee.one/Loon/HWTV.lsr"
+    },
+    {
+      "name": "HaiNanHangKong",
+      "url": "https://rule.kelee.one/Loon/HaiNanHangKong.lsr"
+    },
+    {
+      "name": "HamiVideo",
+      "url": "https://rule.kelee.one/Loon/HamiVideo.lsr"
+    },
+    {
+      "name": "HanYi",
+      "url": "https://rule.kelee.one/Loon/HanYi.lsr"
+    },
+    {
+      "name": "HashiCorp",
+      "url": "https://rule.kelee.one/Loon/HashiCorp.lsr"
+    },
+    {
+      "name": "Haveibeenpwned",
+      "url": "https://rule.kelee.one/Loon/Haveibeenpwned.lsr"
+    },
+    {
+      "name": "HeMa",
+      "url": "https://rule.kelee.one/Loon/HeMa.lsr"
+    },
+    {
+      "name": "Hearthstone",
+      "url": "https://rule.kelee.one/Loon/Hearthstone.lsr"
+    },
+    {
+      "name": "HeroesoftheStorm",
+      "url": "https://rule.kelee.one/Loon/HeroesoftheStorm.lsr"
+    },
+    {
+      "name": "Heroku",
+      "url": "https://rule.kelee.one/Loon/Heroku.lsr"
+    },
+    {
+      "name": "HibyMusic",
+      "url": "https://rule.kelee.one/Loon/HibyMusic.lsr"
+    },
+    {
+      "name": "Hijacking",
+      "url": "https://rule.kelee.one/Loon/Hijacking.lsr"
+    },
+    {
+      "name": "Himalaya",
+      "url": "https://rule.kelee.one/Loon/Himalaya.lsr"
+    },
+    {
+      "name": "Hkgolden",
+      "url": "https://rule.kelee.one/Loon/Hkgolden.lsr"
+    },
+    {
+      "name": "HoYoverse",
+      "url": "https://rule.kelee.one/Loon/HoYoverse.lsr"
+    },
+    {
+      "name": "Hpplay",
+      "url": "https://rule.kelee.one/Loon/Hpplay.lsr"
+    },
+    {
+      "name": "HuYa",
+      "url": "https://rule.kelee.one/Loon/HuYa.lsr"
+    },
+    {
+      "name": "HuaShuTV",
+      "url": "https://rule.kelee.one/Loon/HuaShuTV.lsr"
+    },
+    {
+      "name": "HuanJu",
+      "url": "https://rule.kelee.one/Loon/HuanJu.lsr"
+    },
+    {
+      "name": "Huawei",
+      "url": "https://rule.kelee.one/Loon/Huawei.lsr"
+    },
+    {
+      "name": "Huffpost",
+      "url": "https://rule.kelee.one/Loon/Huffpost.lsr"
+    },
+    {
+      "name": "Hulu",
+      "url": "https://rule.kelee.one/Loon/Hulu.lsr"
+    },
+    {
+      "name": "HuluJP",
+      "url": "https://rule.kelee.one/Loon/HuluJP.lsr"
+    },
+    {
+      "name": "HuluUSA",
+      "url": "https://rule.kelee.one/Loon/HuluUSA.lsr"
+    },
+    {
+      "name": "HunanTV",
+      "url": "https://rule.kelee.one/Loon/HunanTV.lsr"
+    },
+    {
+      "name": "Hupu",
+      "url": "https://rule.kelee.one/Loon/Hupu.lsr"
+    },
+    {
+      "name": "IBM",
+      "url": "https://rule.kelee.one/Loon/IBM.lsr"
+    },
+    {
+      "name": "ICBC",
+      "url": "https://rule.kelee.one/Loon/ICBC.lsr"
+    },
+    {
+      "name": "IKEA",
+      "url": "https://rule.kelee.one/Loon/IKEA.lsr"
+    },
+    {
+      "name": "IMDB",
+      "url": "https://rule.kelee.one/Loon/IMDB.lsr"
+    },
+    {
+      "name": "IPTVMainland",
+      "url": "https://rule.kelee.one/Loon/IPTVMainland.lsr"
+    },
+    {
+      "name": "IPTVOther",
+      "url": "https://rule.kelee.one/Loon/IPTVOther.lsr"
+    },
+    {
+      "name": "ITV",
+      "url": "https://rule.kelee.one/Loon/ITV.lsr"
+    },
+    {
+      "name": "Identrust",
+      "url": "https://rule.kelee.one/Loon/Identrust.lsr"
+    },
+    {
+      "name": "Imgur",
+      "url": "https://rule.kelee.one/Loon/Imgur.lsr"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://rule.kelee.one/Loon/Instagram.lsr"
+    },
+    {
+      "name": "Intel",
+      "url": "https://rule.kelee.one/Loon/Intel.lsr"
+    },
+    {
+      "name": "Intercom",
+      "url": "https://rule.kelee.one/Loon/Intercom.lsr"
+    },
+    {
+      "name": "JOOX",
+      "url": "https://rule.kelee.one/Loon/JOOX.lsr"
+    },
+    {
+      "name": "Japonx",
+      "url": "https://rule.kelee.one/Loon/Japonx.lsr"
+    },
+    {
+      "name": "Jetbrains",
+      "url": "https://rule.kelee.one/Loon/Jetbrains.lsr"
+    },
+    {
+      "name": "Jfrog",
+      "url": "https://rule.kelee.one/Loon/Jfrog.lsr"
+    },
+    {
+      "name": "JiGuangTuiSong",
+      "url": "https://rule.kelee.one/Loon/JiGuangTuiSong.lsr"
+    },
+    {
+      "name": "JianGuoYun",
+      "url": "https://rule.kelee.one/Loon/JianGuoYun.lsr"
+    },
+    {
+      "name": "JianShu",
+      "url": "https://rule.kelee.one/Loon/JianShu.lsr"
+    },
+    {
+      "name": "JinJiangWenXue",
+      "url": "https://rule.kelee.one/Loon/JinJiangWenXue.lsr"
+    },
+    {
+      "name": "JingDong",
+      "url": "https://rule.kelee.one/Loon/JingDong.lsr"
+    },
+    {
+      "name": "Jquery",
+      "url": "https://rule.kelee.one/Loon/Jquery.lsr"
+    },
+    {
+      "name": "Jsdelivr",
+      "url": "https://rule.kelee.one/Loon/Jsdelivr.lsr"
+    },
+    {
+      "name": "JueJin",
+      "url": "https://rule.kelee.one/Loon/JueJin.lsr"
+    },
+    {
+      "name": "Jwplayer",
+      "url": "https://rule.kelee.one/Loon/Jwplayer.lsr"
+    },
+    {
+      "name": "KKBOX",
+      "url": "https://rule.kelee.one/Loon/KKBOX.lsr"
+    },
+    {
+      "name": "KKTV",
+      "url": "https://rule.kelee.one/Loon/KKTV.lsr"
+    },
+    {
+      "name": "KakaoTalk",
+      "url": "https://rule.kelee.one/Loon/KakaoTalk.lsr"
+    },
+    {
+      "name": "Kantv",
+      "url": "https://rule.kelee.one/Loon/Kantv.lsr"
+    },
+    {
+      "name": "Keep",
+      "url": "https://rule.kelee.one/Loon/Keep.lsr"
+    },
+    {
+      "name": "KingSmith",
+      "url": "https://rule.kelee.one/Loon/KingSmith.lsr"
+    },
+    {
+      "name": "Kingsoft",
+      "url": "https://rule.kelee.one/Loon/Kingsoft.lsr"
+    },
+    {
+      "name": "KouDaiShiShang",
+      "url": "https://rule.kelee.one/Loon/KouDaiShiShang.lsr"
+    },
+    {
+      "name": "Ku6",
+      "url": "https://rule.kelee.one/Loon/Ku6.lsr"
+    },
+    {
+      "name": "KuKeMusic",
+      "url": "https://rule.kelee.one/Loon/KuKeMusic.lsr"
+    },
+    {
+      "name": "KuaiDi100",
+      "url": "https://rule.kelee.one/Loon/KuaiDi100.lsr"
+    },
+    {
+      "name": "KuaiShou",
+      "url": "https://rule.kelee.one/Loon/KuaiShou.lsr"
+    },
+    {
+      "name": "KuangShi",
+      "url": "https://rule.kelee.one/Loon/KuangShi.lsr"
+    },
+    {
+      "name": "KugouKuwo",
+      "url": "https://rule.kelee.one/Loon/KugouKuwo.lsr"
+    },
+    {
+      "name": "LG",
+      "url": "https://rule.kelee.one/Loon/LG.lsr"
+    },
+    {
+      "name": "Lan",
+      "url": "https://rule.kelee.one/Loon/Lan.lsr"
+    },
+    {
+      "name": "LanZouYun",
+      "url": "https://rule.kelee.one/Loon/LanZouYun.lsr"
+    },
+    {
+      "name": "LastFM",
+      "url": "https://rule.kelee.one/Loon/LastFM.lsr"
+    },
+    {
+      "name": "LastPass",
+      "url": "https://rule.kelee.one/Loon/LastPass.lsr"
+    },
+    {
+      "name": "LeJu",
+      "url": "https://rule.kelee.one/Loon/LeJu.lsr"
+    },
+    {
+      "name": "LeTV",
+      "url": "https://rule.kelee.one/Loon/LeTV.lsr"
+    },
+    {
+      "name": "Lenovo",
+      "url": "https://rule.kelee.one/Loon/Lenovo.lsr"
+    },
+    {
+      "name": "LiTV",
+      "url": "https://rule.kelee.one/Loon/LiTV.lsr"
+    },
+    {
+      "name": "LianMeng",
+      "url": "https://rule.kelee.one/Loon/LianMeng.lsr"
+    },
+    {
+      "name": "Limelight",
+      "url": "https://rule.kelee.one/Loon/Limelight.lsr"
+    },
+    {
+      "name": "Line",
+      "url": "https://rule.kelee.one/Loon/Line.lsr"
+    },
+    {
+      "name": "LineTV",
+      "url": "https://rule.kelee.one/Loon/LineTV.lsr"
+    },
+    {
+      "name": "Linguee",
+      "url": "https://rule.kelee.one/Loon/Linguee.lsr"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://rule.kelee.one/Loon/LinkedIn.lsr"
+    },
+    {
+      "name": "Linux",
+      "url": "https://rule.kelee.one/Loon/Linux.lsr"
+    },
+    {
+      "name": "LivePerson",
+      "url": "https://rule.kelee.one/Loon/LivePerson.lsr"
+    },
+    {
+      "name": "Logitech",
+      "url": "https://rule.kelee.one/Loon/Logitech.lsr"
+    },
+    {
+      "name": "LondonReal",
+      "url": "https://rule.kelee.one/Loon/LondonReal.lsr"
+    },
+    {
+      "name": "LuDaShi",
+      "url": "https://rule.kelee.one/Loon/LuDaShi.lsr"
+    },
+    {
+      "name": "LvMiLianChuang",
+      "url": "https://rule.kelee.one/Loon/LvMiLianChuang.lsr"
+    },
+    {
+      "name": "MEGA",
+      "url": "https://rule.kelee.one/Loon/MEGA.lsr"
+    },
+    {
+      "name": "MIUIPrivacy",
+      "url": "https://rule.kelee.one/Loon/MIUIPrivacy.lsr"
+    },
+    {
+      "name": "MOMOShop",
+      "url": "https://rule.kelee.one/Loon/MOMOShop.lsr"
+    },
+    {
+      "name": "MOOMusic",
+      "url": "https://rule.kelee.one/Loon/MOOMusic.lsr"
+    },
+    {
+      "name": "MOOV",
+      "url": "https://rule.kelee.one/Loon/MOOV.lsr"
+    },
+    {
+      "name": "Mail",
+      "url": "https://rule.kelee.one/Loon/Mail.lsr"
+    },
+    {
+      "name": "Mailru",
+      "url": "https://rule.kelee.one/Loon/Mailru.lsr"
+    },
+    {
+      "name": "Majsoul",
+      "url": "https://rule.kelee.one/Loon/Majsoul.lsr"
+    },
+    {
+      "name": "Manorama",
+      "url": "https://rule.kelee.one/Loon/Manorama.lsr"
+    },
+    {
+      "name": "Maocloud",
+      "url": "https://rule.kelee.one/Loon/Maocloud.lsr"
+    },
+    {
+      "name": "Marketing",
+      "url": "https://rule.kelee.one/Loon/Marketing.lsr"
+    },
+    {
+      "name": "McDonalds",
+      "url": "https://rule.kelee.one/Loon/McDonalds.lsr"
+    },
+    {
+      "name": "MeWatch",
+      "url": "https://rule.kelee.one/Loon/MeWatch.lsr"
+    },
+    {
+      "name": "MeiTu",
+      "url": "https://rule.kelee.one/Loon/MeiTu.lsr"
+    },
+    {
+      "name": "MeiTuan",
+      "url": "https://rule.kelee.one/Loon/MeiTuan.lsr"
+    },
+    {
+      "name": "MeiZu",
+      "url": "https://rule.kelee.one/Loon/MeiZu.lsr"
+    },
+    {
+      "name": "MiWu",
+      "url": "https://rule.kelee.one/Loon/MiWu.lsr"
+    },
+    {
+      "name": "Microsoft",
+      "url": "https://rule.kelee.one/Loon/Microsoft.lsr"
+    },
+    {
+      "name": "MicrosoftEdge",
+      "url": "https://rule.kelee.one/Loon/MicrosoftEdge.lsr"
+    },
+    {
+      "name": "Migu",
+      "url": "https://rule.kelee.one/Loon/Migu.lsr"
+    },
+    {
+      "name": "MingLueZhaoHui",
+      "url": "https://rule.kelee.one/Loon/MingLueZhaoHui.lsr"
+    },
+    {
+      "name": "Mogujie",
+      "url": "https://rule.kelee.one/Loon/Mogujie.lsr"
+    },
+    {
+      "name": "Mojitianqi",
+      "url": "https://rule.kelee.one/Loon/Mojitianqi.lsr"
+    },
+    {
+      "name": "Movefree",
+      "url": "https://rule.kelee.one/Loon/Movefree.lsr"
+    },
+    {
+      "name": "Mozilla",
+      "url": "https://rule.kelee.one/Loon/Mozilla.lsr"
+    },
+    {
+      "name": "My5",
+      "url": "https://rule.kelee.one/Loon/My5.lsr"
+    },
+    {
+      "name": "NBC",
+      "url": "https://rule.kelee.one/Loon/NBC.lsr"
+    },
+    {
+      "name": "NGA",
+      "url": "https://rule.kelee.one/Loon/NGA.lsr"
+    },
+    {
+      "name": "NGAA",
+      "url": "https://rule.kelee.one/Loon/NGAA.lsr"
+    },
+    {
+      "name": "NTPService",
+      "url": "https://rule.kelee.one/Loon/NTPService.lsr"
+    },
+    {
+      "name": "NYPost",
+      "url": "https://rule.kelee.one/Loon/NYPost.lsr"
+    },
+    {
+      "name": "NYTimes",
+      "url": "https://rule.kelee.one/Loon/NYTimes.lsr"
+    },
+    {
+      "name": "NaSDDNS",
+      "url": "https://rule.kelee.one/Loon/NaSDDNS.lsr"
+    },
+    {
+      "name": "Naver",
+      "url": "https://rule.kelee.one/Loon/Naver.lsr"
+    },
+    {
+      "name": "NaverTV",
+      "url": "https://rule.kelee.one/Loon/NaverTV.lsr"
+    },
+    {
+      "name": "NetEase",
+      "url": "https://rule.kelee.one/Loon/NetEase.lsr"
+    },
+    {
+      "name": "NetEaseMusic",
+      "url": "https://rule.kelee.one/Loon/NetEaseMusic.lsr"
+    },
+    {
+      "name": "Netflix",
+      "url": "https://rule.kelee.one/Loon/Netflix.lsr"
+    },
+    {
+      "name": "Niconico",
+      "url": "https://rule.kelee.one/Loon/Niconico.lsr"
+    },
+    {
+      "name": "Nike",
+      "url": "https://rule.kelee.one/Loon/Nike.lsr"
+    },
+    {
+      "name": "Nikkei",
+      "url": "https://rule.kelee.one/Loon/Nikkei.lsr"
+    },
+    {
+      "name": "Nintendo",
+      "url": "https://rule.kelee.one/Loon/Nintendo.lsr"
+    },
+    {
+      "name": "NivodTV",
+      "url": "https://rule.kelee.one/Loon/NivodTV.lsr"
+    },
+    {
+      "name": "Notion",
+      "url": "https://rule.kelee.one/Loon/Notion.lsr"
+    },
+    {
+      "name": "NowE",
+      "url": "https://rule.kelee.one/Loon/NowE.lsr"
+    },
+    {
+      "name": "Npmjs",
+      "url": "https://rule.kelee.one/Loon/Npmjs.lsr"
+    },
+    {
+      "name": "Nvidia",
+      "url": "https://rule.kelee.one/Loon/Nvidia.lsr"
+    },
+    {
+      "name": "OKX",
+      "url": "https://rule.kelee.one/Loon/OKX.lsr"
+    },
+    {
+      "name": "OP",
+      "url": "https://rule.kelee.one/Loon/OP.lsr"
+    },
+    {
+      "name": "OPPO",
+      "url": "https://rule.kelee.one/Loon/OPPO.lsr"
+    },
+    {
+      "name": "Olevod",
+      "url": "https://rule.kelee.one/Loon/Olevod.lsr"
+    },
+    {
+      "name": "OneDrive",
+      "url": "https://rule.kelee.one/Loon/OneDrive.lsr"
+    },
+    {
+      "name": "OnePlus",
+      "url": "https://rule.kelee.one/Loon/OnePlus.lsr"
+    },
+    {
+      "name": "OpenAI",
+      "url": "https://rule.kelee.one/Loon/OpenAI.lsr"
+    },
+    {
+      "name": "Opera",
+      "url": "https://rule.kelee.one/Loon/Opera.lsr"
+    },
+    {
+      "name": "Oracle",
+      "url": "https://rule.kelee.one/Loon/Oracle.lsr"
+    },
+    {
+      "name": "Oreilly",
+      "url": "https://rule.kelee.one/Loon/Oreilly.lsr"
+    },
+    {
+      "name": "Origin",
+      "url": "https://rule.kelee.one/Loon/Origin.lsr"
+    },
+    {
+      "name": "OuPeng",
+      "url": "https://rule.kelee.one/Loon/OuPeng.lsr"
+    },
+    {
+      "name": "Overcast",
+      "url": "https://rule.kelee.one/Loon/Overcast.lsr"
+    },
+    {
+      "name": "Overwatch",
+      "url": "https://rule.kelee.one/Loon/Overwatch.lsr"
+    },
+    {
+      "name": "PBS",
+      "url": "https://rule.kelee.one/Loon/PBS.lsr"
+    },
+    {
+      "name": "PCCW",
+      "url": "https://rule.kelee.one/Loon/PCCW.lsr"
+    },
+    {
+      "name": "PChome",
+      "url": "https://rule.kelee.one/Loon/PChome.lsr"
+    },
+    {
+      "name": "PChomeTW",
+      "url": "https://rule.kelee.one/Loon/PChomeTW.lsr"
+    },
+    {
+      "name": "PPTV",
+      "url": "https://rule.kelee.one/Loon/PPTV.lsr"
+    },
+    {
+      "name": "PSBC",
+      "url": "https://rule.kelee.one/Loon/PSBC.lsr"
+    },
+    {
+      "name": "Pandora",
+      "url": "https://rule.kelee.one/Loon/Pandora.lsr"
+    },
+    {
+      "name": "PandoraTV",
+      "url": "https://rule.kelee.one/Loon/PandoraTV.lsr"
+    },
+    {
+      "name": "ParamountPlus",
+      "url": "https://rule.kelee.one/Loon/ParamountPlus.lsr"
+    },
+    {
+      "name": "Patreon",
+      "url": "https://rule.kelee.one/Loon/Patreon.lsr"
+    },
+    {
+      "name": "PayPal",
+      "url": "https://rule.kelee.one/Loon/PayPal.lsr"
+    },
+    {
+      "name": "Peacock",
+      "url": "https://rule.kelee.one/Loon/Peacock.lsr"
+    },
+    {
+      "name": "Picacg",
+      "url": "https://rule.kelee.one/Loon/Picacg.lsr"
+    },
+    {
+      "name": "Picsee",
+      "url": "https://rule.kelee.one/Loon/Picsee.lsr"
+    },
+    {
+      "name": "PikPak",
+      "url": "https://rule.kelee.one/Loon/PikPak.lsr"
+    },
+    {
+      "name": "Pinduoduo",
+      "url": "https://rule.kelee.one/Loon/Pinduoduo.lsr"
+    },
+    {
+      "name": "PingAn",
+      "url": "https://rule.kelee.one/Loon/PingAn.lsr"
+    },
+    {
+      "name": "Pinterest",
+      "url": "https://rule.kelee.one/Loon/Pinterest.lsr"
+    },
+    {
+      "name": "Pixiv",
+      "url": "https://rule.kelee.one/Loon/Pixiv.lsr"
+    },
+    {
+      "name": "Pixnet",
+      "url": "https://rule.kelee.one/Loon/Pixnet.lsr"
+    },
+    {
+      "name": "PlayStation",
+      "url": "https://rule.kelee.one/Loon/PlayStation.lsr"
+    },
+    {
+      "name": "PotatoChat",
+      "url": "https://rule.kelee.one/Loon/PotatoChat.lsr"
+    },
+    {
+      "name": "PrimeVideo",
+      "url": "https://rule.kelee.one/Loon/PrimeVideo.lsr"
+    },
+    {
+      "name": "Privacy",
+      "url": "https://rule.kelee.one/Loon/Privacy.lsr"
+    },
+    {
+      "name": "PrivateTracker",
+      "url": "https://rule.kelee.one/Loon/PrivateTracker.lsr"
+    },
+    {
+      "name": "Protonmail",
+      "url": "https://rule.kelee.one/Loon/Protonmail.lsr"
+    },
+    {
+      "name": "Proxy",
+      "url": "https://rule.kelee.one/Loon/Proxy.lsr"
+    },
+    {
+      "name": "ProxyLite",
+      "url": "https://rule.kelee.one/Loon/ProxyLite.lsr"
+    },
+    {
+      "name": "Pubmatic",
+      "url": "https://rule.kelee.one/Loon/Pubmatic.lsr"
+    },
+    {
+      "name": "Purikonejp",
+      "url": "https://rule.kelee.one/Loon/Purikonejp.lsr"
+    },
+    {
+      "name": "Python",
+      "url": "https://rule.kelee.one/Loon/Python.lsr"
+    },
+    {
+      "name": "QiNiuYun",
+      "url": "https://rule.kelee.one/Loon/QiNiuYun.lsr"
+    },
+    {
+      "name": "QingCloud",
+      "url": "https://rule.kelee.one/Loon/QingCloud.lsr"
+    },
+    {
+      "name": "Qobuz",
+      "url": "https://rule.kelee.one/Loon/Qobuz.lsr"
+    },
+    {
+      "name": "Qualcomm",
+      "url": "https://rule.kelee.one/Loon/Qualcomm.lsr"
+    },
+    {
+      "name": "QuickConnect",
+      "url": "https://rule.kelee.one/Loon/QuickConnect.lsr"
+    },
+    {
+      "name": "Qyyjt",
+      "url": "https://rule.kelee.one/Loon/Qyyjt.lsr"
+    },
+    {
+      "name": "RTHK",
+      "url": "https://rule.kelee.one/Loon/RTHK.lsr"
+    },
+    {
+      "name": "Rakuten",
+      "url": "https://rule.kelee.one/Loon/Rakuten.lsr"
+    },
+    {
+      "name": "Rarbg",
+      "url": "https://rule.kelee.one/Loon/Rarbg.lsr"
+    },
+    {
+      "name": "Razer",
+      "url": "https://rule.kelee.one/Loon/Razer.lsr"
+    },
+    {
+      "name": "Reabble",
+      "url": "https://rule.kelee.one/Loon/Reabble.lsr"
+    },
+    {
+      "name": "Reddit",
+      "url": "https://rule.kelee.one/Loon/Reddit.lsr"
+    },
+    {
+      "name": "Riot",
+      "url": "https://rule.kelee.one/Loon/Riot.lsr"
+    },
+    {
+      "name": "Rockstar",
+      "url": "https://rule.kelee.one/Loon/Rockstar.lsr"
+    },
+    {
+      "name": "RuanMei",
+      "url": "https://rule.kelee.one/Loon/RuanMei.lsr"
+    },
+    {
+      "name": "SFExpress",
+      "url": "https://rule.kelee.one/Loon/SFExpress.lsr"
+    },
+    {
+      "name": "SMG",
+      "url": "https://rule.kelee.one/Loon/SMG.lsr"
+    },
+    {
+      "name": "SMZDM",
+      "url": "https://rule.kelee.one/Loon/SMZDM.lsr"
+    },
+    {
+      "name": "STUN",
+      "url": "https://rule.kelee.one/Loon/STUN.lsr"
+    },
+    {
+      "name": "Salesforce",
+      "url": "https://rule.kelee.one/Loon/Salesforce.lsr"
+    },
+    {
+      "name": "Samsung",
+      "url": "https://rule.kelee.one/Loon/Samsung.lsr"
+    },
+    {
+      "name": "Scaleflex",
+      "url": "https://rule.kelee.one/Loon/Scaleflex.lsr"
+    },
+    {
+      "name": "Scholar",
+      "url": "https://rule.kelee.one/Loon/Scholar.lsr"
+    },
+    {
+      "name": "Sectigo",
+      "url": "https://rule.kelee.one/Loon/Sectigo.lsr"
+    },
+    {
+      "name": "ShangHaiJuXiao",
+      "url": "https://rule.kelee.one/Loon/ShangHaiJuXiao.lsr"
+    },
+    {
+      "name": "Shanling",
+      "url": "https://rule.kelee.one/Loon/Shanling.lsr"
+    },
+    {
+      "name": "Sharethis",
+      "url": "https://rule.kelee.one/Loon/Sharethis.lsr"
+    },
+    {
+      "name": "ShenMa",
+      "url": "https://rule.kelee.one/Loon/ShenMa.lsr"
+    },
+    {
+      "name": "ShiJiChaoXing",
+      "url": "https://rule.kelee.one/Loon/ShiJiChaoXing.lsr"
+    },
+    {
+      "name": "ShiNongZhiKe",
+      "url": "https://rule.kelee.one/Loon/ShiNongZhiKe.lsr"
+    },
+    {
+      "name": "Shopee",
+      "url": "https://rule.kelee.one/Loon/Shopee.lsr"
+    },
+    {
+      "name": "Shopify",
+      "url": "https://rule.kelee.one/Loon/Shopify.lsr"
+    },
+    {
+      "name": "Sina",
+      "url": "https://rule.kelee.one/Loon/Sina.lsr"
+    },
+    {
+      "name": "Siri",
+      "url": "https://rule.kelee.one/Loon/Siri.lsr"
+    },
+    {
+      "name": "SkyGO",
+      "url": "https://rule.kelee.one/Loon/SkyGO.lsr"
+    },
+    {
+      "name": "Slack",
+      "url": "https://rule.kelee.one/Loon/Slack.lsr"
+    },
+    {
+      "name": "SlideShare",
+      "url": "https://rule.kelee.one/Loon/SlideShare.lsr"
+    },
+    {
+      "name": "Sling",
+      "url": "https://rule.kelee.one/Loon/Sling.lsr"
+    },
+    {
+      "name": "SmarTone",
+      "url": "https://rule.kelee.one/Loon/SmarTone.lsr"
+    },
+    {
+      "name": "Snap",
+      "url": "https://rule.kelee.one/Loon/Snap.lsr"
+    },
+    {
+      "name": "Sohu",
+      "url": "https://rule.kelee.one/Loon/Sohu.lsr"
+    },
+    {
+      "name": "Sony",
+      "url": "https://rule.kelee.one/Loon/Sony.lsr"
+    },
+    {
+      "name": "SouFang",
+      "url": "https://rule.kelee.one/Loon/SouFang.lsr"
+    },
+    {
+      "name": "SoundCloud",
+      "url": "https://rule.kelee.one/Loon/SoundCloud.lsr"
+    },
+    {
+      "name": "SourceForge",
+      "url": "https://rule.kelee.one/Loon/SourceForge.lsr"
+    },
+    {
+      "name": "Spark",
+      "url": "https://rule.kelee.one/Loon/Spark.lsr"
+    },
+    {
+      "name": "Speedtest",
+      "url": "https://rule.kelee.one/Loon/Speedtest.lsr"
+    },
+    {
+      "name": "Spotify",
+      "url": "https://rule.kelee.one/Loon/Spotify.lsr"
+    },
+    {
+      "name": "Stackexchange",
+      "url": "https://rule.kelee.one/Loon/Stackexchange.lsr"
+    },
+    {
+      "name": "StarCraftII",
+      "url": "https://rule.kelee.one/Loon/StarCraftII.lsr"
+    },
+    {
+      "name": "Starbucks",
+      "url": "https://rule.kelee.one/Loon/Starbucks.lsr"
+    },
+    {
+      "name": "Steam",
+      "url": "https://rule.kelee.one/Loon/Steam.lsr"
+    },
+    {
+      "name": "SteamCN",
+      "url": "https://rule.kelee.one/Loon/SteamCN.lsr"
+    },
+    {
+      "name": "Stripe",
+      "url": "https://rule.kelee.one/Loon/Stripe.lsr"
+    },
+    {
+      "name": "SuNing",
+      "url": "https://rule.kelee.one/Loon/SuNing.lsr"
+    },
+    {
+      "name": "SublimeText",
+      "url": "https://rule.kelee.one/Loon/SublimeText.lsr"
+    },
+    {
+      "name": "SuiShiChuanMei",
+      "url": "https://rule.kelee.one/Loon/SuiShiChuanMei.lsr"
+    },
+    {
+      "name": "Supercell",
+      "url": "https://rule.kelee.one/Loon/Supercell.lsr"
+    },
+    {
+      "name": "Synology",
+      "url": "https://rule.kelee.one/Loon/Synology.lsr"
+    },
+    {
+      "name": "SystemOTA",
+      "url": "https://rule.kelee.one/Loon/SystemOTA.lsr"
+    },
+    {
+      "name": "TCL",
+      "url": "https://rule.kelee.one/Loon/TCL.lsr"
+    },
+    {
+      "name": "TIDAL",
+      "url": "https://rule.kelee.one/Loon/TIDAL.lsr"
+    },
+    {
+      "name": "TVB",
+      "url": "https://rule.kelee.one/Loon/TVB.lsr"
+    },
+    {
+      "name": "TVer",
+      "url": "https://rule.kelee.one/Loon/TVer.lsr"
+    },
+    {
+      "name": "TaiKang",
+      "url": "https://rule.kelee.one/Loon/TaiKang.lsr"
+    },
+    {
+      "name": "TaiWanGood",
+      "url": "https://rule.kelee.one/Loon/TaiWanGood.lsr"
+    },
+    {
+      "name": "TaiheMusic",
+      "url": "https://rule.kelee.one/Loon/TaiheMusic.lsr"
+    },
+    {
+      "name": "TapTap",
+      "url": "https://rule.kelee.one/Loon/TapTap.lsr"
+    },
+    {
+      "name": "TeamViewer",
+      "url": "https://rule.kelee.one/Loon/TeamViewer.lsr"
+    },
+    {
+      "name": "Teambition",
+      "url": "https://rule.kelee.one/Loon/Teambition.lsr"
+    },
+    {
+      "name": "Teams",
+      "url": "https://rule.kelee.one/Loon/Teams.lsr"
+    },
+    {
+      "name": "Telegram",
+      "url": "https://rule.kelee.one/Loon/Telegram.lsr"
+    },
+    {
+      "name": "TelegramNL",
+      "url": "https://rule.kelee.one/Loon/TelegramNL.lsr"
+    },
+    {
+      "name": "TelegramSG",
+      "url": "https://rule.kelee.one/Loon/TelegramSG.lsr"
+    },
+    {
+      "name": "TelegramUS",
+      "url": "https://rule.kelee.one/Loon/TelegramUS.lsr"
+    },
+    {
+      "name": "Tencent",
+      "url": "https://rule.kelee.one/Loon/Tencent.lsr"
+    },
+    {
+      "name": "TencentVideo",
+      "url": "https://rule.kelee.one/Loon/TencentVideo.lsr"
+    },
+    {
+      "name": "TeraBox",
+      "url": "https://rule.kelee.one/Loon/TeraBox.lsr"
+    },
+    {
+      "name": "Tesla",
+      "url": "https://rule.kelee.one/Loon/Tesla.lsr"
+    },
+    {
+      "name": "TestFlight",
+      "url": "https://rule.kelee.one/Loon/TestFlight.lsr"
+    },
+    {
+      "name": "ThomsonReuters",
+      "url": "https://rule.kelee.one/Loon/ThomsonReuters.lsr"
+    },
+    {
+      "name": "Threads",
+      "url": "https://rule.kelee.one/Loon/Threads.lsr"
+    },
+    {
+      "name": "TianTianKanKan",
+      "url": "https://rule.kelee.one/Loon/TianTianKanKan.lsr"
+    },
+    {
+      "name": "TianWeiChengXin",
+      "url": "https://rule.kelee.one/Loon/TianWeiChengXin.lsr"
+    },
+    {
+      "name": "TianYaForum",
+      "url": "https://rule.kelee.one/Loon/TianYaForum.lsr"
+    },
+    {
+      "name": "TigerFintech",
+      "url": "https://rule.kelee.one/Loon/TigerFintech.lsr"
+    },
+    {
+      "name": "TikTok",
+      "url": "https://rule.kelee.one/Loon/TikTok.lsr"
+    },
+    {
+      "name": "Tmdb",
+      "url": "https://rule.kelee.one/Loon/Tmdb.lsr"
+    },
+    {
+      "name": "TongCheng",
+      "url": "https://rule.kelee.one/Loon/TongCheng.lsr"
+    },
+    {
+      "name": "TrustWave",
+      "url": "https://rule.kelee.one/Loon/TrustWave.lsr"
+    },
+    {
+      "name": "TruthSocial",
+      "url": "https://rule.kelee.one/Loon/TruthSocial.lsr"
+    },
+    {
+      "name": "Tumblr",
+      "url": "https://rule.kelee.one/Loon/Tumblr.lsr"
+    },
+    {
+      "name": "Twitch",
+      "url": "https://rule.kelee.one/Loon/Twitch.lsr"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://rule.kelee.one/Loon/Twitter.lsr"
+    },
+    {
+      "name": "U17",
+      "url": "https://rule.kelee.one/Loon/U17.lsr"
+    },
+    {
+      "name": "UBI",
+      "url": "https://rule.kelee.one/Loon/UBI.lsr"
+    },
+    {
+      "name": "UC",
+      "url": "https://rule.kelee.one/Loon/UC.lsr"
+    },
+    {
+      "name": "UCloud",
+      "url": "https://rule.kelee.one/Loon/UCloud.lsr"
+    },
+    {
+      "name": "UKMedia",
+      "url": "https://rule.kelee.one/Loon/UKMedia.lsr"
+    },
+    {
+      "name": "UPYun",
+      "url": "https://rule.kelee.one/Loon/UPYun.lsr"
+    },
+    {
+      "name": "USMedia",
+      "url": "https://rule.kelee.one/Loon/USMedia.lsr"
+    },
+    {
+      "name": "Ubisoft",
+      "url": "https://rule.kelee.one/Loon/Ubisoft.lsr"
+    },
+    {
+      "name": "Ubuntu",
+      "url": "https://rule.kelee.one/Loon/Ubuntu.lsr"
+    },
+    {
+      "name": "Udacity",
+      "url": "https://rule.kelee.one/Loon/Udacity.lsr"
+    },
+    {
+      "name": "UnionPay",
+      "url": "https://rule.kelee.one/Loon/UnionPay.lsr"
+    },
+    {
+      "name": "Unity",
+      "url": "https://rule.kelee.one/Loon/Unity.lsr"
+    },
+    {
+      "name": "VISA",
+      "url": "https://rule.kelee.one/Loon/VISA.lsr"
+    },
+    {
+      "name": "VK",
+      "url": "https://rule.kelee.one/Loon/VK.lsr"
+    },
+    {
+      "name": "VOA",
+      "url": "https://rule.kelee.one/Loon/VOA.lsr"
+    },
+    {
+      "name": "Vancl",
+      "url": "https://rule.kelee.one/Loon/Vancl.lsr"
+    },
+    {
+      "name": "Vercel",
+      "url": "https://rule.kelee.one/Loon/Vercel.lsr"
+    },
+    {
+      "name": "Verisign",
+      "url": "https://rule.kelee.one/Loon/Verisign.lsr"
+    },
+    {
+      "name": "Verizon",
+      "url": "https://rule.kelee.one/Loon/Verizon.lsr"
+    },
+    {
+      "name": "VidolTV",
+      "url": "https://rule.kelee.one/Loon/VidolTV.lsr"
+    },
+    {
+      "name": "VikACG",
+      "url": "https://rule.kelee.one/Loon/VikACG.lsr"
+    },
+    {
+      "name": "Viki",
+      "url": "https://rule.kelee.one/Loon/Viki.lsr"
+    },
+    {
+      "name": "Vimeo",
+      "url": "https://rule.kelee.one/Loon/Vimeo.lsr"
+    },
+    {
+      "name": "VipShop",
+      "url": "https://rule.kelee.one/Loon/VipShop.lsr"
+    },
+    {
+      "name": "ViuTV",
+      "url": "https://rule.kelee.one/Loon/ViuTV.lsr"
+    },
+    {
+      "name": "Vivo",
+      "url": "https://rule.kelee.one/Loon/Vivo.lsr"
+    },
+    {
+      "name": "Voxmedia",
+      "url": "https://rule.kelee.one/Loon/Voxmedia.lsr"
+    },
+    {
+      "name": "W3schools",
+      "url": "https://rule.kelee.one/Loon/W3schools.lsr"
+    },
+    {
+      "name": "WIX",
+      "url": "https://rule.kelee.one/Loon/WIX.lsr"
+    },
+    {
+      "name": "WanKaHuanJu",
+      "url": "https://rule.kelee.one/Loon/WanKaHuanJu.lsr"
+    },
+    {
+      "name": "WanMeiShiJie",
+      "url": "https://rule.kelee.one/Loon/WanMeiShiJie.lsr"
+    },
+    {
+      "name": "Wanfang",
+      "url": "https://rule.kelee.one/Loon/Wanfang.lsr"
+    },
+    {
+      "name": "WangSuKeJi",
+      "url": "https://rule.kelee.one/Loon/WangSuKeJi.lsr"
+    },
+    {
+      "name": "WangXinKeJi",
+      "url": "https://rule.kelee.one/Loon/WangXinKeJi.lsr"
+    },
+    {
+      "name": "WeChat",
+      "url": "https://rule.kelee.one/Loon/WeChat.lsr"
+    },
+    {
+      "name": "WeTV",
+      "url": "https://rule.kelee.one/Loon/WeTV.lsr"
+    },
+    {
+      "name": "WeType",
+      "url": "https://rule.kelee.one/Loon/WeType.lsr"
+    },
+    {
+      "name": "WeiZhiYunDong",
+      "url": "https://rule.kelee.one/Loon/WeiZhiYunDong.lsr"
+    },
+    {
+      "name": "Weibo",
+      "url": "https://rule.kelee.one/Loon/Weibo.lsr"
+    },
+    {
+      "name": "WenJuanXing",
+      "url": "https://rule.kelee.one/Loon/WenJuanXing.lsr"
+    },
+    {
+      "name": "Westerndigital",
+      "url": "https://rule.kelee.one/Loon/Westerndigital.lsr"
+    },
+    {
+      "name": "Whatsapp",
+      "url": "https://rule.kelee.one/Loon/Whatsapp.lsr"
+    },
+    {
+      "name": "WiFiMaster",
+      "url": "https://rule.kelee.one/Loon/WiFiMaster.lsr"
+    },
+    {
+      "name": "Wikimedia",
+      "url": "https://rule.kelee.one/Loon/Wikimedia.lsr"
+    },
+    {
+      "name": "Wikipedia",
+      "url": "https://rule.kelee.one/Loon/Wikipedia.lsr"
+    },
+    {
+      "name": "WildRift",
+      "url": "https://rule.kelee.one/Loon/WildRift.lsr"
+    },
+    {
+      "name": "WoLai",
+      "url": "https://rule.kelee.one/Loon/WoLai.lsr"
+    },
+    {
+      "name": "Wordpress",
+      "url": "https://rule.kelee.one/Loon/Wordpress.lsr"
+    },
+    {
+      "name": "WorldofWarcraft",
+      "url": "https://rule.kelee.one/Loon/WorldofWarcraft.lsr"
+    },
+    {
+      "name": "Wteam",
+      "url": "https://rule.kelee.one/Loon/Wteam.lsr"
+    },
+    {
+      "name": "Xbox",
+      "url": "https://rule.kelee.one/Loon/Xbox.lsr"
+    },
+    {
+      "name": "XiamiMusic",
+      "url": "https://rule.kelee.one/Loon/XiamiMusic.lsr"
+    },
+    {
+      "name": "XianYu",
+      "url": "https://rule.kelee.one/Loon/XianYu.lsr"
+    },
+    {
+      "name": "XiaoGouKeJi",
+      "url": "https://rule.kelee.one/Loon/XiaoGouKeJi.lsr"
+    },
+    {
+      "name": "XiaoHongShu",
+      "url": "https://rule.kelee.one/Loon/XiaoHongShu.lsr"
+    },
+    {
+      "name": "XiaoMi",
+      "url": "https://rule.kelee.one/Loon/XiaoMi.lsr"
+    },
+    {
+      "name": "XiaoYuanKeJi",
+      "url": "https://rule.kelee.one/Loon/XiaoYuanKeJi.lsr"
+    },
+    {
+      "name": "XieCheng",
+      "url": "https://rule.kelee.one/Loon/XieCheng.lsr"
+    },
+    {
+      "name": "XingKongWuXian",
+      "url": "https://rule.kelee.one/Loon/XingKongWuXian.lsr"
+    },
+    {
+      "name": "XueErSi",
+      "url": "https://rule.kelee.one/Loon/XueErSi.lsr"
+    },
+    {
+      "name": "XueQiu",
+      "url": "https://rule.kelee.one/Loon/XueQiu.lsr"
+    },
+    {
+      "name": "Xunlei",
+      "url": "https://rule.kelee.one/Loon/Xunlei.lsr"
+    },
+    {
+      "name": "YYeTs",
+      "url": "https://rule.kelee.one/Loon/YYeTs.lsr"
+    },
+    {
+      "name": "Yandex",
+      "url": "https://rule.kelee.one/Loon/Yandex.lsr"
+    },
+    {
+      "name": "YiChe",
+      "url": "https://rule.kelee.one/Loon/YiChe.lsr"
+    },
+    {
+      "name": "YiXiaKeJi",
+      "url": "https://rule.kelee.one/Loon/YiXiaKeJi.lsr"
+    },
+    {
+      "name": "YiZhiBo",
+      "url": "https://rule.kelee.one/Loon/YiZhiBo.lsr"
+    },
+    {
+      "name": "YouMengChuangXiang",
+      "url": "https://rule.kelee.one/Loon/YouMengChuangXiang.lsr"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://rule.kelee.one/Loon/YouTube.lsr"
+    },
+    {
+      "name": "YouTubeMusic",
+      "url": "https://rule.kelee.one/Loon/YouTubeMusic.lsr"
+    },
+    {
+      "name": "YouZan",
+      "url": "https://rule.kelee.one/Loon/YouZan.lsr"
+    },
+    {
+      "name": "Youku",
+      "url": "https://rule.kelee.one/Loon/Youku.lsr"
+    },
+    {
+      "name": "YuanFuDao",
+      "url": "https://rule.kelee.one/Loon/YuanFuDao.lsr"
+    },
+    {
+      "name": "YunFanJiaSu",
+      "url": "https://rule.kelee.one/Loon/YunFanJiaSu.lsr"
+    },
+    {
+      "name": "ZDNS",
+      "url": "https://rule.kelee.one/Loon/ZDNS.lsr"
+    },
+    {
+      "name": "Zalo",
+      "url": "https://rule.kelee.one/Loon/Zalo.lsr"
+    },
+    {
+      "name": "Zee",
+      "url": "https://rule.kelee.one/Loon/Zee.lsr"
+    },
+    {
+      "name": "ZeeTV",
+      "url": "https://rule.kelee.one/Loon/ZeeTV.lsr"
+    },
+    {
+      "name": "Zendesk",
+      "url": "https://rule.kelee.one/Loon/Zendesk.lsr"
+    },
+    {
+      "name": "ZhangYue",
+      "url": "https://rule.kelee.one/Loon/ZhangYue.lsr"
+    },
+    {
+      "name": "ZhiYinManKe",
+      "url": "https://rule.kelee.one/Loon/ZhiYinManKe.lsr"
+    },
+    {
+      "name": "ZhiYunZhong",
+      "url": "https://rule.kelee.one/Loon/ZhiYunZhong.lsr"
+    },
+    {
+      "name": "Zhihu",
+      "url": "https://rule.kelee.one/Loon/Zhihu.lsr"
+    },
+    {
+      "name": "ZhongGuoShiHua",
+      "url": "https://rule.kelee.one/Loon/ZhongGuoShiHua.lsr"
+    },
+    {
+      "name": "ZhongWeiShiJi",
+      "url": "https://rule.kelee.one/Loon/ZhongWeiShiJi.lsr"
+    },
+    {
+      "name": "ZhongXingTongXun",
+      "url": "https://rule.kelee.one/Loon/ZhongXingTongXun.lsr"
+    },
+    {
+      "name": "ZhongYuanYiShang",
+      "url": "https://rule.kelee.one/Loon/ZhongYuanYiShang.lsr"
+    },
+    {
+      "name": "ZhuanZhuan",
+      "url": "https://rule.kelee.one/Loon/ZhuanZhuan.lsr"
+    },
+    {
+      "name": "Zoho",
+      "url": "https://rule.kelee.one/Loon/Zoho.lsr"
+    },
+    {
+      "name": "aiXcoder",
+      "url": "https://rule.kelee.one/Loon/aiXcoder.lsr"
+    },
+    {
+      "name": "eBay",
+      "url": "https://rule.kelee.one/Loon/eBay.lsr"
+    },
+    {
+      "name": "friDay",
+      "url": "https://rule.kelee.one/Loon/friDay.lsr"
+    },
+    {
+      "name": "iCloud",
+      "url": "https://rule.kelee.one/Loon/iCloud.lsr"
+    },
+    {
+      "name": "iCloudPrivateRelay",
+      "url": "https://rule.kelee.one/Loon/iCloudPrivateRelay.lsr"
+    },
+    {
+      "name": "iFlytek",
+      "url": "https://rule.kelee.one/Loon/iFlytek.lsr"
+    },
+    {
+      "name": "iQIYI",
+      "url": "https://rule.kelee.one/Loon/iQIYI.lsr"
+    },
+    {
+      "name": "iQIYIIntl",
+      "url": "https://rule.kelee.one/Loon/iQIYIIntl.lsr"
+    },
+    {
+      "name": "iTalkBB",
+      "url": "https://rule.kelee.one/Loon/iTalkBB.lsr"
+    },
+    {
+      "name": "ifanr",
+      "url": "https://rule.kelee.one/Loon/ifanr.lsr"
+    },
+    {
+      "name": "myTVSUPER",
+      "url": "https://rule.kelee.one/Loon/myTVSUPER.lsr"
+    },
+    {
+      "name": "zhanqi",
+      "url": "https://rule.kelee.one/Loon/zhanqi.lsr"
+    }
+  ]
+}

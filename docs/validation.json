@@ -1,0 +1,67 @@
+{
+  "checked_at": "2026-09-20T09:18:36.266647+00:00",
+  "static_validation": "PASS: 12 catalog URLs, 10 policy groups, no unknown references/cycles, service defaults/order/private subscription checks",
+  "device_validation": "NOT RUN",
+  "upstream": [
+    {
+      "url": "https://rule.kelee.one/Loon/Advertising.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/WeChat.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/Apple.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/OpenAI.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/Claude.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/Gemini.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/YouTube.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/Telegram.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/GitHub.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/Google.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/Lan.lsr",
+      "status": 403,
+      "body_checked": false
+    },
+    {
+      "url": "https://rule.kelee.one/Loon/ChinaMax.lsr",
+      "status": 403,
+      "body_checked": false
+    }
+  ]
+}
