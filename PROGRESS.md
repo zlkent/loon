@@ -11,7 +11,7 @@
 2. [x] 获取来源：docs/rule-catalog.json 保存上游 668 个分类的名称和地址，属于目录快照，不是规则正文或订阅产物。
 3. [x] 用户确认完整配置：Apple、微信、国内直连；Google、Telegram、GitHub、YouTube、OpenAI、Claude、Gemini 代理；启用去广告。
 4. [x] 生成 Config/Loon.lcf 和 README；静态检查通过：12 个目录地址、10 个策略组、引用无环、默认策略与排序一致，无私人节点信息。上游下载检查被 Cloudflare HTTP 403 阻止，未验证正文。
-5. [ ] 提交并推送，验证远端提交和订阅地址；手机端导入与实际分流由设备验证。
+5. [x] 配置提交 18ab2cb 已推送 main；远端 SHA 一致，Raw 订阅 HTTP 200、正文与本地一致。手机端导入与实际分流仍待设备验证。
 
 ## 当前状态
 
