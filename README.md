@@ -12,7 +12,7 @@ https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf
 
 1. 在 Loon 备份当前配置，将上述地址添加为远程配置/配置订阅（不是节点订阅或单个规则集）。
 2. 在手机端添加私人节点订阅并更新节点。公共配置不包含节点，未添加节点时无法使用代理。
-3. 在“节点选择”选一个可用节点。八个服务策略组默认跟随它，也可以分别指定节点；AI 服务需选择服务可用的出口。
+3. 在“节点选择”选“故障转移”（首次导入的默认选项）、“自动优选”或手动节点。八个服务策略组默认跟随它，也可以分别指定节点；AI 服务需选择服务可用的出口。
 4. 使用规则分流模式，更新远程规则，确认全部下载成功。
 5. 检查请求日志，核实直连、代理、广告拦截是否命中预期策略。
 
@@ -32,6 +32,20 @@ https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf
 
 Gemini、YouTube 位于 Google 前，ChinaMax 位于最后。Loon 优先匹配域名，未命中再进行 DNS/IP 匹配；列表顺序不代表 IP 规则可以覆盖域名规则。
 
+### 自动切换节点
+
+“节点选择”提供三种选择：
+
+- **故障转移（默认）**：每 60 秒测试全部节点，使用列表中第一个可用节点；测试超过 3000 毫秒视为不可用，检测到失效后选择其他可用节点。优先级由节点列表顺序决定，不代表节点延迟最低。
+- **自动优选**：每 60 秒测试全部节点，选择延迟最低的节点；设置 50 毫秒容差，减少延迟小幅波动时的切换。
+- **手动节点**：保留固定出口的能力，手动指定节点不使用上述自动组。
+
+两个自动组沿用 General 中的 `proxy-test-url = http://www.gstatic.com/generate_204`。测试地址能通，不代表所有目标网站、视频或 AI 服务均可用，也不代表吞吐速度最快。切换存在检测间隔，已有连接不保证无缝恢复；全部节点不可用时仍无法代理，不配置直连回落。
+
+更新旧配置后，Loon 可能保留之前的策略选择，请主动把“节点选择”切到“故障转移”，并检查需要自动切换的服务组仍选“节点选择”。服务组若固定某个节点，将绕过自动组。AI 服务不建议在不同国家/地区的全部节点之间无约束切换，可在手机端固定可用出口；本次没有增加地区筛选。
+
+自动组会周期测速，节点越多，额外流量和耗电越大。可调整 interval，但检测失效的等待也会随之增加。真实失效切换仍需在设备上验证，本仓库静态测试不模拟 Loon 运行时。
+
 ### Twitter 视频与外链
 
 Twitter 使用独立策略组；第三方外链即使不在 Twitter 分类中，只要没有命中其他规则，仍会通过 FINAL 走“节点选择”，不需要仅为未收录域名切换全局。若单独为 Twitter 选择节点，未收录外链仍跟随“节点选择”，不会自动继承 Twitter 节点。
@@ -48,10 +62,13 @@ GaoDe 用来识别高德业务域名并直连，不应整体设为 REJECT，否�
 
 提交到 main 后订阅地址不变；上游规则内容更新不需要重新生成本配置。
 
+修改后运行 `python -m unittest discover -s tests -v`，核查自动组参数、引用无环、原有分流策略与隐私边界。
+
 - [ShuntRules](https://github.com/luestr/ShuntRules)：全部规则的来源目录，上游注明其数据来自 ios_rule_script。
 - [LoonLab 参考配置](https://raw.githubusercontent.com/sooyaaabo/LoonLab/main/Config/Loon_RawConfig.lcf)：参考配置、策略和远程规则的组织方式。
 - [iKeLee 中文配置](https://github.com/luestr/ProxyResource/tree/main/Tool/Loon/Lcf/zh-CN)：参考节点筛选和分流组织方式。
 - [Loon 官方规则优先级](https://nsloon.app/docs/Rule/)。
+- [Loon 官方策略组](https://nsloon.app/docs/Policy/policygroup/)：fallback、url-test 的行为及参数。
 
 静态检查和 HTTP 下载检查不等于手机端验收。导入、节点连通、实际分流和广告效果需要 Loon 实机验证。进度见 [PROGRESS.md](PROGRESS.md)。
 

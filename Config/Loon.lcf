@@ -20,7 +20,11 @@ skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local
 全部节点 = NameRegex, FilterKey=".*"
 
 [Proxy Group]
-节点选择 = select,全部节点
+# 两个自动组使用 General 中的 proxy-test-url。
+故障转移 = fallback,全部节点,interval=60,max-timeout=3000
+自动优选 = url-test,全部节点,interval=60,tolerance=50
+# 首次导入默认故障转移，仍可改为自动优选或手动指定节点。
+节点选择 = select,故障转移,自动优选,全部节点
 Google = select,节点选择,全部节点
 Telegram = select,节点选择,全部节点
 Twitter = select,节点选择,全部节点
