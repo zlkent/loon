@@ -47,10 +47,10 @@
 2. [x] 先运行新增测试：原配置 4 项预期失败，生成器缺失 3 项预期失败；DNS、bootstrap、原分流均有回归检查。
 3. [x] 固定上游 036c097 提取 5323 后缀 / 26 精确项，生成 10672 条 Host；默认 IP DoH 和代理规则已添加，未改远程规则。
 4. [x] 使用说明已补充两项手机设置、许可与覆盖边界；10/10 静态测试及固定源哈希重现通过。独立只读审查无 Critical / Important；本机标准 DoH 响应成功，仍非设备链路证据。
-5. [ ] 提交发布并核对远端 SHA / Raw 正文；手机端验收另记。
+5. [x] 配置提交 108bdf2 已推送 main；远端 SHA 一致，原 Raw 地址 HTTP 200 且正文与 Git 配置字节一致。手机端验收另记。
 
 Ruling: DNS 清单采用 China 而非 ChinaMax，补 Apple / WeChat / GaoDe / DouYin / NetEase，避免十万域名膨胀；清单覆盖不等于完整国内识别，不收录的国内域名可能仍用境外 DNS。一个完整配置订阅入口不变。
-阶段：静态候选已验证，准备发布，未偏离蓝图。设备 DNS 链路与 LOOK / 抖音速度改善仍是待验收项；历史 rule.kelee.one 下载 403 记录保留。
+阶段：静态验证及配置发布已收口，未偏离蓝图；发布不等于设备行为正式验收。设备 DNS 链路与 LOOK / 抖音速度改善仍是待验收项；历史 rule.kelee.one 下载 403 记录保留。
 
 证据补充：GitHub API 查询提交遇到速率限制 403，改用 git ls-remote 获取固定 SHA；China / Apple 完整域名必须读取 _Domain.list。境外仅使用已检查的 Cloudflare IP DoH，不新增未验证的第二端点。许可证原文与转换 NOTICE 已保存。
 

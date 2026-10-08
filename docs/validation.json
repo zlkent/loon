@@ -107,5 +107,14 @@
     "result": "No Critical / Important findings; independent read-only review and offline tests passed",
     "deferred_minor": "Generator marker uniqueness/order/Host-section guard; current markers are valid",
     "checked_on": "2026-10-08"
+  },
+  "dns_publication": {
+    "config_commit": "108bdf25dad797eea3cc60422c1c5073ab029a5b",
+    "remote_main_matches": true,
+    "raw_url": "https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf",
+    "raw_http_status": 200,
+    "raw_matches_git_config": true,
+    "raw_sha256": "636af15f02c71cba1a05aa7e3d240d38351ab2bef4b4c5eb687bab0d941b82ce",
+    "checked_on": "2026-10-08"
   }
 }
