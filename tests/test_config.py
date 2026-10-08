@@ -1,6 +1,7 @@
 """Static checks only: these do not execute Loon or test real node failover."""
 from pathlib import Path
 import json
+import fnmatch
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -78,7 +79,10 @@ class ConfigTests(unittest.TestCase):
         self.assertEqual(order[-1], 'ChinaMax')
         for name in ('Gemini', 'YouTube'):
             self.assertLess(order.index(name), order.index('Google'))
-        self.assertEqual(self.sections['Rule'], ['FINAL,节点选择'])
+        self.assertEqual(self.sections['Rule'], [
+            'IP-CIDR,1.1.1.1/32,节点选择,no-resolve',
+            'FINAL,节点选择',
+        ])
         for service in expected:
             if service in self.groups and service != 'Advertising':
                 self.assertEqual(self.groups[service][1], '节点选择')
@@ -90,6 +94,45 @@ class ConfigTests(unittest.TestCase):
             key, value = [part.strip() for part in line.split('=', 1)]
             if key in ('hostname', 'ca-p12', 'ca-passphrase'):
                 self.assertEqual(value, '')
+
+    def test_default_doh_and_bootstrap_boundary(self):
+        general = dict(line.split('=', 1) for line in self.sections['General'])
+        general = {k.strip(): v.strip() for k, v in general.items()}
+        self.assertEqual(general.get('doh-server'), 'https://1.1.1.1/dns-query')
+        self.assertEqual(general['dns-server'], '223.5.5.5,119.29.29.29')
+        self.assertNotIn('* =', '\n'.join(self.sections['Host']))
+        self.assertNotIn('doh-server', '\n'.join(self.sections['Remote Proxy']))
+        config = (ROOT / 'Config/Loon.lcf').read_text(encoding='utf-8')
+        self.assertIn('server-dns="223.5.5.5,119.29.29.29"', config)
+
+    def test_domestic_dns_examples_and_foreign_default(self):
+        hosts = dict(line.split(' = ', 1) for line in self.sections['Host'])
+        for domain in ('163.com', 'look.163.com', 'music.163.com',
+                       'douyinvod.com', 'v95-zj-coldb.douyinvod.com',
+                       'douyin.com', 'apple.com', 'www.apple.com',
+                       'weixin.qq.com', 'amap.com', 'autonavi.com',
+                       'taobao.com', 'bilibili.com', 'baidu.com'):
+            matches = [v for k, v in hosts.items() if fnmatch.fnmatchcase(domain, k)]
+            self.assertTrue(matches, domain)
+            self.assertEqual(set(matches), {'server:223.5.5.5'}, domain)
+        for domain in ('google.com', 'google.cn', 'youtube.com', 'github.com',
+                       't.me', 'telegram.org', 'twitter.com', 'video.twimg.com',
+                       'openai.com', 'claude.ai', 'gemini.google.com',
+                       'unknown-video.example', 'evil163.com'):
+            self.assertFalse(any(fnmatch.fnmatchcase(domain, k) for k in hosts), domain)
+
+    def test_domestic_dns_map_valid_and_bounded(self):
+        lines = self.sections['Host']
+        self.assertGreater(len(lines), 1000)
+        self.assertLess(len(lines), 15000)
+        self.assertLess((ROOT / 'Config/Loon.lcf').stat().st_size, 1024 * 1024)
+        hosts = dict(line.split(' = ', 1) for line in lines)
+        self.assertEqual(len(hosts), len(lines))
+        for domain, server in hosts.items():
+            self.assertEqual(server, 'server:223.5.5.5')
+            self.assertRegex(domain, r'^(?:\*\.)?(?:[a-z0-9-]+\.)+[a-z0-9-]+$')
+            if domain.startswith('*.'):
+                self.assertIn(domain[2:], hosts)
 
 
 if __name__ == '__main__':
