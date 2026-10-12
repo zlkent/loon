@@ -4,9 +4,10 @@
 ip-mode = v4-only
 ipv6-vif = off
 # 普通 DNS 用于基础设置；国内 Host 显式指定阿里 DNS。
-# 必须在手机关闭“加密 DNS 失败后回落普通 DNS”，见 README。
+# 必须在手机把 DOH 流量模式设为 Rule，关闭“查询回落”，见 README。
 dns-server = 223.5.5.5,119.29.29.29
-doh-server = https://1.1.1.1/dns-query
+# 两个境外 DoH 并发查询，使用最快响应；不混入国内加密 DNS。
+doh-server = https://1.1.1.1/dns-query,https://8.8.8.8/dns-query
 allow-wifi-access = false
 test-timeout = 5
 interface-mode = auto
@@ -42,6 +43,7 @@ Gemini = select,节点选择,全部节点
 [Rule]
 # 境外 DoH 连接必须走代理；IP URL 避免解析器域名 bootstrap。
 IP-CIDR,1.1.1.1/32,节点选择,no-resolve
+IP-CIDR,8.8.8.8/32,节点选择,no-resolve
 # 所有未匹配流量固定进入代理节点选择，不依赖国外网站白名单。
 FINAL,节点选择
 

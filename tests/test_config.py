@@ -81,6 +81,7 @@ class ConfigTests(unittest.TestCase):
             self.assertLess(order.index(name), order.index('Google'))
         self.assertEqual(self.sections['Rule'], [
             'IP-CIDR,1.1.1.1/32,节点选择,no-resolve',
+            'IP-CIDR,8.8.8.8/32,节点选择,no-resolve',
             'FINAL,节点选择',
         ])
         for service in expected:
@@ -98,12 +99,24 @@ class ConfigTests(unittest.TestCase):
     def test_default_doh_and_bootstrap_boundary(self):
         general = dict(line.split('=', 1) for line in self.sections['General'])
         general = {k.strip(): v.strip() for k, v in general.items()}
-        self.assertEqual(general.get('doh-server'), 'https://1.1.1.1/dns-query')
+        self.assertEqual(general.get('doh-server'),
+                         'https://1.1.1.1/dns-query,https://8.8.8.8/dns-query')
+        self.assertNotIn('doq-server', general)
+        self.assertNotIn('doh3-server', general)
         self.assertEqual(general['dns-server'], '223.5.5.5,119.29.29.29')
         self.assertNotIn('* =', '\n'.join(self.sections['Host']))
         self.assertNotIn('doh-server', '\n'.join(self.sections['Remote Proxy']))
         config = (ROOT / 'Config/Loon.lcf').read_text(encoding='utf-8')
         self.assertIn('server-dns="223.5.5.5,119.29.29.29"', config)
+
+    def test_dns_mobile_controls_documented(self):
+        readme = (ROOT / 'README.md').read_text(encoding='utf-8')
+        config = (ROOT / 'Config/Loon.lcf').read_text(encoding='utf-8')
+        for text in (readme, config):
+            self.assertIn('DOH 流量模式', text)
+            self.assertIn('Rule', text)
+            self.assertIn('查询回落', text)
+        self.assertIn('订阅更新无法替你', readme)
 
     def test_domestic_dns_examples_and_foreign_default(self):
         hosts = dict(line.split(' = ', 1) for line in self.sections['Host'])
