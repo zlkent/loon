@@ -6,6 +6,7 @@ import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
+REGIONS = ('香港', '日本', '新加坡', '台湾', '美国')
 
 
 def read_sections():
@@ -42,7 +43,49 @@ class ConfigTests(unittest.TestCase):
         self.assertEqual(self.groups.get('自动优选'),
                          ['url-test', '全部节点', url, 'interval=60', 'tolerance=50'])
         self.assertEqual(self.groups['节点选择'],
-                         ['select', '自动优选', '故障转移', '美国节点选择', '全部节点'])
+                         ['select', '自动优选', '故障转移'] +
+                         [f'{region}节点选择' for region in REGIONS] + ['全部节点'])
+
+    def test_all_region_policy_boundaries(self):
+        url = 'url=http://www.gstatic.com/generate_204'
+        for region in REGIONS:
+            with self.subTest(region=region):
+                self.assertEqual(self.groups.get(f'{region}自动优选'),
+                                 ['url-test', f'{region}节点', url, 'interval=60', 'tolerance=50'])
+                self.assertEqual(self.groups.get(f'{region}故障转移'),
+                                 ['fallback', f'{region}节点', url, 'interval=60', 'max-timeout=3000'])
+                self.assertEqual(self.groups.get(f'{region}节点选择'),
+                                 ['select', f'{region}自动优选', f'{region}故障转移', f'{region}节点'])
+        for service in ('Telegram', 'Twitter', 'GitHub', 'YouTube'):
+            self.assertEqual(self.groups[service], ['select', '节点选择'] +
+                             [f'{region}节点选择' for region in REGIONS] + ['全部节点'])
+
+    def test_region_name_filter_examples(self):
+        positives = {
+            '香港': ('🇭🇰 示例 香港 01', 'Example HK-01', 'Example Hong Kong 01', 'example hk01'),
+            '日本': ('🇯🇵 示例 日本 01', 'Example JP-01', 'Example Japan 01', 'example jp01'),
+            '新加坡': ('🇸🇬 示例 新加坡 01', '示例 狮城 01', '示例 獅城 01',
+                        'Example SG-01', 'Example Singapore 01', 'example sg01'),
+            '台湾': ('🇹🇼 示例 台湾 01', '示例 台灣 01', '示例 臺灣 01',
+                     'Example TW-01', 'Example Taiwan 01', 'example tw01'),
+            '美国': ('🇺🇸 示例 美国 01', '示例 美國 01', 'Example US-01',
+                     'Example USA 01', 'Example United States 01'),
+        }
+        filters = {line.split('=', 1)[0].strip(): line.split('=', 1)[1].strip()
+                   for line in self.sections['Remote Filter']}
+        self.assertEqual(set(filters), {'全部节点'} | {f'{r}节点' for r in REGIONS})
+        negatives = ('🇦🇷 示例 阿根廷 01', 'Example Australia 01', 'Example Russia 01',
+                     'Example THK 01', 'Example JPG 01', 'Example SGL 01', 'Example Twitter 01')
+        for region in REGIONS:
+            self.assertIn(f'{region}节点', filters)
+            regex = filters[f'{region}节点'].split('FilterKey=', 1)[1].strip().strip('"')
+            for other, names in positives.items():
+                for name in names:
+                    with self.subTest(region=region, name=name):
+                        self.assertEqual(re.search(regex, name) is not None, region == other)
+            for name in negatives:
+                with self.subTest(region=region, name=name):
+                    self.assertIsNone(re.search(regex, name))
 
     def test_us_pool_and_service_boundaries(self):
         url = 'url=http://www.gstatic.com/generate_204'

@@ -23,24 +23,41 @@ skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local
 
 [Remote Filter]
 全部节点 = NameRegex, FilterKey=".*"
-# 名称筛选不验证实际出口所在地；支持中文、国旗和独立 US / USA 标签。
+# 名称筛选不验证实际出口所在地；支持中文、国旗和独立地区英文标签。
+香港节点 = NameRegex, FilterKey="(?i)(香港|🇭🇰|(?:^|[^a-z])(?:hk|hong[ _-]?kong)(?:[^a-z]|$))"
+日本节点 = NameRegex, FilterKey="(?i)(日本|🇯🇵|(?:^|[^a-z])(?:jp|japan)(?:[^a-z]|$))"
+新加坡节点 = NameRegex, FilterKey="(?i)(新加坡|狮城|獅城|🇸🇬|(?:^|[^a-z])(?:sg|singapore)(?:[^a-z]|$))"
+台湾节点 = NameRegex, FilterKey="(?i)(台湾|台灣|臺灣|🇹🇼|(?:^|[^a-z])(?:tw|taiwan)(?:[^a-z]|$))"
 美国节点 = NameRegex, FilterKey="(?i)(美国|美國|🇺🇸|(?:^|[^a-z])(?:us|usa|united[ _-]?states)(?:[^a-z]|$))"
 
 [Proxy Group]
 # 显式指定 URL 做 HTTP Header 测试，TCP 握手快不等于代理目标可访问。
 故障转移 = fallback,全部节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
 自动优选 = url-test,全部节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+# 各地区选择只引用自身节点池，不提供外区或直连回落。
+香港自动优选 = url-test,香港节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+香港故障转移 = fallback,香港节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+香港节点选择 = select,香港自动优选,香港故障转移,香港节点
+日本自动优选 = url-test,日本节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+日本故障转移 = fallback,日本节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+日本节点选择 = select,日本自动优选,日本故障转移,日本节点
+新加坡自动优选 = url-test,新加坡节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+新加坡故障转移 = fallback,新加坡节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+新加坡节点选择 = select,新加坡自动优选,新加坡故障转移,新加坡节点
+台湾自动优选 = url-test,台湾节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+台湾故障转移 = fallback,台湾节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+台湾节点选择 = select,台湾自动优选,台湾故障转移,台湾节点
 美国自动优选 = url-test,美国节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
 美国故障转移 = fallback,美国节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
 # 美国选择仅引用美国池，不提供全局或直连回落。
 美国节点选择 = select,美国自动优选,美国故障转移,美国节点
 # 首次导入默认全局自动优选；旧配置保存的选择需在手机确认。
-节点选择 = select,自动优选,故障转移,美国节点选择,全部节点
+节点选择 = select,自动优选,故障转移,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
 Google = select,美国节点选择,美国节点
-Telegram = select,节点选择,全部节点
-Twitter = select,节点选择,全部节点
-GitHub = select,节点选择,全部节点
-YouTube = select,节点选择,全部节点
+Telegram = select,节点选择,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
+Twitter = select,节点选择,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
+GitHub = select,节点选择,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
+YouTube = select,节点选择,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
 OpenAI = select,美国节点选择,美国节点
 Claude = select,美国节点选择,美国节点
 Gemini = select,美国节点选择,美国节点

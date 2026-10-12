@@ -1,5 +1,5 @@
 {
-  "static_validation": "PASS: 13 unittest checks; 15 policy groups; US name-filter positives/negative regions; US-only policy closure for Google/OpenAI/Claude/Gemini; default global url-test; explicit HTTP test URLs; DNS/Host/rules/privacy unchanged",
+  "static_validation": "PASS: 15 unittest checks; 27 policy groups; 6 name filters; 14 remote rules; five-region filter positives/negatives and isolated policy pools; US-only Google/OpenAI/Claude/Gemini; default global url-test; DNS/Host/rules/privacy unchanged",
   "device_validation": "NOT RUN",
   "upstream": [
     {
@@ -198,6 +198,23 @@
     ],
     "diagnostic_review": "Independent read-only document check found no confirmed root cause or public TCP-only selector parameter; do not claim Timeout fixed",
     "config_review": "Independent read-only diff review: no Critical / Important findings; 13 tests, DNS generator and baseline invariants passed"
+  },
+  "region_policy_validation": {
+    "checked_on": "2026-10-12",
+    "baseline": "2d51cf1ee2724f99dd41b79983e241d6176e8df8",
+    "test_command": "python -m unittest discover -s tests -v",
+    "tests_passed": 15,
+    "policy_groups": 27,
+    "remote_filters": 6,
+    "remote_rules": 14,
+    "regions": ["Hong Kong", "Japan", "Singapore", "Taiwan", "United States"],
+    "region_modes": ["url-test", "fallback", "manual select"],
+    "generator_check": "PASS: python tools/generate_dns.py --check; 5323 suffixes / 26 exact domains",
+    "preservation_check": "PASS: all active sections except Remote Filter/Proxy Group unchanged from baseline",
+    "policy_boundaries": "PASS: each region only references its own filter; Google/OpenAI/Claude/Gemini remain US-only; other proxy services default to global selection and offer five regional selections",
+    "region_method": "NameRegex only; overlapping region labels can match multiple pools; actual exit geography and empty-pool runtime behavior NOT VERIFIED",
+    "device_validation": "NOT RUN; pool membership, real exits, timeout selection and actual performance require device validation",
+    "independent_review": "PASS: independent read-only review found no Critical / Important findings; 15 tests, DNS generator and baseline invariants passed; Loon runtime regex compatibility and actual pool behavior NOT VERIFIED"
   },
   "us_policy_publication": {
     "config_commit": "688e6c2e9c9c60190487171a0ebc1309b5ce61b0",
