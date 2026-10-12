@@ -207,8 +207,18 @@
     "policy_groups": 27,
     "remote_filters": 6,
     "remote_rules": 14,
-    "regions": ["Hong Kong", "Japan", "Singapore", "Taiwan", "United States"],
-    "region_modes": ["url-test", "fallback", "manual select"],
+    "regions": [
+      "Hong Kong",
+      "Japan",
+      "Singapore",
+      "Taiwan",
+      "United States"
+    ],
+    "region_modes": [
+      "url-test",
+      "fallback",
+      "manual select"
+    ],
     "generator_check": "PASS: python tools/generate_dns.py --check; 5323 suffixes / 26 exact domains",
     "preservation_check": "PASS: all active sections except Remote Filter/Proxy Group unchanged from baseline",
     "policy_boundaries": "PASS: each region only references its own filter; Google/OpenAI/Claude/Gemini remain US-only; other proxy services default to global selection and offer five regional selections",
@@ -225,5 +235,15 @@
     "raw_sha256": "1e29a7d021bf150652d5ccb64b708d9a26b6452c9f1328c67a0fc8f41011f5cc",
     "checked_on": "2026-10-12",
     "device_selection_and_real_exit_validation": "NOT RUN"
+  },
+  "region_policy_publication": {
+    "config_commit": "c8f2932eb1f7a496c2aa7ed08504164fdcc21c3a",
+    "remote_main_matches": true,
+    "raw_url": "https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf",
+    "raw_http_status": 200,
+    "raw_matches_git_config": true,
+    "raw_sha256": "9dfd3726c3b149c74e3f77a4197c4fb46e256be4661375794a358925670e36e4",
+    "checked_on": "2026-10-12",
+    "device_region_selection_and_real_exit_validation": "NOT RUN"
   }
 }
