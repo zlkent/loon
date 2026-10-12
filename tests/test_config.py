@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import fnmatch
+import re
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,12 +36,50 @@ class ConfigTests(unittest.TestCase):
             self.groups[name] = [part.strip() for part in value.split(',')]
 
     def test_automatic_policies_and_default(self):
+        url = 'url=http://www.gstatic.com/generate_204'
         self.assertEqual(self.groups.get('故障转移'),
-                         ['fallback', '全部节点', 'interval=60', 'max-timeout=3000'])
+                         ['fallback', '全部节点', url, 'interval=60', 'max-timeout=3000'])
         self.assertEqual(self.groups.get('自动优选'),
-                         ['url-test', '全部节点', 'interval=60', 'tolerance=50'])
+                         ['url-test', '全部节点', url, 'interval=60', 'tolerance=50'])
         self.assertEqual(self.groups['节点选择'],
-                         ['select', '故障转移', '自动优选', '全部节点'])
+                         ['select', '自动优选', '故障转移', '美国节点选择', '全部节点'])
+
+    def test_us_pool_and_service_boundaries(self):
+        url = 'url=http://www.gstatic.com/generate_204'
+        self.assertEqual(self.groups.get('美国自动优选'),
+                         ['url-test', '美国节点', url, 'interval=60', 'tolerance=50'])
+        self.assertEqual(self.groups.get('美国故障转移'),
+                         ['fallback', '美国节点', url, 'interval=60', 'max-timeout=3000'])
+        self.assertEqual(self.groups.get('美国节点选择'),
+                         ['select', '美国自动优选', '美国故障转移', '美国节点'])
+        for service in ('Google', 'OpenAI', 'Claude', 'Gemini'):
+            self.assertEqual(self.groups[service], ['select', '美国节点选择', '美国节点'])
+        # No path from the region-constrained services to all nodes or DIRECT.
+        def leaves(name):
+            if name not in self.groups:
+                return {name}
+            result = set()
+            for child in self.groups[name][1:]:
+                if '=' not in child:
+                    result |= leaves(child)
+            return result
+        for service in ('Google', 'OpenAI', 'Claude', 'Gemini'):
+            self.assertEqual(leaves(service), {'美国节点'})
+
+    def test_us_name_filter(self):
+        filters = dict(line.split('=', 1) for line in self.sections['Remote Filter'])
+        filters = {k.strip(): v.strip() for k, v in filters.items()}
+        self.assertIn('美国节点', filters, 'US node filter missing')
+        self.assertEqual(filters['全部节点'], 'NameRegex, FilterKey=".*"')
+        regex = filters['美国节点'].split('FilterKey=', 1)[1].strip().strip('"')
+        for name in ('🇺🇸 示例 美国 01', '示例 美國 02', 'Example US 01',
+                     'Example USA-01', 'example us01', 'Example United States 01'):
+            self.assertIsNotNone(re.search(regex, name), name)
+        for name in ('🇦🇷 示例 阿根廷 01', '🇦🇹 示例 奥地利 01',
+                     '🇦🇺 Example Australia 01', 'Example AUS 01',
+                     'Example Russia 01', 'Example usual 01',
+                     '🇯🇵 示例 日本 01', '🇭🇰 示例 香港 01'):
+            self.assertIsNone(re.search(regex, name), name)
 
     def test_references_and_no_cycles(self):
         filters = {line.split('=', 1)[0].strip() for line in self.sections['Remote Filter']}
@@ -86,7 +125,8 @@ class ConfigTests(unittest.TestCase):
         ])
         for service in expected:
             if service in self.groups and service != 'Advertising':
-                self.assertEqual(self.groups[service][1], '节点选择')
+                target = '美国节点选择' if service in ('Google', 'OpenAI', 'Claude', 'Gemini') else '节点选择'
+                self.assertEqual(self.groups[service][1], target)
 
     def test_no_private_nodes_or_mitm(self):
         self.assertEqual(self.sections['Remote Proxy'], [])

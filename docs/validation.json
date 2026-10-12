@@ -1,5 +1,5 @@
 {
-  "static_validation": "PASS: 11 unittest checks; two proxied IP DoH endpoints; mobile Rule/fallback documentation; original routing/automatic policies/domestic Host/generator/privacy preserved",
+  "static_validation": "PASS: 13 unittest checks; 15 policy groups; US name-filter positives/negative regions; US-only policy closure for Google/OpenAI/Claude/Gemini; default global url-test; explicit HTTP test URLs; DNS/Host/rules/privacy unchanged",
   "device_validation": "NOT RUN",
   "upstream": [
     {
@@ -163,5 +163,40 @@
     "raw_matches_git_config": true,
     "raw_sha256": "636af15f02c71cba1a05aa7e3d240d38351ab2bef4b4c5eb687bab0d941b82ce",
     "checked_on": "2026-10-08"
+  },
+  "previous_static_validation_us_policy": {
+    "checked_on": "2026-10-12",
+    "result": "PASS: 11 unittest checks; two proxied IP DoH endpoints; mobile Rule/fallback documentation; original routing/automatic policies/domestic Host/generator/privacy preserved"
+  },
+  "us_policy_validation": {
+    "checked_on": "2026-10-12",
+    "baseline": "a008145",
+    "test_command": "python -m unittest discover -s tests -v",
+    "tests_passed": 13,
+    "generator_check": "PASS: python tools/generate_dns.py --check",
+    "preservation_check": "PASS: all active sections except Remote Filter/Proxy Group unchanged",
+    "us_services": [
+      "Google",
+      "OpenAI",
+      "Claude",
+      "Gemini"
+    ],
+    "global_services": [
+      "Telegram",
+      "Twitter",
+      "GitHub",
+      "YouTube"
+    ],
+    "region_method": "NameRegex only; real exit IP and US pool membership NOT VERIFIED",
+    "explicit_group_test_url": "http://www.gstatic.com/generate_204",
+    "timeout_selection_device_validation": "NOT RUN; screenshot shows selected first row with 13ms, Timeout but cause unconfirmed",
+    "evidence_limits": "Screenshot does not prove timestamp alignment, selection algorithm input or actual new-request node",
+    "sources": [
+      "https://nsloon.app/docs/Policy/policygroup/",
+      "https://nsloon.app/docs/General/",
+      "https://wiki.repcz.link/loon/node/"
+    ],
+    "diagnostic_review": "Independent read-only document check found no confirmed root cause or public TCP-only selector parameter; do not claim Timeout fixed",
+    "config_review": "Independent read-only diff review: no Critical / Important findings; 13 tests, DNS generator and baseline invariants passed"
   }
 }

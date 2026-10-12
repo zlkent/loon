@@ -23,21 +23,27 @@ skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local
 
 [Remote Filter]
 全部节点 = NameRegex, FilterKey=".*"
+# 名称筛选不验证实际出口所在地；支持中文、国旗和独立 US / USA 标签。
+美国节点 = NameRegex, FilterKey="(?i)(美国|美國|🇺🇸|(?:^|[^a-z])(?:us|usa|united[ _-]?states)(?:[^a-z]|$))"
 
 [Proxy Group]
-# 两个自动组使用 General 中的 proxy-test-url。
-故障转移 = fallback,全部节点,interval=60,max-timeout=3000
-自动优选 = url-test,全部节点,interval=60,tolerance=50
-# 首次导入默认故障转移，仍可改为自动优选或手动指定节点。
-节点选择 = select,故障转移,自动优选,全部节点
-Google = select,节点选择,全部节点
+# 显式指定 URL 做 HTTP Header 测试，TCP 握手快不等于代理目标可访问。
+故障转移 = fallback,全部节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+自动优选 = url-test,全部节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+美国自动优选 = url-test,美国节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+美国故障转移 = fallback,美国节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+# 美国选择仅引用美国池，不提供全局或直连回落。
+美国节点选择 = select,美国自动优选,美国故障转移,美国节点
+# 首次导入默认全局自动优选；旧配置保存的选择需在手机确认。
+节点选择 = select,自动优选,故障转移,美国节点选择,全部节点
+Google = select,美国节点选择,美国节点
 Telegram = select,节点选择,全部节点
 Twitter = select,节点选择,全部节点
 GitHub = select,节点选择,全部节点
 YouTube = select,节点选择,全部节点
-OpenAI = select,节点选择,全部节点
-Claude = select,节点选择,全部节点
-Gemini = select,节点选择,全部节点
+OpenAI = select,美国节点选择,美国节点
+Claude = select,美国节点选择,美国节点
+Gemini = select,美国节点选择,美国节点
 广告拦截 = select,REJECT,DIRECT
 
 [Rule]
