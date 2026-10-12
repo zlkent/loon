@@ -198,5 +198,15 @@
     ],
     "diagnostic_review": "Independent read-only document check found no confirmed root cause or public TCP-only selector parameter; do not claim Timeout fixed",
     "config_review": "Independent read-only diff review: no Critical / Important findings; 13 tests, DNS generator and baseline invariants passed"
+  },
+  "us_policy_publication": {
+    "config_commit": "688e6c2e9c9c60190487171a0ebc1309b5ce61b0",
+    "remote_main_matches": true,
+    "raw_url": "https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf",
+    "raw_http_status": 200,
+    "raw_matches_git_config": true,
+    "raw_sha256": "1e29a7d021bf150652d5ccb64b708d9a26b6452c9f1328c67a0fc8f41011f5cc",
+    "checked_on": "2026-10-12",
+    "device_selection_and_real_exit_validation": "NOT RUN"
   }
 }
