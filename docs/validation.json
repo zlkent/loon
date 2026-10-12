@@ -109,13 +109,13 @@
     "checked_on": "2026-10-08"
   },
   "dns_publication": {
-    "config_commit": "108bdf25dad797eea3cc60422c1c5073ab029a5b",
+    "config_commit": "fe8cec4d84d2b57b0e84048610a8dbbcfa880eee",
     "remote_main_matches": true,
     "raw_url": "https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf",
     "raw_http_status": 200,
     "raw_matches_git_config": true,
-    "raw_sha256": "636af15f02c71cba1a05aa7e3d240d38351ab2bef4b4c5eb687bab0d941b82ce",
-    "checked_on": "2026-10-08"
+    "raw_sha256": "d1cf80e8e2056724aa7fb46b79a12aae9da6d23ef4bdc95a2d62036b09b2002a",
+    "checked_on": "2026-10-12"
   },
   "previous_static_validation_doh_redundancy": {
     "checked_on": "2026-10-08",
@@ -154,5 +154,14 @@
     "review": "Focused self-review of minimal diff; not a new independent review",
     "device_flow_mode_evidence": "User screenshot shows DIRECT and query fallback ON; user must switch to Rule and disable fallback after updating",
     "device_proxy_path_and_performance": "NOT RUN"
+  },
+  "previous_dns_publication": {
+    "config_commit": "108bdf25dad797eea3cc60422c1c5073ab029a5b",
+    "remote_main_matches": true,
+    "raw_url": "https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf",
+    "raw_http_status": 200,
+    "raw_matches_git_config": true,
+    "raw_sha256": "636af15f02c71cba1a05aa7e3d240d38351ab2bef4b4c5eb687bab0d941b82ce",
+    "checked_on": "2026-10-08"
   }
 }
