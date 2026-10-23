@@ -1,2 +1,6 @@
 __pycache__/
 *.py[cod]
+# Local WG secrets / generated private backups must never be committed.
+*.local.json
+*.private.lcf
+private/

@@ -1,0 +1,115 @@
+# 家庭 WG 节点版 candidate；由 tools/generate_home_wg.py 派生，请勿手改。
+# 先备份并作为新配置导入；本地初始化见 docs/home-wg-node.md。
+# zlkent 的 Loon 配置；规则来自 https://github.com/luestr/ShuntRules
+# 导入后在手机添加私人节点订阅，并选择可用节点。
+[General]
+include-tun = 192.168.1.0/24
+ip-mode = v4-only
+ipv6-vif = off
+# 稳定优先：默认国内加密 DNS，失败可回落普通 DNS；不是严格国内外 DNS 分离。
+# 手机 DOH 流量模式可保留 Rule；请开启“查询回落”，订阅不能代改开关，见 README。
+dns-server = 223.5.5.5,119.29.29.29
+# 阿里 / 腾讯 DoH 使用 IP URL，避免解析器域名的 bootstrap；连接显式直连。
+doh-server = https://223.5.5.5/dns-query,https://1.12.12.12/dns-query
+allow-wifi-access = false
+test-timeout = 5
+interface-mode = auto
+proxy-test-url = http://www.gstatic.com/generate_204
+skip-proxy = 192.168.128.0/17,192.168.64.0/18,192.168.32.0/19,192.168.16.0/20,192.168.8.0/21,192.168.4.0/22,192.168.2.0/23,192.168.0.0/24,10.0.0.0/8,172.16.0.0/12,localhost,*.local
+
+[Proxy]
+
+[Remote Proxy]
+家庭WG订阅 = https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Probe/HomeWGSeed.txt,parser-enabled=true,parser-plugin=https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/HomeWGNodeParser.lpx,enabled=true
+# 私人订阅只在本机添加，不提交到公共仓库。
+# Loon 3.5.2 (996)+：可保留节点独立 DNS；当前默认 DoH 不再依赖代理。
+# 我的订阅 = https://example.com/your-subscription,enabled=true,server-dns="223.5.5.5,119.29.29.29"
+
+[Remote Filter]
+全部节点 = NameRegex, FilterKey="^(?!家庭WG$).*"
+# 名称筛选不验证实际出口所在地；支持中文、国旗和独立地区英文标签。
+香港节点 = NameRegex, FilterKey="(?i)(香港|🇭🇰|(?:^|[^a-z])(?:hk|hong[ _-]?kong)(?:[^a-z]|$))"
+日本节点 = NameRegex, FilterKey="(?i)(日本|🇯🇵|(?:^|[^a-z])(?:jp|japan)(?:[^a-z]|$))"
+新加坡节点 = NameRegex, FilterKey="(?i)(新加坡|狮城|獅城|🇸🇬|(?:^|[^a-z])(?:sg|singapore)(?:[^a-z]|$))"
+台湾节点 = NameRegex, FilterKey="(?i)(台湾|台灣|臺灣|🇹🇼|(?:^|[^a-z])(?:tw|taiwan)(?:[^a-z]|$))"
+美国节点 = NameRegex, FilterKey="(?i)(美国|美國|🇺🇸|(?:^|[^a-z])(?:us|usa|united[ _-]?states)(?:[^a-z]|$))"
+
+[Proxy Group]
+# 外层可手动选 DIRECT/WG；网络脚本只切换内层，不覆盖手动选择。
+家庭内网 = select,家庭自动,家庭WG,DIRECT
+家庭自动 = select,家庭WG,DIRECT
+# 显式指定 URL 做 HTTP Header 测试，TCP 握手快不等于代理目标可访问。
+故障转移 = fallback,全部节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+自动优选 = url-test,全部节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+# 各地区选择只引用自身节点池，不提供外区或直连回落。
+香港自动优选 = url-test,香港节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+香港故障转移 = fallback,香港节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+香港节点选择 = select,香港自动优选,香港故障转移,香港节点
+日本自动优选 = url-test,日本节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+日本故障转移 = fallback,日本节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+日本节点选择 = select,日本自动优选,日本故障转移,日本节点
+新加坡自动优选 = url-test,新加坡节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+新加坡故障转移 = fallback,新加坡节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+新加坡节点选择 = select,新加坡自动优选,新加坡故障转移,新加坡节点
+台湾自动优选 = url-test,台湾节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+台湾故障转移 = fallback,台湾节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+台湾节点选择 = select,台湾自动优选,台湾故障转移,台湾节点
+美国自动优选 = url-test,美国节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50
+美国故障转移 = fallback,美国节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
+# 美国选择仅引用美国池，不提供全局或直连回落。
+美国节点选择 = select,美国自动优选,美国故障转移,美国节点
+# 首次导入默认全局自动优选；旧配置保存的选择需在手机确认。
+节点选择 = select,自动优选,故障转移,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
+Google = select,美国节点选择,美国节点
+Telegram = select,节点选择,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
+Twitter = select,节点选择,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
+GitHub = select,节点选择,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
+YouTube = select,节点选择,香港节点选择,日本节点选择,新加坡节点选择,台湾节点选择,美国节点选择,全部节点
+OpenAI = select,美国节点选择,美国节点
+Claude = select,美国节点选择,美国节点
+Gemini = select,美国节点选择,美国节点
+广告拦截 = select,REJECT,DIRECT
+
+[Rule]
+# 优先于 LAN/ChinaMax；仅此家庭网段由家庭策略处理。
+IP-CIDR,192.168.1.0/24,家庭内网,no-resolve
+# 国内 DoH 连接显式直连，手机使用 Rule 模式也不依赖代理节点。
+IP-CIDR,223.5.5.5/32,DIRECT,no-resolve
+IP-CIDR,1.12.12.12/32,DIRECT,no-resolve
+# 所有未匹配流量固定进入代理节点选择，不依赖国外网站白名单。
+FINAL,节点选择
+
+[Remote Rule]
+# 广告优先；发生误拦截可将“广告拦截”切换到 DIRECT 排查。
+https://rule.kelee.one/Loon/Advertising.lsr, policy=广告拦截, tag=Advertising, enabled=true
+https://rule.kelee.one/Loon/WeChat.lsr, policy=DIRECT, tag=WeChat, enabled=true
+https://rule.kelee.one/Loon/GaoDe.lsr, policy=DIRECT, tag=GaoDe, enabled=true
+https://rule.kelee.one/Loon/Apple.lsr, policy=DIRECT, tag=Apple, enabled=true
+# 细分服务在大集合之前：Gemini、YouTube 在 Google 前，国内兜底最后。
+https://rule.kelee.one/Loon/OpenAI.lsr, policy=OpenAI, tag=OpenAI, enabled=true
+https://rule.kelee.one/Loon/Claude.lsr, policy=Claude, tag=Claude, enabled=true
+https://rule.kelee.one/Loon/Gemini.lsr, policy=Gemini, tag=Gemini, enabled=true
+https://rule.kelee.one/Loon/YouTube.lsr, policy=YouTube, tag=YouTube, enabled=true
+https://rule.kelee.one/Loon/Telegram.lsr, policy=Telegram, tag=Telegram, enabled=true
+https://rule.kelee.one/Loon/Twitter.lsr, policy=Twitter, tag=Twitter, enabled=true
+https://rule.kelee.one/Loon/GitHub.lsr, policy=GitHub, tag=GitHub, enabled=true
+https://rule.kelee.one/Loon/Google.lsr, policy=Google, tag=Google, enabled=true
+https://rule.kelee.one/Loon/Lan.lsr, policy=DIRECT, tag=LAN, enabled=true
+https://rule.kelee.one/Loon/ChinaMax.lsr, policy=DIRECT, tag=ChinaMax, enabled=true
+
+[Host]
+# 默认使用 General 中的国内 DNS，不维护逐域名解析例外。
+
+[Rewrite]
+
+[Script]
+
+[Plugin]
+https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/HomeWGNodeParser.lpx,enabled=true
+https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/HomeWGAuto.lpx,enabled=true
+
+[MITM]
+hostname =
+ca-p12 =
+ca-passphrase =
+skip-server-cert-verify = false

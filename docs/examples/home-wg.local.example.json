@@ -1,0 +1,9 @@
+{
+  "wgPrivateKey": "PASTE_PHONE_PRIVATE_KEY_HERE",
+  "wgPublicKey": "PASTE_ROUTER_PUBLIC_KEY_HERE",
+  "wgPresharedKey": "",
+  "wgHost": "YOUR_PUBLIC_IPV4_OR_DDNS",
+  "wgPort": 51820,
+  "wgAddress": "10.77.77.2",
+  "homeSSID": "YOUR_HOME_WIFI"
+}

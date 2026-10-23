@@ -1,0 +1,10 @@
+#!name = 家庭WG节点解析器
+#!desc = 从手机本地持久化 JSON 生成家庭 WG 节点；参数键 zlkent.loon.home-wg.node.v1。无参数时保留不可用占位节点，不上传、不打印密钥。
+#!author = zlkent
+#!homepage = https://github.com/zlkent/loon/blob/codex/wg-local-parameters/docs/home-wg-node.md
+#!loon_version = 3.5.2(1008)
+#!date = 2026-10-23
+#!type = parser
+
+[Script]
+generic then script("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Parser/HomeWGNode.js") with tag="HomeWG Node Parser", timeout=10

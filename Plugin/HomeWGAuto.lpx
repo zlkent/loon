@@ -1,0 +1,10 @@
+#!name = 家庭WG自动切换
+#!desc = 读取手机本地家庭 SSID，仅切换家庭自动策略；家中直连，其他网络用 WG。网络变化和每分钟校正，不改变全局模式。
+#!author = zlkent
+#!homepage = https://github.com/zlkent/loon/blob/codex/wg-local-parameters/docs/home-wg-node.md
+#!loon_version = 3.5.2(1008)
+#!date = 2026-10-23
+
+[Script]
+network-changed then script("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Script/HomeWGNetwork.js") with tag="HomeWG Network", timeout=10
+cron "* * * * *" then script("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Script/HomeWGNetwork.js") with tag="HomeWG Network Refresh", timeout=10
