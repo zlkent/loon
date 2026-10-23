@@ -60,6 +60,7 @@ zlkent.loon.home-wg.node.v1
 - 外地 Wi-Fi 如果也用 `192.168.1.0/24`，本版优先访问家里的同网段；如要临时访问当地路由器，外层手选 `DIRECT`。这不是两个同网段同时可达的方案。
 - WG Peer 的 `allowed-ips` 仅包含 `192.168.1.0/24`，不把互联网流量送回家，也不配置默认路由。`10.x` WG 接口管理地址不在本版家庭规则内。
 - 这是 TCP/UDP 代理链路，不保证 ping、mDNS、广播发现或所有局域网协议。直接用设备 IP 访问，不依赖 `.local` 广播发现。
+- **不要用通用延迟测试判定家庭 WG 好坏。** 本版 Peer 只允许家庭 `/24`，General 的测速目标是公网 `www.gstatic.com`，不属于允许的目的网段，因此即使家庭内网可用，该测试仍可能超时。不要为消掉 Timeout 把 allowed-ips 扩成默认路由。
 
 如果不能访问，反馈固定错误码或失败连接的目标、命中策略和错误即可。**不要再补写假标记，也不要发真实密钥。** ROS 的 UDP 入站、防火墙 forward、Peer 地址、LAN 回程及旁路由策略仍需原有服务配置正确，本仓库不会远程修改 ROS。
 
@@ -79,5 +80,6 @@ zlkent.loon.home-wg.node.v1
 
 - 正式 `main/Config/Loon.lcf` 未改。候选由 `tools/generate_home_wg.py` 从基础配置派生；基础分流更新后重新生成即可，不把私人文件输入生成器。
 - 家庭 `/24` 使用 `include-tun`，从 `skip-proxy` 扣除家庭段，并在本地 Rule 优先于远程 LAN/ChinaMax。全局互联网筛选排除 `家庭WG`。
+- 家庭组使用 `家庭WG节点 = NameRegex, FilterKey="^家庭WG$"` 获取订阅节点，不再把订阅内名字当作静态组引用。当前设备曾出现“订阅有 WireGuard，但两层家庭策略只有 DIRECT”的状态；此改动只修复动态引用，节点参数、SSID 脚本、DNS 和 ROS 均不改。已用本版的设备先备份，更新原家庭 WG 完整配置（不开全覆盖）并更新家庭WG订阅；在外面可先从家庭内网选家庭WG直接访问实际内网设备，再恢复家庭自动。
 - 语法、生成、私密信息和 Raw 发布核对属于工程检查，不替代手机/ROS 运行证据。按用户要求，本轮不新增自动化测试、不跑全套测试、不安排新的分轮探针。
 - 官方接口：[WG 节点](https://nsloon.app/docs/Node/#wireguard)、[节点解析器](https://nsloon.app/docs/Node/subscription/)、[include-tun / skip-proxy](https://nsloon.app/docs/General/)、[网络脚本](https://nsloon.app/docs/Script/script_v2/)、[配置和存储 API](https://nsloon.app/docs/Script/script_api/)、[官方网络变化示例](https://raw.githubusercontent.com/Loon0x00/LoonExampleConfig/master/Script/netChanged.js)。

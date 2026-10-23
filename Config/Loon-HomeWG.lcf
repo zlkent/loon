@@ -27,6 +27,8 @@ skip-proxy = 192.168.128.0/17,192.168.64.0/18,192.168.32.0/19,192.168.16.0/20,19
 
 [Remote Filter]
 全部节点 = NameRegex, FilterKey="^(?!家庭WG$).*"
+# 订阅节点通过筛选动态加入策略，不直接使用订阅内节点名作静态引用。
+家庭WG节点 = NameRegex, FilterKey="^家庭WG$"
 # 名称筛选不验证实际出口所在地；支持中文、国旗和独立地区英文标签。
 香港节点 = NameRegex, FilterKey="(?i)(香港|🇭🇰|(?:^|[^a-z])(?:hk|hong[ _-]?kong)(?:[^a-z]|$))"
 日本节点 = NameRegex, FilterKey="(?i)(日本|🇯🇵|(?:^|[^a-z])(?:jp|japan)(?:[^a-z]|$))"
@@ -36,8 +38,8 @@ skip-proxy = 192.168.128.0/17,192.168.64.0/18,192.168.32.0/19,192.168.16.0/20,19
 
 [Proxy Group]
 # 外层可手动选 DIRECT/WG；网络脚本只切换内层，不覆盖手动选择。
-家庭内网 = select,家庭自动,家庭WG,DIRECT
-家庭自动 = select,家庭WG,DIRECT
+家庭内网 = select,家庭自动,家庭WG节点,DIRECT
+家庭自动 = select,家庭WG节点,DIRECT
 # 显式指定 URL 做 HTTP Header 测试，TCP 握手快不等于代理目标可访问。
 故障转移 = fallback,全部节点,url=http://www.gstatic.com/generate_204,interval=60,max-timeout=3000
 自动优选 = url-test,全部节点,url=http://www.gstatic.com/generate_204,interval=60,tolerance=50

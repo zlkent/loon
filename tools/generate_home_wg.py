@@ -39,11 +39,13 @@ def render() -> str:
                   "Probe/HomeWGSeed.txt,parser-enabled=true,parser-plugin=" + BASE +
                   "Plugin/HomeWGNodeParser.lpx,enabled=true\n")
     source = once(source, '全部节点 = NameRegex, FilterKey=".*"',
-                  '全部节点 = NameRegex, FilterKey="^(?!家庭WG$).*"')
+                  '全部节点 = NameRegex, FilterKey="^(?!家庭WG$).*"\n'
+                  '# 订阅节点通过筛选动态加入策略，不直接使用订阅内节点名作静态引用。\n'
+                  '家庭WG节点 = NameRegex, FilterKey="^家庭WG$"')
     source = once(source, "[Proxy Group]\n", "[Proxy Group]\n"
                   "# 外层可手动选 DIRECT/WG；网络脚本只切换内层，不覆盖手动选择。\n"
-                  "家庭内网 = select,家庭自动,家庭WG,DIRECT\n"
-                  "家庭自动 = select,家庭WG,DIRECT\n")
+                  "家庭内网 = select,家庭自动,家庭WG节点,DIRECT\n"
+                  "家庭自动 = select,家庭WG节点,DIRECT\n")
     source = once(source, "[Rule]\n", "[Rule]\n"
                   "# 优先于 LAN/ChinaMax；仅此家庭网段由家庭策略处理。\n"
                   "IP-CIDR,192.168.1.0/24,家庭内网,no-resolve\n")
