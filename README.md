@@ -1,6 +1,6 @@
 # 我的 Loon 统一配置
 
-一次导入完整配置，集中管理所选规则。流量分流规则正文由 Loon 从上游下载、更新；国内 DNS 域名例外由本仓库固定版本生成并内置，不需要另订阅。
+一次导入完整配置，集中管理所选规则。流量分流规则正文由 Loon 从上游下载、更新；默认使用国内加密 DNS，不需要逐 App 添加 DNS 例外或另订阅 DNS 清单。
 
 **配置订阅地址：**
 
@@ -11,12 +11,12 @@ https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf
 ## 使用
 
 1. 在 Loon 备份当前配置，将上述地址添加为远程配置/配置订阅（不是节点订阅或单个规则集）。
-2. 在手机端添加私人节点订阅，设置节点独立解析 DNS 并更新节点（见下面 DNS 设置）。公共配置不包含节点，未添加节点时无法使用代理或默认境外 DoH。
+2. 在手机端添加私人节点订阅并更新节点（可保留节点独立 DNS，见下面 DNS 设置）。公共配置不包含节点，未添加节点时无法使用代理；默认国内 DoH 不依赖代理节点。
 3. 在“节点选择”选“自动优选”（首次导入默认），美国节点选择也选“美国自动优选”。Google / OpenAI / Claude / Gemini 选“美国节点选择”；Telegram / Twitter / GitHub / YouTube 选“节点选择”。更新旧配置后务必手动核对，Loon 可能保留旧选择。
 4. 使用规则分流模式，更新远程规则，确认全部下载成功。
-5. 在 DNS 服务器设置页，把“DOH 流量模式”设为 Rule 并关闭“查询回落”，再检查请求日志，核实 DNS、直连、代理、广告拦截是否符合预期。
+5. 在 DNS 服务器设置页，确认只有本配置的两个国内 DoH，可保留“DOH 流量模式”为 Rule，并开启“查询回落”。停止后重新启动 Loon 清理 DNS 缓存，再检查 DNS、直连、代理、广告拦截是否符合预期。
 
-重新导入或更新完整配置前，请备份私人节点订阅及本机修改，并在更新后检查设置。不要向公共仓库提交节点订阅令牌或 MITM 证书。
+重新导入或更新完整配置前，请备份私人节点订阅和 MITM 证书及本机修改，并在更新后检查它们仍存在。此前长按更新发生过丢失，不能假定此次更新会自动保留；未确认更新策略页的保留行为。不要向公共仓库提交节点订阅令牌或 MITM 证书。
 
 ## 默认策略
 
@@ -43,7 +43,7 @@ Gemini、YouTube 位于 Google 前，ChinaMax 位于最后。Loon 优先匹配�
 
 全局和各地区池的自动组均显式指定 `url=http://www.gstatic.com/generate_204`，Loon 向该地址发出 HTTP Header 请求；General 中也保留相同 `proxy-test-url`。显式写 URL 只是固定测试目标，不能证明能修复选中 Timeout 节点的问题。测试地址能通，不代表所有目标网站、视频或 AI 服务均可用，也不代表吞吐速度最快。切换存在检测间隔，已有连接不保证无缝恢复；不配置直连回落。
 
-更新旧配置后，主动把“节点选择”切到“自动优选”，把“美国节点选择”切到“美国自动优选”；Google / OpenAI / Claude / Gemini 需选“美国节点选择”，其余四个代理服务选“节点选择”。服务组若固定某个节点，将绕过自动组。DNS DoH 连接及未匹配流量仍跟随全局“节点选择”，不因为 Google 业务限定美国而改用美国 DNS 出口。
+更新旧配置后，主动把“节点选择”切到“自动优选”，把“美国节点选择”切到“美国自动优选”；Google / OpenAI / Claude / Gemini 需选“美国节点选择”，其余四个代理服务选“节点选择”。服务组若固定某个节点，将绕过自动组。未匹配业务流量仍跟随全局“节点选择”；国内 DoH 连接单独直连，Google 业务限定美国不代表 DNS 在美国查询。
 
 ### 地区分类与美国限制
 
@@ -83,55 +83,54 @@ Twitter 使用独立策略组；第三方外链即使不在 Twitter 分类中，
 
 GaoDe 用来识别高德业务域名并直连，不应整体设为 REJECT，否则可能影响地图和导航。其原始数据源列出 amap.com、autonavi.com、gaode.com 等域名，见 [GaoDe 上游规则](https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/GaoDe/GaoDe.list)。通用 Advertising 承担广告拦截；未安装高德专用改写或脚本插件，不承诺去除高德全部广告。
 
-### 国内外 DNS 分流（必须完成手机设置）
+### DNS：稳定优先（2026-10-23 起）
 
-| 查询类别 | 解析方式 |
+| 配置项目 | 当前行为 |
 | --- | --- |
-| 内置国内清单及 Apple、微信、高德、抖音、网易域名 | `[Host]` 指定 `223.5.5.5`（阿里 DNS，普通 DNS） |
-| 不在清单的域名（包括未收录的国外视频外链） | Cloudflare `https://1.1.1.1/dns-query` + Google `https://8.8.8.8/dns-query`，并发查询取最快响应 |
-| 两个境外 DoH 连接 | `[Rule]` 中分别固定 `1.1.1.1/32`、`8.8.8.8/32` 到节点选择，带 `no-resolve`；手机 DOH 流量模式必须为 Rule，不设 DIRECT 备选 |
-| 私人代理节点的服务器域名 | **单独**使用 `223.5.5.5,119.29.29.29` 作 bootstrap，不能依赖尚未连通的代理 DoH |
+| 默认加密 DNS | 阿里 `https://223.5.5.5/dns-query`、腾讯 `https://1.12.12.12/dns-query` |
+| 普通 DNS | `223.5.5.5,119.29.29.29`，供加密失败且手机开启查询回落时使用 |
+| DoH 连接路由 | 两个 IP 均显式 `DIRECT,no-resolve`；不再依赖代理节点 |
+| `[Host]` | 无内置逐域名 DNS 映射，不依赖国内域名清单覆盖 |
+| 业务流量 | 仍由原有直连、广告和服务规则决定；FINAL 保持代理 |
 
-**手机需要确认三项设置：**
+参考 LoonLab / YueChan 的国内基础解析思路，只保留两个标准 DoH，不照搬全部 DNS、DoQ / DoH3 或插件。Loon 优先查询加密 DNS，并发查询有效服务器，采用最先返回结果；不是阿里主、腾讯备，也不保证增加 DNS 地址一定提速。
 
-1. 使用 **Loon 3.5.2 (996) 或更新版本**，为每个私人节点订阅配置 `server-dns`。在本机配置的 `[Remote Proxy]` 中保留真实订阅，增加参数，示例如下（地址只是占位符，不要直接使用）：
+**从旧版迁移，手机需要确认：**
 
-   ```ini
-   我的订阅 = https://example.com/your-subscription,enabled=true,server-dns="223.5.5.5,119.29.29.29"
-   ```
+1. **先备份再更新完整配置。** 更新后核对 DoH 仅为上表两个国内地址，不再残留 `1.1.1.1` / `8.8.8.8`；`[Host]` 不再有旧生成块。若本机另装 DNS 插件，检查插件是否追加了其他服务器，不要仅看主配置。
+2. **开启“查询回落”。** 这是相对此前方案的变化：加密查询失败时允许尝试普通国内 DNS。订阅更新无法替你修改这个界面开关，旧版手动关过的需要重新开启。“包含系统 DNS 地址”可继续关闭，公共配置不包含 `system`。
+3. **DOH 流量模式可保留 Rule。** 新配置的两个 DoH IP 已显式直连；若使用 DIRECT，也不会依赖代理。不再要求把境外 DoH 强制经代理。不要为本方案添加未核实的手机开关配置参数。
+4. **停止后重新启动 Loon**，清理本次运行的 DNS 缓存。完全退出再打开需要测试的 App，重新发起请求；仅刷新连接列表不等于清掉 DNS 缓存或重建连接。
 
-   手工添加的单个节点也需单独设置其节点 DNS。订阅自带 `[Host]` 或主配置已有匹配节点域名的 Host 优先于 `server-dns`，更新后要检查实际解析；指定的节点 DNS 查询失败不会继续回落其他层。不要给 `[Host]` 添加全局 `*` 指向代理 DoH，这会覆盖节点 DNS 并造成启动循环。
+私人节点订阅中已经添加的 `server-dns` **可以保留，不用删掉或重新逐条填写**。它仍是节点服务器域名的独立解析设置，不表示业务域名全部走这个 DNS；本方案不再依赖它来解开代理 DoH 启动循环。Loon 3.5.2 (996)+ 的示例仅供本机使用（地址是占位符）：
 
-2. 到 Loon 的 **DNS 服务器设置页**，将 **“DOH 流量模式”从 DIRECT 改成 Rule**。截图中的说明明确：DIRECT 直接发送请求，Rule 才根据规则匹配结果转发。仅添加 IP 代理规则并不能保证 DIRECT 模式下的 DoH 走代理；这是此前使用说明遗漏的必要条件。未找到已核实的配置文件参数能控制这个界面设置，**订阅更新无法替你切换它**，请更新后再确认。
+```ini
+我的订阅 = https://example.com/your-subscription,enabled=true,server-dns="223.5.5.5,119.29.29.29"
+```
 
-3. 在同一页关闭 **“查询回落”**（即此前说的“加密 DNS 失败后回落普通 DNS”）。当前官方文档仅说明手机端开关，未提供已核实的配置文件参数，**订阅更新无法替你关闭它**。未关闭时，境外 DoH 失败可能回落 `dns-server` 中的国内 DNS，不能保证严格分流。`dns-server` 不包含 `system`，也不代表已关闭回落。“包含系统 DNS 地址”保持关闭。
+注意：节点 DNS 的失败处理与上面的普通业务 DNS“查询回落”不是同一机制；已有节点 Host / 订阅设置仍需按实际情况排查。
 
-普通 DNS 列表保留阿里 / 腾讯，但 Host 国内例外明确使用阿里，不承诺该例外失败会自动换到腾讯。某网络不通阿里 DNS 时，可调整生成器的国内解析器并重新生成，不应临时开普通 DNS 回落来掩盖问题。
+**取舍：这是稳定优先方案，不是严格的国内外 DNS 分离。** 部分海外域名也可能在本地交给国内解析器查询，存在污染及查询隐私取舍；HTTPS 只加密到解析器的传输，不代表解析器看不到查询。Google / AI 业务仍走美国池，但不保证所有 DNS 在美国查询或“零泄漏”。如果国内解析器返回被污染地址，不能保证代理业务不受影响；更新后必须同时验证海外服务和未知视频外链。
 
-全局加密 DNS 仅使用两个境外 DoH，Loon 并发查询并采用最先返回的结果；没有主备顺序，不保证增加服务器一定更快，也不保证网站或视频吞吐提高。不把阿里 / 腾讯 DoH 混入这个池，以免国外查询被国内解析器抢先回答。代理失效或两个 DoH 都不可用时，未命中国内清单的解析可能失败；自动节点故障转移不等于 DNS 服务商测速。
+本轮不改变 14 个远程规则、27 个策略组和 6 个名称筛选，不新增 HTTPDNS 拦截、脚本、改写或 MITM 插件。App 自带 DNS、缓存、直接访问 IP、代理服务端自己的解析仍有独立边界；不能只凭配置文件推断完整运行链路。
 
-用户截图注明 DoQ / DoH3 目前仅支持直连，本方案需要境外解析经过代理，因此不额外添加 DoQ / DoH3。截图反映的是手机设置状态，不是 DoH 经代理的运行时证据。
+**设备验收：** 确认私人节点订阅和 MITM 证书未丢失，完成上述迁移后，依次测试彩云天气、途虎养车、LOOK、抖音，以及 Google / OpenAI / Claude / Gemini、Twitter 视频及外链。观察新请求的 DNS 结果、命中规则和实际策略：国内业务应 DIRECT，Google / AI 应使用美国池，未匹配外链应走节点选择；DoH 两个 IP 的连接应直连。
 
-**覆盖边界：** 国内清单使用轻量 China 加 Apple / WeChat / GaoDe / DouYin / NetEase，共 5323 个后缀及 26 个精确域名，转换为 10672 条 Host。它不是 ChinaMax 全量域名，也不是按域名国家自动识别。未收录的国内域名仍会默认使用境外 DoH；流量是否直连仍由原有 ChinaMax 等规则决定，两者覆盖可能不同。不使用 `.cn` / `.ms` 这类整体顶级域例外，也不把关键词、IP、USER-AGENT 规则误转成 Host。精确域名不扩展到子域，后缀分别生成根域及 `*.`。
-
-DNS 分流只作用于 Loon 实际处理的查询，不改变代理服务器自己的上游 DNS，也不能保证覆盖 App 自带 HTTPDNS / DoH、缓存或直接访问 IP。广告、业务直连、FINAL 代理和自动组保持不变，未追加脚本、改写或 MITM。
-
-**设备验收：** 备份并更新配置、确认两个 DoH 地址和上面三项设置，清理 DNS 缓存或停止后重新启动 Loon。分别打开 LOOK / 抖音和 Google / Twitter 外链，查看 DNS 记录与请求日志：`look.163.com`、`v95-zj-coldb.douyinvod.com` 应命中国内解析例外；`google.com` 和未知外链应使用默认 DoH，`1.1.1.1:443`、`8.8.8.8:443` 应显示代理策略。再确认 LOOK / 抖音业务流量仍 DIRECT。未见对应记录时，不要仅凭连接列表刷新就判定 DNS 链路正确。
-
-旧日志来自其他配置；上述例外覆盖其抖音超时域名，但尚未证明能解决加载慢，LOOK 根因也未确定。更新后如仍慢，请提供新配置下同一次请求的 DNS 超时、规则、实际节点与连接耗时记录。
+本机两个国内 DoH 对本次抽查的彩云 / 途虎业务域名均有正常 A 响应，**这不是手机联网已修复的证明**。仍失败时保留新配置下同次失败请求的 DNS 结果、规则、实际节点与错误，不用继续逐 App 堆 Host，也不应无证据关闭全部广告规则。
 
 ## 维护与来源
 
 编辑 [Config/Loon.lcf](Config/Loon.lcf) 的 `[Remote Rule]` 即可调整选择。删除整行或设置 `enabled=false` 可停用分类。新增规则可从 [上游目录快照](docs/rule-catalog.json) 找到地址，策略使用 DIRECT、节点选择或已定义的服务组。目录中的 668 类并未全部启用。
 
-提交到 main 后订阅地址不变；上游流量规则内容更新不需要重新生成本配置。DNS Host 是固定快照，不随远程规则自动变化。
+提交到 main 后订阅地址不变；上游流量规则内容更新不需要重新生成本配置。现行配置不生成 DNS Host。
 
-DNS 维护：`python tools/generate_dns.py` 离线从 [域名快照](docs/dns-domains.json) 重建 Host；`python tools/generate_dns.py --check` 检查一致性。`python tools/generate_dns.py --refresh --check` 重新下载固定提交并校验 SHA256，验证同版本可重现，不是追踪最新上游。升级来源需显式更新提交、URL、哈希和快照，并重跑测试。来源、GPL-2.0 许可与转换说明见 [DNS NOTICE](docs/dns/NOTICE.md)。
+历史 DNS 数据：[域名快照](docs/dns-domains.json)、`tools/generate_dns.py` 及 [DNS NOTICE](docs/dns/NOTICE.md) 仅用于历史溯源，许可证保留；旧生成器对现行配置会明确拒绝写入，不再作为发布或验收命令。回退前可用 Git 查看旧版配置，先备份手机数据，不要直接覆盖私人订阅和证书。
 
 修改后运行 `python -m unittest discover -s tests -v`，核查自动组参数、引用无环、原有分流策略与隐私边界。
 
 - [ShuntRules](https://github.com/luestr/ShuntRules)：全部规则的来源目录，上游注明其数据来自 ios_rule_script。
-- [LoonLab 参考配置](https://raw.githubusercontent.com/sooyaaabo/LoonLab/main/Config/Loon_RawConfig.lcf)：参考配置、策略和远程规则的组织方式。
+- [LoonLab 参考配置](https://github.com/sooyaaabo/LoonLab/blob/main/Config/LoonConfig_iOS.lcf)：参考国内基础解析和配置组织；原 Loon_RawConfig.lcf 链接已失效。
+- [YueChan 参考配置](https://github.com/YueChan/Loon/blob/main/Default.Conf)：参考国内 DoH 端点，不照搬全部 DNS 和兜底选项。
 - [iKeLee 中文配置](https://github.com/luestr/ProxyResource/tree/main/Tool/Loon/Lcf/zh-CN)：参考节点筛选和分流组织方式。
 - [Loon 官方规则优先级](https://nsloon.app/docs/Rule/)。
 - [Loon 官方策略组](https://nsloon.app/docs/Policy/policygroup/)：fallback、url-test 的行为及参数。

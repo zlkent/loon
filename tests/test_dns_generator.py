@@ -1,8 +1,10 @@
-"""Offline generator checks; not a Loon runtime emulation."""
+"""Archived DNS generator checks; not used by the current subscription."""
 import importlib.util
 import json
 from pathlib import Path
 import unittest
+import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -34,17 +36,28 @@ class GeneratorTests(unittest.TestCase):
                                          'IP-CIDR,1.2.3.0/24\n', 'loon'),
                          (['a.com'], ['exact.net']))
 
-    def test_reproducible_host_block(self):
+    def test_reproducible_archived_host_block(self):
         gen = self.load_generator()
         snapshot = json.loads((ROOT / 'docs/dns-domains.json').read_text(encoding='utf-8'))
         block = gen.render(snapshot)
-        config = (ROOT / 'Config/Loon.lcf').read_text(encoding='utf-8')
-        self.assertIn(block, config)
         self.assertEqual(block, gen.render(snapshot))
+        self.assertEqual(len(block.splitlines()) - 3, 10672)
         self.assertNotIn('* = server:', block)
         for source in snapshot['sources']:
             self.assertRegex(source['sha256'], r'^[a-f0-9]{64}$')
             self.assertIn(snapshot['revision'], source['url'])
+
+    def test_archived_cli_cannot_rewrite_current_configuration(self):
+        path = ROOT / 'Config/Loon.lcf'
+        before = path.read_bytes()
+        for args in ([], ['--check'], ['--refresh', '--check']):
+            with self.subTest(args=args):
+                result = subprocess.run([sys.executable, str(ROOT / 'tools/generate_dns.py'), *args],
+                                        capture_output=True, text=True, timeout=10)
+                self.assertEqual(result.returncode, 2)
+                self.assertIn('Retired', result.stderr)
+                self.assertNotIn('Traceback', result.stderr)
+                self.assertEqual(path.read_bytes(), before)
 
 
 if __name__ == '__main__':

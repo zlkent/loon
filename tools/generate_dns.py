@@ -1,4 +1,6 @@
-"""Generate the domestic Host block; default is offline, --refresh uses pinned URLs.
+"""Archived generator for old configurations with a domestic Host block.
+
+The current subscription does not use this block. Refuse to modify it.
 
 Upstream domain data: blackmatrix7/ios_rule_script (GPL-2.0).
 See docs/dns/NOTICE.md. No private subscription or device data is read.
@@ -85,10 +87,12 @@ def main():
     parser.add_argument('--check', action='store_true', help='Check without writing')
     parser.add_argument('--refresh', action='store_true', help='Fetch and verify pinned source hashes')
     args = parser.parse_args()
+    text = CONFIG.read_text(encoding='utf-8')
+    if BEGIN not in text or END not in text:
+        parser.exit(2, 'Retired: current subscription has no generated DNS block; nothing changed\n')
     snapshot = json.loads(SNAPSHOT.read_text(encoding='utf-8'))
     if args.refresh:
         snapshot = refresh(snapshot)
-    text = CONFIG.read_text(encoding='utf-8')
     start, end = text.index(BEGIN), text.index(END) + len(END)
     generated = text[:start] + render(snapshot) + text[end:]
     if args.check:

@@ -1,7 +1,6 @@
 """Static checks only: these do not execute Loon or test real node failover."""
 from pathlib import Path
 import json
-import fnmatch
 import re
 import unittest
 
@@ -162,8 +161,8 @@ class ConfigTests(unittest.TestCase):
         for name in ('Gemini', 'YouTube'):
             self.assertLess(order.index(name), order.index('Google'))
         self.assertEqual(self.sections['Rule'], [
-            'IP-CIDR,1.1.1.1/32,节点选择,no-resolve',
-            'IP-CIDR,8.8.8.8/32,节点选择,no-resolve',
+            'IP-CIDR,223.5.5.5/32,DIRECT,no-resolve',
+            'IP-CIDR,1.12.12.12/32,DIRECT,no-resolve',
             'FINAL,节点选择',
         ])
         for service in expected:
@@ -183,7 +182,7 @@ class ConfigTests(unittest.TestCase):
         general = dict(line.split('=', 1) for line in self.sections['General'])
         general = {k.strip(): v.strip() for k, v in general.items()}
         self.assertEqual(general.get('doh-server'),
-                         'https://1.1.1.1/dns-query,https://8.8.8.8/dns-query')
+                         'https://223.5.5.5/dns-query,https://1.12.12.12/dns-query')
         self.assertNotIn('doq-server', general)
         self.assertNotIn('doh3-server', general)
         self.assertEqual(general['dns-server'], '223.5.5.5,119.29.29.29')
@@ -200,35 +199,25 @@ class ConfigTests(unittest.TestCase):
             self.assertIn('Rule', text)
             self.assertIn('查询回落', text)
         self.assertIn('订阅更新无法替你', readme)
+        self.assertIn('开启“查询回落”', readme)
+        self.assertNotIn('关闭“查询回落”', readme)
+        self.assertIn('不是严格的国内外 DNS 分离', readme)
+        self.assertIn('私人节点订阅和 MITM 证书', readme)
 
-    def test_domestic_dns_examples_and_foreign_default(self):
-        hosts = dict(line.split(' = ', 1) for line in self.sections['Host'])
-        for domain in ('163.com', 'look.163.com', 'music.163.com',
-                       'douyinvod.com', 'v95-zj-coldb.douyinvod.com',
-                       'douyin.com', 'apple.com', 'www.apple.com',
-                       'weixin.qq.com', 'amap.com', 'autonavi.com',
-                       'taobao.com', 'bilibili.com', 'baidu.com'):
-            matches = [v for k, v in hosts.items() if fnmatch.fnmatchcase(domain, k)]
-            self.assertTrue(matches, domain)
-            self.assertEqual(set(matches), {'server:223.5.5.5'}, domain)
-        for domain in ('google.com', 'google.cn', 'youtube.com', 'github.com',
-                       't.me', 'telegram.org', 'twitter.com', 'video.twimg.com',
-                       'openai.com', 'claude.ai', 'gemini.google.com',
-                       'unknown-video.example', 'evil163.com'):
-            self.assertFalse(any(fnmatch.fnmatchcase(domain, k) for k in hosts), domain)
+    def test_domestic_dns_has_no_manual_coverage_dependency(self):
+        self.assertEqual(self.sections['Host'], [])
+        config = (ROOT / 'Config/Loon.lcf').read_text(encoding='utf-8')
+        self.assertNotIn('BEGIN GENERATED DOMESTIC DNS', config)
+        # Both DNS connections are explicitly direct even with mobile Rule mode.
+        for ip in ('223.5.5.5', '1.12.12.12'):
+            self.assertIn(f'IP-CIDR,{ip}/32,DIRECT,no-resolve', self.sections['Rule'])
+        for ip in ('1.1.1.1', '8.8.8.8'):
+            self.assertFalse(any(ip in line for line in self.sections['Rule']))
 
-    def test_domestic_dns_map_valid_and_bounded(self):
-        lines = self.sections['Host']
-        self.assertGreater(len(lines), 1000)
-        self.assertLess(len(lines), 15000)
-        self.assertLess((ROOT / 'Config/Loon.lcf').stat().st_size, 1024 * 1024)
-        hosts = dict(line.split(' = ', 1) for line in lines)
-        self.assertEqual(len(hosts), len(lines))
-        for domain, server in hosts.items():
-            self.assertEqual(server, 'server:223.5.5.5')
-            self.assertRegex(domain, r'^(?:\*\.)?(?:[a-z0-9-]+\.)+[a-z0-9-]+$')
-            if domain.startswith('*.'):
-                self.assertIn(domain[2:], hosts)
+    def test_slim_configuration_and_no_new_plugins(self):
+        self.assertLess((ROOT / 'Config/Loon.lcf').stat().st_size, 20 * 1024)
+        for section in ('Rewrite', 'Script', 'Plugin'):
+            self.assertEqual(self.sections[section], [])
 
 
 if __name__ == '__main__':
