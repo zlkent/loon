@@ -1,0 +1,12 @@
+#!name = 节点参数实验-控制器
+#!desc = 只保存 phone-test-1 一类非敏感测试标记。填完后需手动执行“NodeProbe 保存测试标记”；不是密钥存储工具，不要填写真实密钥。
+#!author = zlkent
+#!homepage = https://github.com/zlkent/loon/blob/codex/wg-local-parameters/docs/node-probe.md
+#!loon_version = 3.5.2(1008)
+#!date = 2026-10-23
+
+[Argument]
+probeTag = input,"",type=string,tag=非敏感测试标记,desc=只允许 phone-test-1 至 phone-test-999999；保存插件设置后手动运行脚本
+
+[Script]
+generic then script("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Script/NodeProbeInit.js", {${probeTag}}) with tag="NodeProbe 保存测试标记", timeout=10

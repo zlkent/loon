@@ -1,0 +1,21 @@
+# 节点参数实验 candidate：只测试解析器与非敏感本地标记，不是日用配置。
+# 全部直连；不包含私人节点、MITM、家庭路由或可用代理。
+# 导入为独立配置，勿覆盖原配置。说明：docs/node-probe.md
+[General]
+ip-mode = v4-only
+ipv6-vif = off
+dns-server = 223.5.5.5,119.29.29.29
+allow-wifi-access = false
+
+[Proxy]
+
+[Remote Proxy]
+节点参数实验 = https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Probe/NodeSeed.txt,parser-enabled=true,parser-plugin=https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/NodeProbeParser.lpx,enabled=true
+
+[Proxy Group]
+
+[Rule]
+FINAL,DIRECT
+
+[Plugin]
+https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/NodeProbeControl.lpx,enabled=true

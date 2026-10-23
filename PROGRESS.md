@@ -1,5 +1,21 @@
 # 个人 Loon 统一订阅
 
+## 节点级本地参数原型（2026-10-23，candidate 待手机验证）
+
+用户批准在作者原生变量功能出现前先试插件路径。本轮不恢复已暂停的完整配置解析器，不收集真实 WG 密钥，不修改正式 main 或 DNS。
+
+1. [x] 恢复候选分支及旧路径失败边界；官方节点级 parser-plugin URL / Generic Object 参数有文档依据。基线 Node 24/24、Python 16/16 通过。
+2. [x] 新增 8 项 Node VM 用例先全部预期失败；实现独立初始化脚本和节点解析脚本后 8/8 通过，只读写独立非敏感测试标记 key。
+3. [x] 独立测试配置、公开假节点 seed、普通控制插件/parser 插件、手机验证与回退文档已落盘；2 项集成检查先失败后通过。新 focused 11/11、全部 Node 35/35、Python 16/16、JS 语法及 diff 检查通过，main 配置哈希未变。
+4. [ ] 全量测试与 fresh-context 只读审查完成，无阻止 candidate 发布的 Critical / Important；候选分支发布及 Raw 核对待执行。
+5. [ ] Build 1008 手机调用、本地存储共享、两轮完整配置及节点更新保留；全部通过后另阶段接真实 WG。
+
+Ruling: 复用现有候选 checkout，已有 diagnostics/ 与需求文档等未提交资料保留；只显式暂存本轮允许文件。测试使用不可用 SS 节点，不做 WG/SSID/家庭路由。普通脚本存储不是 Keychain，Node VM 通过不等于设备可用。计划见 docs/superpowers/plans/2026-10-23-node-probe.md。
+
+当前阶段：最小调用链实验，未偏离先验证再接私钥的方案；设备执行与更新保留是验收缺口，不是已解决事项。
+
+新增独立 Config/NodeProbe.lcf、Probe/NodeSeed.txt、Plugin/NodeProbeControl.lpx / NodeProbeParser.lpx、Script/NodeProbeInit.js、Parser/NodeProbe.js、tests/node_probe.test.js 和 docs/node-probe.md。下一步只让手机新增独立测试配置并更新测试节点，先区分 UNSET（回调执行）与 SEED（未确认执行）；通过后再保存假标记并做两轮完整配置/节点更新。不把私人节点和证书保留、ROS 握手或 SSID 切换写成已完成。
+
 ## 家庭 WG 本地参数解析器（2026-10-23，候选测试版）
 
 用户同意先做“手机参数填写一次，解析器自动合并”的测试版。测试分支为 `codex/wg-local-parameters`；不改仓库可见性，不把真实私钥、入口或家庭 SSID 提交 Git，不更改 main 的基础配置。

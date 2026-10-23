@@ -1,0 +1,1 @@
+NodeProbe-SEED-DO-NOT-USE = Shadowsocks,192.0.2.1,9,aes-128-gcm,"nodeprobe-not-a-secret",udp=false

@@ -1,0 +1,10 @@
+#!name = 节点参数实验-解析器
+#!desc = 仅处理本仓库的公开假节点 seed，读取非敏感本地标记生成不可用的状态节点；不用于上网或真实 WireGuard。
+#!author = zlkent
+#!homepage = https://github.com/zlkent/loon/blob/codex/wg-local-parameters/docs/node-probe.md
+#!loon_version = 3.5.2(1008)
+#!date = 2026-10-23
+#!type = parser
+
+[Script]
+generic then script("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Parser/NodeProbe.js") with tag="NodeProbe Node Parser", timeout=10
