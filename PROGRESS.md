@@ -7,7 +7,7 @@
 1. [x] 恢复候选分支及旧路径失败边界；官方节点级 parser-plugin URL / Generic Object 参数有文档依据。基线 Node 24/24、Python 16/16 通过。
 2. [x] 新增 8 项 Node VM 用例先全部预期失败；实现独立初始化脚本和节点解析脚本后 8/8 通过，只读写独立非敏感测试标记 key。
 3. [x] 独立测试配置、公开假节点 seed、普通控制插件/parser 插件、手机验证与回退文档已落盘；2 项集成检查先失败后通过。新 focused 11/11、全部 Node 35/35、Python 16/16、JS 语法及 diff 检查通过，main 配置哈希未变。
-4. [ ] 全量测试与 fresh-context 只读审查完成，无阻止 candidate 发布的 Critical / Important；候选分支发布及 Raw 核对待执行。
+4. [x] 全量测试与 fresh-context 只读审查完成，无阻止 candidate 发布的 Critical / Important。实现提交 a7dc4cd16c4fb0c6f1375c6b16664d2d8da73474 已推送候选分支，远端 SHA 相同；配置、两个插件、两个脚本、seed、说明文档共 7 个 Raw 全为 HTTP 200 且逐字节匹配。main 仍为 771efce，正式 Raw 仍 6620 字节且基线哈希一致。
 5. [ ] Build 1008 手机调用、本地存储共享、两轮完整配置及节点更新保留；全部通过后另阶段接真实 WG。
 
 Ruling: 复用现有候选 checkout，已有 diagnostics/ 与需求文档等未提交资料保留；只显式暂存本轮允许文件。测试使用不可用 SS 节点，不做 WG/SSID/家庭路由。普通脚本存储不是 Keychain，Node VM 通过不等于设备可用。计划见 docs/superpowers/plans/2026-10-23-node-probe.md。

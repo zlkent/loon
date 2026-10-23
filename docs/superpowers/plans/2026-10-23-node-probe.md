@@ -16,7 +16,7 @@
 1. [x] 恢复现状及官方接口，基线 Node 24/24、Python 16/16 通过。
 2. [x] RED：Node VM 8 项用例全部预期失败；实现独立初始化与解析脚本后 8/8 GREEN。只读写独立测试 key，不使用旧真实参数 key。
 3. [x] RED：2 项配置/插件集成检查预期失败；添加独立配置、seed、两个插件及手机步骤和回退文档后 GREEN。focused 11/11、全 Node 35/35、Python 16/16，通过。
-4. [ ] 全量验证、主配置哈希检查、fresh-context 只读审查；仅发布候选分支并核验远端及 Raw，手机验收明确留空。
+4. [x] 全量验证、主配置哈希检查、fresh-context 只读审查；实现提交 a7dc4cd16c4fb0c6f1375c6b16664d2d8da73474 已推送候选分支，远端 SHA 及 7 个 Raw 正文匹配。main SHA 与正式配置 Raw 哈希均未变。手机验收明确留空。
 
 Review: fresh-context 只读审查未发现阻止 candidate 发布的 Critical / Important；独立复跑 focused 11/11、Python 16/16，并核对主配置哈希。官方接口成立不代表设备门禁通过。
 
