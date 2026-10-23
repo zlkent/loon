@@ -7,10 +7,12 @@
 1. [x] 恢复 771efce，原 16 项 Python 测试通过；核对官方 parser 类型、Argument、新版 Generic、资源类型 0、字符串输出与本地存储 API。
 2. [x] 先写 Node 测试，17 项预期失败；实现 `Parser/HomeWG.js`、`Plugin/HomeWG.lpx` 后 17/17 通过，另补路由范围/Unicode/异常标记边界。
 3. [x] 安装、回退和手机验收清单落在 `docs/home-wg-parser.md`；本地副本恢复及普通存储的隐私边界已明确。独立只读 review 无可复现 P1/P2，未把 Node 沙盒当作手机验收。
-4. [ ] 最终 Node 20/20、Python 16/16、JS 语法及 diff 检查已通过；候选分支发布、Raw 字节核验待完成。
+4. [x] 最终 Node 20/20、Python 16/16、JS 语法及 diff 检查通过；候选代码提交 `0a5a28a669d41cef3bc5ee0ca94f87454c103ae8` 已推送测试分支，远端 SHA 一致。插件、脚本、安装文档 Raw 均 HTTP 200 且与 Git 对象逐字节相同。
 5. [ ] 手机首次更新、二次更新解析器关联/参数保留、SSID 切换、ROS 握手及互联网业务验收。
 
 当前阶段：candidate，未晋升正式主配置。实现方向符合原统一订阅，更新时仍使用 main 基础地址；家庭规则由手机 parser 合并。当前代码无已知实施 blocker，实机缺口仍在 Loon 参数/更新生命周期及 ROS 通路。脚本只保存家庭参数，不替代机场订阅和 MITM 的备份/保留策略；诊断附件不纳入提交。
+
+发布核验：main 仍为 `771efce05252b600d47edfe9d828595b7fb1bd97`；基础配置 Raw 仍为 6620 字节、SHA256 `fabe4c679bc7eba0b4674e67ced73b1874c0131b47f8a3cd87e0b3ac79658037`。候选插件 SHA256 `510e1207d02c3ea48be1c1844c3d1a20b154e7b45b6dbd55b2a422ba6e2edfba`；候选脚本 SHA256 `f1915239b265ee3e9eb8ec40eafe0bd96cc33646f7257f7e81458bcff158a3ca`。未提交真实参数或 diagnostics/，未新建 PR、未合并 main。
 
 ## 国内 App DNS 简化试用轮（2026-10-23，已发布待实机）
 
