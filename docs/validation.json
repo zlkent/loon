@@ -257,7 +257,7 @@
   },
   "dns_simplification_validation": {
     "checked_on": "2026-10-23",
-    "status": "STATIC PASS; review complete; publication pending; device validation NOT RUN",
+    "status": "STATIC PASS; independent review complete; configuration publication verified; device validation NOT RUN",
     "baseline": "6f4e80ddc440b0eeb2394f2fe0dac751e5d9a833",
     "test_command": "python -m unittest discover -s tests -v",
     "tests_passed": 16,
@@ -309,5 +309,16 @@
       "checked_on": "2026-10-23",
       "method": "RFC 8484 binary GET; default TLS certificate verification"
     }
-  ]
+  ],
+  "dns_publication": {
+    "config_commit": "2b03a8a0da94e4f16308c11a4b80323ba342ef39",
+    "remote_main_matches": true,
+    "raw_url": "https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf",
+    "raw_http_status": 200,
+    "raw_matches_git_config": true,
+    "raw_sha256": "fabe4c679bc7eba0b4674e67ced73b1874c0131b47f8a3cd87e0b3ac79658037",
+    "raw_bytes": 6620,
+    "checked_on": "2026-10-23",
+    "device_validation": "NOT RUN"
+  }
 }
