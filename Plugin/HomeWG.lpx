@@ -1,0 +1,19 @@
+#!name = 家庭WG配置解析器（测试版）
+#!desc = 在手机本机合并家庭WG；必填手机私钥、ROS公钥、入口主机和家庭SSID。参数及生成配置含明文密钥，不上传、不打印；请先备份。
+#!author = zlkent
+#!homepage = https://github.com/zlkent/loon/tree/codex/wg-local-parameters
+#!loon_version = 3.5.2(1008)
+#!date = 2026-10-23
+#!type = parser
+
+[Argument]
+wgPrivateKey = input,"",type=string,tag=手机WG私钥,desc=与ROS手机Peer公钥配对的私钥；仅在手机填写
+wgPublicKey = input,"",type=string,tag=ROS公钥,desc=填写ROS的WireGuard接口公钥；不是ROS私钥
+wgPresharedKey = input,"",type=string,tag=预共享密钥（可选）,desc=ROS Peer未配置PSK时留空
+wgHost = input,"",type=string,tag=家庭公网IP或DDNS,desc=只填IPv4或域名；不要带协议和端口
+wgPort = input,51820,type=number,tag=WG端口,desc=与ROS监听端口一致
+wgAddress = input,"10.77.77.2",type=string,tag=手机WG地址,desc=裸IPv4；应与ROS手机Peer的allowed-address对应
+homeSSID = input,"",type=string,tag=家里Wi-Fi名称,desc=区分大小写；2.4G和5G同名只填一次
+
+[Script]
+generic then script("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Parser/HomeWG.js", {${wgPrivateKey}, ${wgPublicKey}, ${wgPresharedKey}, ${wgHost}, ${wgPort}, ${wgAddress}, ${homeSSID}}) with tag="HomeWG Config Parser", timeout=10
