@@ -167,6 +167,16 @@ test("standalone configuration explicitly retains the two links without a full-c
     assert.equal(artifact("Probe/NodeSeed.txt"), SEED);
 });
 
+test("full update template declares the parser plugin itself, not only its subscription binding", () => {
+    const text = artifact("Config/NodeProbe.lcf").replace(/\r\n/g, "\n");
+    const plugins = text.split("[Plugin]\n")[1].split(/^\[/m)[0].split("\n")
+        .map(line => line.trim()).filter(line => line && !line.startsWith("#"));
+    assert.deepEqual(plugins, [
+        BASE + "Plugin/NodeProbeControl.lpx,enabled=true",
+        BASE + "Plugin/NodeProbeParser.lpx,enabled=true",
+    ]);
+});
+
 test("normal control plugin and parser plugin use separate scripts and no secret arguments", () => {
     const control = artifact("Plugin/NodeProbeControl.lpx");
     const parser = artifact("Plugin/NodeProbeParser.lpx");

@@ -19,3 +19,4 @@ FINAL,DIRECT
 
 [Plugin]
 https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/NodeProbeControl.lpx,enabled=true
+https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/NodeProbeParser.lpx,enabled=true
