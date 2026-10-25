@@ -7,4 +7,4 @@
 #!type = parser
 
 [Script]
-generic then script("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Parser/HomeWGNode.js?rev=20261025.1") with tag="HomeWG Node Parser", timeout=10
+generic then script("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Parser/HomeWGNode.js?rev=20261025.2") with tag="HomeWG Node Parser", timeout=10

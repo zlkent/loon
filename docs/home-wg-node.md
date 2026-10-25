@@ -64,7 +64,26 @@ zlkent.loon.home-wg.node.v1
 
 如果不能访问，反馈固定错误码或失败连接的目标、命中策略和错误即可。**不要再补写假标记，也不要发真实密钥。** ROS 的 UDP 入站、防火墙 forward、Peer 地址、LAN 回程及旁路由策略仍需原有服务配置正确，本仓库不会远程修改 ROS。
 
-## 解析器脱敏诊断（2026-10-25，revision 20261025.1）
+## 独立 JS 检查与 INVALID_SEED（2026-10-25，revision 20261025.2）
+
+实机已读到 `revision=20261025.1, stage=ERROR, errorCode=INVALID_SEED`，且资源类型/URL 匹配。这证明解析器运行到种子校验，但**尚未读取本地参数**；`storeRead` 等为 `null` 是未检查，不是数据丢失。现有代码要求归一化 BOM/CRLF 后与固定公开种子完全相同，包含末尾 LF。目前未获实机输入形态，不能认定是换行、Base64、缓存或密钥错误，也不直接放宽校验。
+
+- 新增 `Script/HomeWGCheck.js`，可放入用户已经找到的 JS 脚本 URL 入口并手动运行。该文件是 JS 本身，不是完整配置或 parser manifest；不要将它设为节点解析器。
+- 若直接编辑现有配置，只向已有 `[Script]` 段添加一条（不要再建重复 Section，不要全覆盖）：
+
+  ```ini
+  generic then script("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Script/HomeWGCheck.js") with tag="家庭WG独立检查", timeout=10
+  ```
+
+- 脚本仅读本地参数和已有解析状态，不发网络请求、不切策略、不修改原参数、不输出密钥/入口/SSID。按白名单输出字段检查，不原样打印任何本地 JSON。Generic 的 `console.log`、存储和 `$done()` 用法见[官方 Script API](https://nsloon.app/docs/Script/script_api/)。
+- 结果在脚本执行日志中以 `HomeWGCheck:` 开头；同时尽力写入独立键 `zlkent.loon.home-wg.check.v1`。没有通知也可沿用已经成功的“读取指定数据”入口查看这个键，不导出全部数据。
+- `local.*` 是本次独立读取结果；`parserStatus.summary` 是上次解析器状态的白名单摘要，**不会自动重新执行解析器**，需结合其 revision/checkedAt 判断新旧。
+- 新版解析器增加 `sourceFacts`，只含输入类型和布尔判断：`trimmedSeedMatches`、`endsWithLF`、BOM/CR、WG行/HTML/Base64/URI/Section 外观。外观不是解码/格式正确证明；不输出原文、不尝试接受此前拒绝的内容。
+- 获取新输入证据需要把**家庭WG订阅这一项**的 `parser-plugin` 改为本次发布的固定 manifest 地址，然后仅更新家庭WG节点订阅，再运行独立 JS。保留全部其他订阅选项、原参数、完整配置和 ROS。旧 commit 固定地址不会随分支更新。
+
+独立脚本格式通过仍不证明手机私钥与 ROS Peer 配对、原生引擎已加载或握手成功。本轮只交付诊断，尚未修复实机连接。
+
+## 早期解析器脱敏诊断（revision 20261025.1，历史说明）
 
 本节只增强现有真实 WG 节点的可观测性，不改变节点格式、密钥、本地参数键、DNS、策略或 ROS。当前用户实机已验证官方 WG 客户端可访问家庭页面，但 Loon 仍未完成握手；增加诊断不等于修复连接。
 

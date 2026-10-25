@@ -8,7 +8,7 @@
     var FILE = "codex/wg-local-parameters/Probe/HomeWGSeed.txt";
     var STORE = "zlkent.loon.home-wg.node.v1";
     var STATUS = "zlkent.loon.home-wg.status.v1";
-    var REVISION = "20261025.1";
+    var REVISION = "20261025.2";
     var SEED = '家庭WG = Shadowsocks,192.0.2.1,9,aes-128-gcm,"homewg-not-configured",udp=false\n';
     var type = typeof $resourceType === "undefined" ? null : $resourceType;
     var url = typeof $resourceUrl === "undefined" ? null : $resourceUrl;
@@ -17,7 +17,7 @@
     var status = {
         revision: REVISION, checkedAt: null, stage: "START", errorCode: null,
         resourceTypeMatches: typeMatches, resourceUrlMatches: urlMatches,
-        seedValid: null, storeRead: null, storeFound: null, jsonValid: null,
+        sourceFacts: null, seedValid: null, storeRead: null, storeFound: null, jsonValid: null,
         keyFormatsValid: null, pskConfigured: null, parametersValid: null,
         outputMatches: null, outputValid: null, engineReadback: "UNAVAILABLE"
     };
@@ -65,6 +65,21 @@
         throw new Error("HomeWGNode: " + code);
     }
     var source = typeof $resource === "string" ? $resource.replace(/^\uFEFF/, "").replace(/\r\n/g, "\n") : "";
+    // Classify the callback boundary, never stringify/slice/log its contents.
+    var raw = typeof $resource === "undefined" ? undefined : $resource;
+    status.sourceFacts = {
+        kind: raw === null ? "null" : Array.isArray(raw) ? "array" : typeof raw,
+        trimmedSeedMatches: typeof raw === "string" && source.trim() === SEED.trim(),
+        hasBOM: typeof raw === "string" && /^\uFEFF/.test(raw),
+        hasCR: typeof raw === "string" && /\r/.test(raw),
+        endsWithLF: typeof raw === "string" && /\n$/.test(raw),
+        empty: typeof raw === "string" && source.trim() === "",
+        looksLikeWGLine: /^家庭WG\s*=\s*WireGuard,/.test(source.trim()),
+        looksLikeHTML: /^<(?:!doctype\s+html|html)(?:\s|>)/i.test(source.trim()),
+        looksLikeBase64: source.trim() !== "" && /^[A-Za-z0-9+/_=\s-]+$/.test(source.trim()),
+        looksLikeURI: /^(?:ss|ssr|vmess|vless|trojan|hysteria2|hy2|anytls):\/\//.test(source.trim()),
+        looksSectioned: /^\[(?:Proxy|DNS|Host)\]/.test(source.trim())
+    };
     status.seedValid = source === SEED;
     if (!status.seedValid) fail("INVALID_SEED");
     var saved;
