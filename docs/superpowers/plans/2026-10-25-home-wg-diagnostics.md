@@ -60,3 +60,15 @@ Deliver diagnostics, not a WG connectivity fix. A fresh `OUTPUT_READY` with all 
 - Main stayed at `771efce05252b600d47edfe9d828595b7fb1bd97`; main full-config Raw stayed 6620 bytes / SHA256 `fabe4c679bc7eba0b4674e67ced73b1874c0131b47f8a3cd87e0b3ac79658037`.
 - Only the four explicit public files were committed. Existing local progress, probe documentation, diagnostics and requests were not included.
 - Device notification/status availability, fresh execution of revision 20261025.1, native engine consumption and Loon handshake remain unverified; user should update only the existing parser plugin, then the family-node subscription, and share the safe terminal status.
+
+## Follow-up: bound-resource version isolation
+
+User supplied the current home-node binding: enabled and correct rolling parser URL; no evidence of wrong binding. Do not copy/store the unrelated private subscription supplied alongside it. The new tunnel log contains no diagnostic execution evidence, so notification/status usability is not accepted yet.
+
+1. [x] Verify the actual public binding matches the intended parser; acknowledge that correct public URLs do not prove the device loaded the latest resource.
+2. [x] Add a ten-line parser manifest `Plugin/HomeWGNodeParserPinned.lpx` referencing the already published implementation commit. No new JS, node format, runtime behavior, full config or private parameter changes.
+3. [ ] After publication verification, user applies the immutable manifest URL as a one-field temporary `parser-plugin` replacement, updates only the family subscription and returns fresh execution evidence. No new ordinary plugin installation or full-config overwrite. Device completion is still pending.
+
+Publication scope is only manifest/guide/plan. Before committing, immutable child script HTTP 200 and exact implementation Git bytes, manifest structure and public-file privacy were checked. Final release SHA and immutable manifest verification belong in the local progress record after publishing; no device acceptance is implied.
+
+This is a version-isolation step, not a diagnosed cache bug or handshake fix. After diagnosis, restore the rolling binding explicitly so future updates are not silently frozen.
