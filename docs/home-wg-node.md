@@ -64,6 +64,16 @@ zlkent.loon.home-wg.node.v1
 
 如果不能访问，反馈固定错误码或失败连接的目标、命中策略和错误即可。**不要再补写假标记，也不要发真实密钥。** ROS 的 UDP 入站、防火墙 forward、Peer 地址、LAN 回程及旁路由策略仍需原有服务配置正确，本仓库不会远程修改 ROS。
 
+## 已有家庭 WG 完整订阅：直接更新原订阅
+
+用户已确认使用 `Config/Loon-HomeWG.lcf`。该文件的**原订阅地址不变**，本次已将 `[Remote Proxy]` 的 `parser-plugin` 和 `[Plugin]` 中的解析器条目一起绑定到已发布的 `.2` 固定版本；生成器也同步维护，不再要求用户手动替换解析器地址。
+
+1. 先备份当前配置、私人节点订阅与 MITM 证书；在**原家庭 WG 完整配置**上更新，不重新导入，不开启全覆盖更新。本仓库不含私人信息，也无法保证 Loon 本机的合并保留行为；此前有丢失反馈，不能把保留当作已经验证。
+2. 再更新 **家庭WG订阅** 节点订阅，重新运行已经可用的 **家庭WG独立检查**，分享 `zlkent.loon.home-wg.check.v1`。
+3. 新一轮 `parserStatus.summary` 应有更新后的时间、`revision=20261025.2`，并包含 `sourceFacts`。仍为 `.1` 表示尚无新执行证据，不能据此判断是本地覆盖、资源下载、缓存或其他原因。
+
+这次只变更两个解析器引用；本地参数键、种子地址、WG 节点序列化、家庭策略、DNS、ROS 和基础 `main/Config/Loon.lcf` 均不改。`.2` 诊断并未放宽种子校验，是否解决连接仍待实机验证。
+
 ## 独立 JS 检查与 INVALID_SEED（2026-10-25，revision 20261025.2）
 
 实机已读到 `revision=20261025.1, stage=ERROR, errorCode=INVALID_SEED`，且资源类型/URL 匹配。这证明解析器运行到种子校验，但**尚未读取本地参数**；`storeRead` 等为 `null` 是未检查，不是数据丢失。现有代码要求归一化 BOM/CRLF 后与固定公开种子完全相同，包含末尾 LF。目前未获实机输入形态，不能认定是换行、Base64、缓存或密钥错误，也不直接放宽校验。
@@ -81,7 +91,7 @@ zlkent.loon.home-wg.node.v1
 - 结果在脚本执行日志中以 `HomeWGCheck:` 开头；同时尽力写入独立键 `zlkent.loon.home-wg.check.v1`。没有通知也可沿用已经成功的“读取指定数据”入口查看这个键，不导出全部数据。
 - `local.*` 是本次独立读取结果；`parserStatus.summary` 是上次解析器状态的白名单摘要，**不会自动重新执行解析器**，需结合其 revision/checkedAt 判断新旧。
 - 新版解析器增加 `sourceFacts`，只含输入类型和布尔判断：`trimmedSeedMatches`、`endsWithLF`、BOM/CR、WG行/HTML/Base64/URI/Section 外观。外观不是解码/格式正确证明；不输出原文、不尝试接受此前拒绝的内容。
-- 获取新输入证据需要把**家庭WG订阅这一项**的 `parser-plugin` 改为本次发布的固定 manifest 地址，然后仅更新家庭WG节点订阅，再运行独立 JS。保留全部其他订阅选项、原参数、完整配置和 ROS。旧 commit 固定地址不会随分支更新。
+- 获取新输入证据按上节更新原完整配置与家庭WG节点订阅，再运行独立 JS；**不再要求手改 `parser-plugin` 地址**。旧 commit 固定地址不会随分支更新，因此新版完整配置负责下发正确的解析器绑定。
 
 独立脚本格式通过仍不证明手机私钥与 ROS Peer 配对、原生引擎已加载或握手成功。本轮只交付诊断，尚未修复实机连接。
 

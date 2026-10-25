@@ -7,6 +7,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/"
+# Updating this release binding propagates through the existing complete subscription.
+NODE_PARSER = "https://raw.githubusercontent.com/zlkent/loon/e080deb464fba12ed716137f7b1433314178e163/Plugin/HomeWGNodeParserPinned.lpx"
 LAN = ipaddress.ip_network("192.168.1.0/24")
 
 
@@ -36,8 +38,8 @@ def render() -> str:
             result.append(item)
     source = once(source, skip, "skip-proxy = " + ",".join(result))
     source = once(source, "[Remote Proxy]\n", "[Remote Proxy]\n家庭WG订阅 = " + BASE +
-                  "Probe/HomeWGSeed.txt,parser-enabled=true,parser-plugin=" + BASE +
-                  "Plugin/HomeWGNodeParser.lpx,enabled=true\n")
+                  "Probe/HomeWGSeed.txt,parser-enabled=true,parser-plugin=" + NODE_PARSER +
+                  ",enabled=true\n")
     source = once(source, '全部节点 = NameRegex, FilterKey=".*"',
                   '全部节点 = NameRegex, FilterKey="^(?!家庭WG$).*"\n'
                   '# 订阅节点通过筛选动态加入策略，不直接使用订阅内节点名作静态引用。\n'
@@ -49,8 +51,8 @@ def render() -> str:
     source = once(source, "[Rule]\n", "[Rule]\n"
                   "# 优先于 LAN/ChinaMax；仅此家庭网段由家庭策略处理。\n"
                   "IP-CIDR,192.168.1.0/24,家庭内网,no-resolve\n")
-    source = once(source, "[Plugin]\n", "[Plugin]\n" + BASE +
-                  "Plugin/HomeWGNodeParser.lpx,enabled=true\n" + BASE +
+    source = once(source, "[Plugin]\n", "[Plugin]\n" + NODE_PARSER +
+                  ",enabled=true\n" + BASE +
                   "Plugin/HomeWGAuto.lpx,enabled=true\n")
     return ("# 家庭 WG 节点版 candidate；由 tools/generate_home_wg.py 派生，请勿手改。\n"
             "# 先备份并作为新配置导入；本地初始化见 docs/home-wg-node.md。\n" + source)

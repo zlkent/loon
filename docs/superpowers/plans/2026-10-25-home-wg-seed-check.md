@@ -34,4 +34,12 @@ User reports the JS cannot be subscribed. Restored official `Loon0x00/LoonExampl
 
 - [x] Verify official manifest format and reproduce missing subscription artifact with a focused failing assertion.
 - [x] Add `RemoteScript/HomeWGCheck.list`: one Generic invocation pinned to the already published unchanged JS. Correct documentation to distinguish `.list` subscription from `.js` execution asset. No cron, secret/policy/ROS/full-config changes.
-- [ ] Run focused checks, publish only explicit wrapper/test/docs/ledger files and verify immutable manifest/child JS. Device import/run and WG connectivity remain unverified.
+- [x] Run focused checks (12/12 pass), publish only explicit wrapper/test/docs/ledger files as `e7685fca4a70e47733cb525aafa6edc899dcd9d4`; immutable manifest and pinned child JS both HTTP 200/exact Git bytes, candidate remote matches and main unchanged. Post-publication ledger update is local. Device import/run and WG connectivity remain unverified.
+
+## Follow-up: update the user's existing complete subscription in place
+
+User explicitly confirmed `Loon-HomeWG.lcf` and asked for server-side changes rather than manual URL edits. Keep its original rolling complete-config URL. Bind both the home-node subscription and parser plugin list to the already published immutable `.2` manifest at commit `e080deb464fba12ed716137f7b1433314178e163`. Update the generator as the source of truth; do not hand-edit only the derivative. No base-main promotion, parser JS/seed/serialization/policy/DNS/secret changes, no new test suite or full suite.
+
+- [x] Confirm the actual target, preserve historical dirty files and identify the two existing parser bindings plus their generator.
+- [x] Add a focused failing assertion for the two bindings (12 pass / 1 expected fail), update the generator and regenerate the same complete subscription; document update-only steps and retention limitations. 13/13 focused checks and generator `--check` pass. Exact comparison proves the complete config has only two URL substitutions; JS, seed and base config unchanged. Public-file token scan and immutable manifest -> `.2` JS HTTP 200/exact bytes passed.
+- [ ] Verify focused checks, exact scope and public links; push explicit files to the existing branch, confirm the unchanged original rolling URL serves the new bytes. Device configuration merge, fresh `.2` parser execution and connectivity remain pending.
