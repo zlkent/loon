@@ -32,7 +32,7 @@
 
 1. [x] Restore current parser/plugin/docs, latest device evidence and release baseline; preserve the current dirty set.
 2. [x] Add best-effort status reporting, explicit stage/error codes and output equality checks; update plugin revision and user instructions.
-3. [ ] Run focused checks and independent review, commit/push only explicit public files, verify remote SHA/Raw bytes and unchanged main/full config.
+3. [x] Run focused checks and independent review, commit/push only explicit public files, verify remote SHA/Raw bytes and unchanged main/full config.
 
 ## Files
 
@@ -51,4 +51,12 @@ Deliver diagnostics, not a WG connectivity fix. A fresh `OUTPUT_READY` with all 
 - `node --check Parser/HomeWGNode.js` and scoped `git diff --check` passed.
 - Static source comparison with pre-change HEAD confirms byte-identical peer/node serialization, the same existing error-code order and unchanged full/base configurations.
 - Explicit public-file scan found no key-shaped Base64 material, private endpoint/SSID or private-key blocks. Only the independent STATUS key is written.
-- No test suite was created or executed. Independent focused review found no Critical/Important/Minor issues. Remote publication checks remain pending.
+- No test suite was created or executed. Independent focused review found no Critical/Important/Minor issues.
+
+## Publication / handoff
+
+- Implementation commit `7e9cdc6ae989f105367e465fc8b8563055fc254c` was pushed to the existing candidate branch; remote SHA matched.
+- Parser, parser plugin, usage guide and plan Raw URLs returned HTTP 200 and exactly matched committed Git bytes. The plugin's revised script URL also returned HTTP 200 with the same script bytes.
+- Main stayed at `771efce05252b600d47edfe9d828595b7fb1bd97`; main full-config Raw stayed 6620 bytes / SHA256 `fabe4c679bc7eba0b4674e67ced73b1874c0131b47f8a3cd87e0b3ac79658037`.
+- Only the four explicit public files were committed. Existing local progress, probe documentation, diagnostics and requests were not included.
+- Device notification/status availability, fresh execution of revision 20261025.1, native engine consumption and Loon handshake remain unverified; user should update only the existing parser plugin, then the family-node subscription, and share the safe terminal status.
