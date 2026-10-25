@@ -8,7 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BASE = "https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/"
 # Updating this release binding propagates through the existing complete subscription.
-NODE_PARSER = "https://raw.githubusercontent.com/zlkent/loon/e080deb464fba12ed716137f7b1433314178e163/Plugin/HomeWGNodeParserPinned.lpx"
+NODE_PARSER = "https://raw.githubusercontent.com/zlkent/loon/c374eb2b9f945c8f755aa710878a53756203e7a6/Plugin/HomeWGNodeParserPinned.lpx"
 LAN = ipaddress.ip_network("192.168.1.0/24")
 
 

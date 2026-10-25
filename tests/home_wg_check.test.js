@@ -9,9 +9,9 @@ const secretKey = "zlkent.loon.home-wg.node.v1";
 const statusKey = "zlkent.loon.home-wg.status.v1";
 const checkKey = "zlkent.loon.home-wg.check.v1";
 const seed = fs.readFileSync(path.join(root, "Probe/HomeWGSeed.txt"), "utf8");
-test("existing HomeWG complete subscription binds the published .2 parser in both places", () => {
+test("existing HomeWG complete subscription binds the .3 parser release in both places", () => {
     const config = fs.readFileSync(path.join(root, "Config/Loon-HomeWG.lcf"), "utf8");
-    const parser = "https://raw.githubusercontent.com/zlkent/loon/e080deb464fba12ed716137f7b1433314178e163/Plugin/HomeWGNodeParserPinned.lpx";
+    const parser = "https://raw.githubusercontent.com/zlkent/loon/c374eb2b9f945c8f755aa710878a53756203e7a6/Plugin/HomeWGNodeParserPinned.lpx";
     assert.ok(config.includes("parser-plugin=" + parser + ",enabled=true"), "complete-config update must change the actual home-node parser binding");
     assert.ok(config.includes("\n" + parser + ",enabled=true"), "plugin list must use the same parser release");
     assert.ok(config.includes("https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Probe/HomeWGSeed.txt"), "keep seed URL and parser scope unchanged");

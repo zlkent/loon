@@ -20,7 +20,7 @@ skip-proxy = 192.168.128.0/17,192.168.64.0/18,192.168.32.0/19,192.168.16.0/20,19
 [Proxy]
 
 [Remote Proxy]
-家庭WG订阅 = https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Probe/HomeWGSeed.txt,parser-enabled=true,parser-plugin=https://raw.githubusercontent.com/zlkent/loon/e080deb464fba12ed716137f7b1433314178e163/Plugin/HomeWGNodeParserPinned.lpx,enabled=true
+家庭WG订阅 = https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Probe/HomeWGSeed.txt,parser-enabled=true,parser-plugin=https://raw.githubusercontent.com/zlkent/loon/c374eb2b9f945c8f755aa710878a53756203e7a6/Plugin/HomeWGNodeParserPinned.lpx,enabled=true
 # 私人订阅只在本机添加，不提交到公共仓库。
 # Loon 3.5.2 (996)+：可保留节点独立 DNS；当前默认 DoH 不再依赖代理。
 # 我的订阅 = https://example.com/your-subscription,enabled=true,server-dns="223.5.5.5,119.29.29.29"
@@ -107,7 +107,7 @@ https://rule.kelee.one/Loon/ChinaMax.lsr, policy=DIRECT, tag=ChinaMax, enabled=t
 [Script]
 
 [Plugin]
-https://raw.githubusercontent.com/zlkent/loon/e080deb464fba12ed716137f7b1433314178e163/Plugin/HomeWGNodeParserPinned.lpx,enabled=true
+https://raw.githubusercontent.com/zlkent/loon/c374eb2b9f945c8f755aa710878a53756203e7a6/Plugin/HomeWGNodeParserPinned.lpx,enabled=true
 https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/HomeWGAuto.lpx,enabled=true
 
 [MITM]
