@@ -8,7 +8,7 @@
     var FILE = "codex/wg-local-parameters/Probe/HomeWGSeed.txt";
     var STORE = "zlkent.loon.home-wg.node.v1";
     var STATUS = "zlkent.loon.home-wg.status.v1";
-    var REVISION = "20261025.2";
+    var REVISION = "20261025.3";
     var SEED = '家庭WG = Shadowsocks,192.0.2.1,9,aes-128-gcm,"homewg-not-configured",udp=false\n';
     var type = typeof $resourceType === "undefined" ? null : $resourceType;
     var url = typeof $resourceUrl === "undefined" ? null : $resourceUrl;
@@ -17,7 +17,8 @@
     var status = {
         revision: REVISION, checkedAt: null, stage: "START", errorCode: null,
         resourceTypeMatches: typeMatches, resourceUrlMatches: urlMatches,
-        sourceFacts: null, seedValid: null, storeRead: null, storeFound: null, jsonValid: null,
+        sourceFacts: null, seedValid: null, inputAccepted: null, inputKind: null,
+        storeRead: null, storeFound: null, jsonValid: null,
         keyFormatsValid: null, pskConfigured: null, parametersValid: null,
         outputMatches: null, outputValid: null, engineReadback: "UNAVAILABLE"
     };
@@ -81,7 +82,13 @@
         looksSectioned: /^\[(?:Proxy|DNS|Host)\]/.test(source.trim())
     };
     status.seedValid = source === SEED;
-    if (!status.seedValid) fail("INVALID_SEED");
+    // Loon can hand this exact-scoped resource back as WG-shaped text. Treat
+    // that as a regeneration trigger only: never read credentials/fields from
+    // the resource, and never pass its old WG contents through as a fallback.
+    var wgLine = typeof raw === "string" && /^家庭WG[ \t]*=[ \t]*WireGuard,[^\r\n]+$/.test(source.trim());
+    status.inputAccepted = status.seedValid || wgLine;
+    status.inputKind = status.seedValid ? "PUBLIC_SEED" : wgLine ? "WG_LINE" : "INVALID";
+    if (!status.inputAccepted) fail("INVALID_SEED");
     var saved;
     try {
         saved = $persistentStore.read(STORE);

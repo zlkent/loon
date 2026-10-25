@@ -22,12 +22,12 @@ test("Remote Script subscription contains one Generic declaration, not JS or a p
     const lines = fs.readFileSync(file, "utf8").split(/\r?\n/).map(s => s.trim()).filter(s => s && !s.startsWith("#"));
     assert.deepEqual(lines, ['generic then script("https://raw.githubusercontent.com/zlkent/loon/394cf9a57096bcaf74092396cecd1155bcfe173d/Script/HomeWGCheck.js") with tag="家庭WG独立检查", timeout=10']);
 });
-function run(file, resource, values = {}, broken = false) {
+function run(file, resource, values = {}, broken = false, scope = {}) {
     const state = new Map(Object.entries(values)), logs = [], reads = [], writes = [], done = [];
     let error;
     const context = {
-        $resourceType: 1,
-        $resourceUrl: "https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Probe/HomeWGSeed.txt",
+        $resourceType: scope.type === undefined ? 1 : scope.type,
+        $resourceUrl: scope.url === undefined ? "https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Probe/HomeWGSeed.txt" : scope.url,
         $resource: resource,
         $persistentStore: {
             read(k) { reads.push(k); if (broken) throw Error("DO_NOT_DISCLOSE"); return state.get(k); },
@@ -95,12 +95,75 @@ test("standalone handles storage failure without logging the exception", () => {
     assert.ok(!JSON.stringify(r.logs).includes("DO_NOT_DISCLOSE"));
     assert.equal(r.done.length, 1);
 });
-test("prior WG-looking input is classified without accepting or exposing it", () => {
+test("WG-shaped single line never supplies fallback credentials when local data is missing", () => {
     const r = run("Parser/HomeWGNode.js", '家庭WG = WireGuard,private-key="DO_NOT_DISCLOSE"');
-    assert.equal(r.error, "HomeWGNode: INVALID_SEED");
+    assert.equal(r.error, undefined);
     assert.equal(status(r).sourceFacts.looksLikeWGLine, true);
-    assert.equal(r.reads.length, 0);
+    assert.equal(status(r).inputAccepted, true);
+    assert.equal(status(r).inputKind, "WG_LINE");
+    assert.equal(status(r).seedValid, false);
+    assert.equal(status(r).stage, "SETUP_REQUIRED");
+    assert.equal(r.done[0], seed);
     assert.ok(!JSON.stringify([r.logs, status(r)]).includes("DO_NOT_DISCLOSE"));
+});
+function localFixture() {
+    const crypto = require("node:crypto");
+    return { wgPrivateKey: crypto.randomBytes(32).toString("base64"),
+        wgPublicKey: crypto.randomBytes(32).toString("base64"),
+        wgPresharedKey: "", wgHost: "fixture.example.invalid", wgPort: 51820,
+        wgAddress: "10.77.77.2", homeSSID: "DO_NOT_DISCLOSE" };
+}
+test("seed -> WG -> WG roundtrip is idempotent and regenerated from current local data", () => {
+    const p = localFixture();
+    const values = { [secretKey]: JSON.stringify(p) };
+    const first = run("Parser/HomeWGNode.js", seed, values);
+    assert.equal(first.error, undefined);
+    assert.equal(status(first).stage, "OUTPUT_READY");
+    const second = run("Parser/HomeWGNode.js", first.done[0], values);
+    assert.equal(second.error, undefined);
+    assert.equal(status(second).inputAccepted, true);
+    assert.equal(status(second).stage, "OUTPUT_READY");
+    assert.equal(second.done[0], first.done[0]);
+    const replacement = localFixture();
+    const changed = run("Parser/HomeWGNode.js", first.done[0], { [secretKey]: JSON.stringify(replacement) });
+    assert.equal(changed.error, undefined);
+    assert.equal(status(changed).outputValid, true);
+    assert.ok(changed.done[0].includes(replacement.wgPrivateKey));
+    assert.ok(!changed.done[0].includes(p.wgPrivateKey));
+    assert.ok(!JSON.stringify([changed.logs, status(changed)]).includes(p.wgPrivateKey));
+    assert.deepEqual(changed.writes.every(k => k === statusKey), true);
+});
+test("WG-shaped input with invalid local data fails, never reuses the input node", () => {
+    const r = run("Parser/HomeWGNode.js", '家庭WG = WireGuard,private-key="DO_NOT_DISCLOSE"\n', { [secretKey]: "DO_NOT_DISCLOSE" });
+    assert.equal(r.error, "HomeWGNode: INVALID_LOCAL_JSON");
+    assert.equal(r.done.length, 0);
+    assert.ok(!JSON.stringify([r.logs, status(r)]).includes("DO_NOT_DISCLOSE"));
+});
+for (const input of ['其他WG = WireGuard,private-key="DO_NOT_DISCLOSE"\n', '家庭WG = WireGuard,private-key="DO_NOT_DISCLOSE"\n其他 = DIRECT\n', '家庭WG\n= WireGuard,private-key="DO_NOT_DISCLOSE"\n']) {
+    test("reject unrelated node names or embedded multiline input before reading parameters", () => {
+        const r = run("Parser/HomeWGNode.js", input);
+        assert.equal(r.error, "HomeWGNode: INVALID_SEED");
+        assert.equal(r.reads.length, 0);
+        assert.equal(r.done.length, 0);
+    });
+}
+test("WG-shaped input still fails on malformed key or inaccessible local store", () => {
+    const input = '家庭WG = WireGuard,private-key="DO_NOT_DISCLOSE"\n';
+    const invalidKey = run("Parser/HomeWGNode.js", input, { [secretKey]: "{}" });
+    assert.equal(invalidKey.error, "HomeWGNode: INVALID_PHONE_PRIVATE_KEY");
+    assert.equal(invalidKey.done.length, 0);
+    const unreadable = run("Parser/HomeWGNode.js", input, {}, true);
+    assert.equal(unreadable.error, "HomeWGNode: STORE_READ_FAILED");
+    assert.equal(unreadable.done.length, 0);
+});
+test("unrelated subscription scope still passes through without reading local secrets", () => {
+    const input = '家庭WG = WireGuard,private-key="DO_NOT_DISCLOSE"\n';
+    const r = run("Parser/HomeWGNode.js", input, {}, false, { url: "https://example.invalid/subscription" });
+    assert.equal(r.error, undefined);
+    assert.equal(r.done[0], input);
+    assert.equal(r.reads.length, 0);
+    assert.equal(r.writes.length, 0);
+    assert.ok(!JSON.stringify(r.logs).includes("DO_NOT_DISCLOSE"));
 });
 test("standalone checks local formats without changing or emitting parameter values", () => {
     const crypto = require("node:crypto");
