@@ -1,0 +1,3 @@
+# 家庭WG独立检查 - Remote Script 订阅清单，不是 JS 源码。
+# 手动 Generic 操作；不会定时执行，不需 MITM，不修改原 WG 参数。
+generic then script("https://raw.githubusercontent.com/zlkent/loon/394cf9a57096bcaf74092396cecd1155bcfe173d/Script/HomeWGCheck.js") with tag="家庭WG独立检查", timeout=10

@@ -9,6 +9,12 @@ const secretKey = "zlkent.loon.home-wg.node.v1";
 const statusKey = "zlkent.loon.home-wg.status.v1";
 const checkKey = "zlkent.loon.home-wg.check.v1";
 const seed = fs.readFileSync(path.join(root, "Probe/HomeWGSeed.txt"), "utf8");
+test("Remote Script subscription contains one Generic declaration, not JS or a plugin section", () => {
+    const file = path.join(root, "RemoteScript/HomeWGCheck.list");
+    assert.ok(fs.existsSync(file), "provide a Remote Script manifest instead of subscribing raw JS");
+    const lines = fs.readFileSync(file, "utf8").split(/\r?\n/).map(s => s.trim()).filter(s => s && !s.startsWith("#"));
+    assert.deepEqual(lines, ['generic then script("https://raw.githubusercontent.com/zlkent/loon/394cf9a57096bcaf74092396cecd1155bcfe173d/Script/HomeWGCheck.js") with tag="家庭WG独立检查", timeout=10']);
+});
 function run(file, resource, values = {}, broken = false) {
     const state = new Map(Object.entries(values)), logs = [], reads = [], writes = [], done = [];
     let error;

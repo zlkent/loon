@@ -68,8 +68,9 @@ zlkent.loon.home-wg.node.v1
 
 实机已读到 `revision=20261025.1, stage=ERROR, errorCode=INVALID_SEED`，且资源类型/URL 匹配。这证明解析器运行到种子校验，但**尚未读取本地参数**；`storeRead` 等为 `null` 是未检查，不是数据丢失。现有代码要求归一化 BOM/CRLF 后与固定公开种子完全相同，包含末尾 LF。目前未获实机输入形态，不能认定是换行、Base64、缓存或密钥错误，也不直接放宽校验。
 
-- 新增 `Script/HomeWGCheck.js`，可放入用户已经找到的 JS 脚本 URL 入口并手动运行。该文件是 JS 本身，不是完整配置或 parser manifest；不要将它设为节点解析器。
-- 本次可复制的[固定版本独立 JS](https://raw.githubusercontent.com/zlkent/loon/394cf9a57096bcaf74092396cecd1155bcfe173d/Script/HomeWGCheck.js)。[新版固定解析器 manifest](https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/HomeWGNodeParserPinned.lpx)内部也绑定该提交中的 `.2` 解析器；若需绕开分支 Raw 缓存，使用发布回复提供的 commit 固定 manifest 链接。
+- **订阅脚本入口应填写 `.list` 清单地址，不是 `.js` 源码地址。** 使用[家庭WG独立检查订阅清单](https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/RemoteScript/HomeWGCheck.list)，或发布回复中的 commit 固定清单链接。此前让用户在订阅入口填 JS 的指引有误；本地 JS 检查通过不代表订阅导入成功。
+- 清单只有一条名为 **家庭WG独立检查** 的 Generic 手动操作，无 `[Script]` 段名、无定时任务、无 MITM。订阅后运行该项，再查看日志或单独读取 `zlkent.loon.home-wg.check.v1`。若界面没有该项，提供这一页的截图/导入错误，不继续猜菜单。清单格式依据[官方 Remote Script 示例](https://github.com/Loon0x00/LoonExampleConfig/blob/master/RemoteScript/RemoteScript_Example2.list)及[新版 Script 语法](https://nsloon.app/docs/Script/script_v2/)。
+- `Script/HomeWGCheck.js` 是被清单调用的执行源码，保持已发布的[固定 JS 版本](https://raw.githubusercontent.com/zlkent/loon/394cf9a57096bcaf74092396cecd1155bcfe173d/Script/HomeWGCheck.js)，不要直接订阅它，也不要将其设为节点解析器。[新版固定解析器 manifest](https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/HomeWGNodeParserPinned.lpx)是另一个用途的文件，仍只绑定在家庭WG节点订阅上。
 - 若直接编辑现有配置，只向已有 `[Script]` 段添加一条（不要再建重复 Section，不要全覆盖）：
 
   ```ini

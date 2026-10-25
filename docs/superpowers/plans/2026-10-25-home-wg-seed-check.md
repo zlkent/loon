@@ -17,7 +17,7 @@
 - [x] Restore exact source and device evidence. Public seed has a trailing LF; device input is still unknown. Official WG connectivity is not Loon acceptance.
 - [x] Add failing focused checks, then input facts and the standalone script. Initial run: 1 pass / 8 expected assertion failures; implementation passed those 9. No fake markers or device initialization; no full suite. Added two further privacy/format boundary checks.
 - [x] Verify focused tests, syntax, unchanged generation/validation/config, privacy and independent review. 11/11 focused checks and three syntax checks pass; original seed gate and all downstream generation are identical to pre-change HEAD, both full configs and seed unchanged. Initial unbounded Base64 scan falsely matched part of an existing long public binding token; token-boundary scan passed. Independent read-only review found no issues; no full suite run.
-- [ ] Publish explicit files only to the existing candidate branch; verify immutable Raw bytes and remote SHA. Give JS URL and narrowly scoped next device action.
+- [x] Publish explicit files only to the existing candidate branch; verify immutable Raw bytes and remote SHA. Published wrapper commit `e080deb464fba12ed716137f7b1433314178e163` matches remote; its manifest and guide Raw bytes match Git, and both fixed child JS URLs return HTTP 200/exact Git bytes. Main ref and 6620-byte full-config SHA256 remain unchanged. Final 11/11 focused checks pass. This post-publication ledger update is local; device execution/connectivity remain pending.
 
 ## Acceptance / blocker
 
@@ -27,3 +27,11 @@ Candidate diagnostics only. Current blocker is the actual resource representatio
 
 - Implementation commit: `394cf9a57096bcaf74092396cecd1155bcfe173d`. Fixed parser manifest now binds this exact script commit; original immutable `.1` URL remains historical and will not update in place.
 - Device next action: replace only the home subscription's parser-plugin URL with the new immutable manifest, update that node subscription, then run the standalone JS and share only check.v1. Full config/ROS/private keys remain untouched.
+
+## Follow-up: correct the Remote Script subscription artifact
+
+User reports the JS cannot be subscribed. Restored official `Loon0x00/LoonExampleConfig/RemoteScript/RemoteScript_Example2.list`: the subscription body is Script declarations without a `[Script]` section, not raw JS. Previous handoff incorrectly used a code asset as a subscription resource. Local JS tests never established subscription import success.
+
+- [x] Verify official manifest format and reproduce missing subscription artifact with a focused failing assertion.
+- [x] Add `RemoteScript/HomeWGCheck.list`: one Generic invocation pinned to the already published unchanged JS. Correct documentation to distinguish `.list` subscription from `.js` execution asset. No cron, secret/policy/ROS/full-config changes.
+- [ ] Run focused checks, publish only explicit wrapper/test/docs/ledger files and verify immutable manifest/child JS. Device import/run and WG connectivity remain unverified.
