@@ -69,6 +69,7 @@ zlkent.loon.home-wg.node.v1
 实机已读到 `revision=20261025.1, stage=ERROR, errorCode=INVALID_SEED`，且资源类型/URL 匹配。这证明解析器运行到种子校验，但**尚未读取本地参数**；`storeRead` 等为 `null` 是未检查，不是数据丢失。现有代码要求归一化 BOM/CRLF 后与固定公开种子完全相同，包含末尾 LF。目前未获实机输入形态，不能认定是换行、Base64、缓存或密钥错误，也不直接放宽校验。
 
 - 新增 `Script/HomeWGCheck.js`，可放入用户已经找到的 JS 脚本 URL 入口并手动运行。该文件是 JS 本身，不是完整配置或 parser manifest；不要将它设为节点解析器。
+- 本次可复制的[固定版本独立 JS](https://raw.githubusercontent.com/zlkent/loon/394cf9a57096bcaf74092396cecd1155bcfe173d/Script/HomeWGCheck.js)。[新版固定解析器 manifest](https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Plugin/HomeWGNodeParserPinned.lpx)内部也绑定该提交中的 `.2` 解析器；若需绕开分支 Raw 缓存，使用发布回复提供的 commit 固定 manifest 链接。
 - 若直接编辑现有配置，只向已有 `[Script]` 段添加一条（不要再建重复 Section，不要全覆盖）：
 
   ```ini

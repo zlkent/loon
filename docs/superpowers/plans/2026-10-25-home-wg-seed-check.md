@@ -22,3 +22,8 @@
 ## Acceptance / blocker
 
 Candidate diagnostics only. Current blocker is the actual resource representation at the seed gate. Manual JS can inspect local data but cannot independently read the parser callback or engine-loaded secrets. Seed acceptance and WG connectivity remain pending device evidence.
+
+## Release ledger
+
+- Implementation commit: `394cf9a57096bcaf74092396cecd1155bcfe173d`. Fixed parser manifest now binds this exact script commit; original immutable `.1` URL remains historical and will not update in place.
+- Device next action: replace only the home subscription's parser-plugin URL with the new immutable manifest, update that node subscription, then run the standalone JS and share only check.v1. Full config/ROS/private keys remain untouched.
