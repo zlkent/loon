@@ -191,9 +191,9 @@ test("normal control plugin and parser plugin use separate scripts and no secret
     }
 });
 
-// Reviewed branch baseline now includes the explicitly requested Siri / Apple AI rules.
+// Reviewed branch baseline includes the explicitly requested Siri AI Japan group and rules.
 // This does not claim that the HomeWG branch has been promoted to main.
-test("base internet configuration matches the reviewed Siri and Apple AI revision", () => {
+test("base internet configuration matches the reviewed Siri AI Japan revision", () => {
     const hash = require("node:crypto").createHash("sha256").update(fs.readFileSync(path.join(ROOT, "Config/Loon.lcf"))).digest("hex");
-    assert.equal(hash, "6544d36f79ecd0d7e9fbb19a791d21fde047cc5752ba22c3ffb01903945ac74f");
+    assert.equal(hash, "433c27f193206761d597679bc646f2a374e5691b3a7423fb2229a148c56682eb");
 });

@@ -25,22 +25,24 @@ https://raw.githubusercontent.com/zlkent/loon/main/Config/Loon.lcf
 | 类别 | 默认策略 |
 | --- | --- |
 | 广告 | REJECT；可在“广告拦截”切换 DIRECT 排查误拦截 |
-| Siri 核心、Apple 其余业务、微信、高德、国内服务、局域网 | DIRECT；Apple AI 的指定端点除外 |
-| Apple AI 指定准入 / 中继端点 | 美国自动优选；不随全局节点选择切换地区 |
+| Apple 其余业务、微信、高德、国内服务、局域网 | DIRECT；Siri AI 清单覆盖的域名除外 |
+| Siri / Apple Intelligence 用户清单及 Akamai 中继 | Siri AI 独立策略组，默认日本自动优选；仅提供日本池 |
 | Google、OpenAI、Claude、Gemini | 各自策略组，默认跟随“美国节点选择”，仅提供美国池选项 |
 | Telegram、Twitter / X、GitHub、YouTube | 各自策略组，默认跟随“节点选择”（全局自动优选） |
 | 未匹配流量（含未收录国外网站、视频外链） | FINAL 直接指向“节点选择”，走代理 |
 
-Siri / Apple AI 的本地精确例外优先于远程广告规则；其余仍广告优先，Apple、微信中的广告域名也可能被拦截。采用域名/IP 规则去广告，无需解密证书，不保证移除 YouTube 视频内广告或所有 App 开屏广告。
+Siri / Apple AI 的本地规则优先于远程广告规则；其余仍广告优先，Apple、微信中的广告域名也可能被拦截。采用域名/IP 规则去广告，无需解密证书，不保证移除 YouTube 视频内广告或所有 App 开屏广告。
 
 Gemini、YouTube 位于 Google 前，ChinaMax 位于最后。Loon 优先匹配域名，未命中再进行 DNS/IP 匹配；列表顺序不代表 IP 规则可以覆盖域名规则。
 
-### Siri 与 Apple AI
+### Siri AI：独立日本策略
 
-- **Siri 核心直连并使用真实 IP：** `guzzoni.apple.com`（含子域）、`siri.apple.com`（含子域）、`dejavu.apple.com`、`sequoia.apple.com`、`smoot.apple.com`（含子域）。Loon 的 `[General]` 使用 `real-ip`，不是 Surge 的 `always-real-ip`；这些域名也已加入 `skip-proxy`。`skip-proxy` 只绕过 HTTP Proxy，TUN 内仍由 DIRECT 规则处理，不把整个 `*.apple.com` 加入绕过列表。
-- **仅下列 Apple AI 准入 / 中继端点走美国自动优选：** `gspe1-ssl.ls.apple.com`、`apple-relay.apple.com`、`apple-relay.cloudflare.com`、`apple-relay.fastly-edge.com`、`apple-relay.akamaized.net`、`cp4.cloudflare.com`。本地精确规则优先于远程 Apple / ChinaMax / 广告集合；其他 Apple 服务仍按原直连规则处理。OpenAI 沿用原美国限定服务组，默认美国自动优选；若本机手选了美国单节点，需切回自动组才会自动选优。
+- **新策略组 `Siri AI`：** 默认 `日本自动优选`，也可选择日本故障转移或手动日本节点；不提供美国、全局或 DIRECT 回落。日本池按节点名称筛选，不验证实际出口地区；没有可用日本节点时不会自动改用其他地区。
+- **规则范围：** 按用户新清单接入 guzzoni / smoot / ls、gateway.icloud.com、mask / apple-dns 中继、Apple / Cloudflare / Fastly 中继、cp4.cloudflare.com、apps.mzstatic.com 等后缀，以及 `DOMAIN-KEYWORD,siri`；上一版 Akamai 中继 `apple-relay.akamaized.net` 也随之改日本。本地规则优先于远程 Apple / ChinaMax / 广告集合。用户清单的 `gspel-ssl` 保留；`ls.apple.com` 同时覆盖该拼法和数字 1 的 `gspe1-ssl`。`mask-t.apple-dns.net` 的重复精确条目由已有后缀规则覆盖，不另加一次。
+- **替换旧冲突：** 之前 guzzoni / siri / smoot 的 DIRECT、上述中继美国自动优选，以及这些代理域名的 `skip-proxy` / `real-ip` 例外已经移除；代理域名恢复默认 Fake-IP 行为。旧 `dejavu.apple.com` / `sequoia.apple.com` 不在本轮新清单，保留 DIRECT、真实 IP 和 HTTP Proxy 绕过。Google / OpenAI / Claude / Gemini 仍是美国限定服务，不跟随 Siri AI 改日本。
+- **注意范围并不只含 Siri：** `ls.apple.com` 后缀可能影响其他 Apple 定位服务，`apps.mzstatic.com` 涉及 Apple 应用资源；宽泛的 `DOMAIN-KEYWORD,siri` 也会匹配其他含 siri 的非 Apple 域名。按用户明确列表保留，不把这些都描述为 Siri 专属端点；其余未匹配业务沿用原规则。
 - **QUIC 必须检查私人节点订阅：** 原有私人节点订阅中的 `udp` / `block-quic` 设置，完整配置订阅更新不能覆盖其本机保留值。请在所用的互联网节点订阅中确认 `udp=true`、`block-quic=false`，并更新节点；不是更改“家庭WG订阅”。不要把私人 URL 或凭据填回公共仓库。此配置未添加 UDP 443 拒绝，但域名分流规则不能绕过节点层的 QUIC 禁用；节点和服务端本身也必须支持 UDP 转发。
-- **更新和验收：** 备份后更新现用完整配置，不重新导入、不全覆盖；确认私人订阅、证书和本地 WG 参数仍在。重启 Loon 并重试 Siri，以新查询和新连接观察核心 DIRECT、中继美国自动优选。系统 / App 可能保留旧解析，静态 `real-ip` 配置不等于所有缓存立即清除；分流不保证账号、地区、设备或 Apple AI 资格，也不保证修复所有 Siri 错误。
+- **更新和验收：** 备份后更新现用完整配置，不重新导入、不全覆盖；确认私人订阅、证书和本地 WG 参数仍在。重启 Loon 并重试 Siri，以新查询和新连接确认命中 `Siri AI → 日本自动优选 → 日本节点`；系统 / App 可能保留旧解析，不能用旧连接判断新策略是否生效。分流不保证账号、地区、设备或 Apple AI 资格，也不保证修复所有 Siri 错误。
 
 语法依据：[Loon 通用配置](https://nsloon.app/docs/General/)、[规则优先级](https://nsloon.app/docs/Rule/)、[节点订阅的 UDP / QUIC 覆盖参数](https://nsloon.app/docs/Node/subscription/)。本增量同时维护基础文件及生成的家庭 WG 文件；当前分支发布不等于已合并到 main。
 

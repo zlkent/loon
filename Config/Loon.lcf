@@ -12,9 +12,9 @@ allow-wifi-access = false
 test-timeout = 5
 interface-mode = auto
 proxy-test-url = http://www.gstatic.com/generate_204
-skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,guzzoni.apple.com,*.guzzoni.apple.com,siri.apple.com,*.siri.apple.com,dejavu.apple.com,sequoia.apple.com,smoot.apple.com,*.smoot.apple.com
-# Loon 使用 real-ip，不是 Surge 的 always-real-ip；只排除 Siri，避免绕过 AI 中继。
-real-ip = guzzoni.apple.com,*.guzzoni.apple.com,siri.apple.com,*.siri.apple.com,dejavu.apple.com,sequoia.apple.com,smoot.apple.com,*.smoot.apple.com
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,dejavu.apple.com,sequoia.apple.com
+# 仅保留未改走 Siri AI 策略的旧直连例外；代理域名使用默认 DNS / Fake-IP 行为。
+real-ip = dejavu.apple.com,sequoia.apple.com
 
 [Proxy]
 
@@ -64,22 +64,37 @@ YouTube = select,节点选择,香港节点选择,日本节点选择,新加坡节
 OpenAI = select,美国节点选择,美国节点
 Claude = select,美国节点选择,美国节点
 Gemini = select,美国节点选择,美国节点
+# Siri / Apple Intelligence 单独使用日本池，不改变其他 AI 服务的美国策略。
+Siri AI = select,日本自动优选,日本故障转移,日本节点
 广告拦截 = select,REJECT,DIRECT
 
 [Rule]
-# Siri 核心直连；本地规则优先于远程 Apple / 广告集合。
-DOMAIN-SUFFIX,guzzoni.apple.com,DIRECT
-DOMAIN-SUFFIX,siri.apple.com,DIRECT
+# 未在本轮日本分流清单中的旧直连例外保持不变。
 DOMAIN,dejavu.apple.com,DIRECT
 DOMAIN,sequoia.apple.com,DIRECT
-DOMAIN-SUFFIX,smoot.apple.com,DIRECT
-# 仅指定的 AI 准入 / 中继走美国自动优选，TCP / UDP 均使用同一策略。
-DOMAIN,gspe1-ssl.ls.apple.com,美国自动优选
-DOMAIN,apple-relay.apple.com,美国自动优选
-DOMAIN,apple-relay.cloudflare.com,美国自动优选
-DOMAIN,apple-relay.fastly-edge.com,美国自动优选
-DOMAIN,apple-relay.akamaized.net,美国自动优选
-DOMAIN,cp4.cloudflare.com,美国自动优选
+# Siri & Apple Intelligence；本地优先于远程 Apple / 广告，TCP / UDP 同策略。
+DOMAIN-SUFFIX,guzzoni.apple.com,Siri AI
+DOMAIN-SUFFIX,smoot.apple.com,Siri AI
+DOMAIN-SUFFIX,ls.apple.com,Siri AI
+# 用户提供的 gspel 与 gspe1 均由上一条 ls.apple.com 后缀覆盖。
+DOMAIN-SUFFIX,gspel-ssl.ls.apple.com,Siri AI
+DOMAIN-SUFFIX,gateway.icloud.com,Siri AI
+DOMAIN-SUFFIX,mask-api.icloud.com,Siri AI
+DOMAIN-SUFFIX,mask-h2.icloud.com,Siri AI
+DOMAIN-SUFFIX,mask.icloud.com,Siri AI
+DOMAIN-SUFFIX,mask-api.fe.apple-dns.net,Siri AI
+DOMAIN-SUFFIX,mask-t.apple-dns.net,Siri AI
+DOMAIN-SUFFIX,mask.apple-dns.net,Siri AI
+DOMAIN-SUFFIX,apple-relay.mask.apple-dns.net,Siri AI
+DOMAIN-SUFFIX,apple-relay.apple.com,Siri AI
+DOMAIN-SUFFIX,apple-relay.cloudflare.com,Siri AI
+DOMAIN-SUFFIX,apple-relay.fastly-edge.com,Siri AI
+DOMAIN-SUFFIX,cp4.cloudflare.com,Siri AI
+DOMAIN-SUFFIX,apps.mzstatic.com,Siri AI
+# 保留上一版已覆盖的 Akamai 中继，随 Siri AI 改为日本。
+DOMAIN-SUFFIX,apple-relay.akamaized.net,Siri AI
+# 按用户清单保留宽泛关键词，会匹配非 Apple 的含 siri 域名。
+DOMAIN-KEYWORD,siri,Siri AI
 # 国内 DoH 连接显式直连，手机使用 Rule 模式也不依赖代理节点。
 IP-CIDR,223.5.5.5/32,DIRECT,no-resolve
 IP-CIDR,1.12.12.12/32,DIRECT,no-resolve
