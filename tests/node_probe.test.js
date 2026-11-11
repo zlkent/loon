@@ -191,7 +191,9 @@ test("normal control plugin and parser plugin use separate scripts and no secret
     }
 });
 
-test("formal internet configuration remains byte-for-byte unchanged", () => {
+// Reviewed branch baseline now includes the explicitly requested Siri / Apple AI rules.
+// This does not claim that the HomeWG branch has been promoted to main.
+test("base internet configuration matches the reviewed Siri and Apple AI revision", () => {
     const hash = require("node:crypto").createHash("sha256").update(fs.readFileSync(path.join(ROOT, "Config/Loon.lcf"))).digest("hex");
-    assert.equal(hash, "fabe4c679bc7eba0b4674e67ced73b1874c0131b47f8a3cd87e0b3ac79658037");
+    assert.equal(hash, "6544d36f79ecd0d7e9fbb19a791d21fde047cc5752ba22c3ffb01903945ac74f");
 });

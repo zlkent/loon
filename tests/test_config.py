@@ -160,7 +160,8 @@ class ConfigTests(unittest.TestCase):
         self.assertEqual(order[-1], 'ChinaMax')
         for name in ('Gemini', 'YouTube'):
             self.assertLess(order.index(name), order.index('Google'))
-        self.assertEqual(self.sections['Rule'], [
+        # New precise Apple local overrides are covered in test_apple_ai.py.
+        self.assertEqual(self.sections['Rule'][-3:], [
             'IP-CIDR,223.5.5.5/32,DIRECT,no-resolve',
             'IP-CIDR,1.12.12.12/32,DIRECT,no-resolve',
             'FINAL,节点选择',

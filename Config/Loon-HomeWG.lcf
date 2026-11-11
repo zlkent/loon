@@ -15,7 +15,9 @@ allow-wifi-access = false
 test-timeout = 5
 interface-mode = auto
 proxy-test-url = http://www.gstatic.com/generate_204
-skip-proxy = 192.168.128.0/17,192.168.64.0/18,192.168.32.0/19,192.168.16.0/20,192.168.8.0/21,192.168.4.0/22,192.168.2.0/23,192.168.0.0/24,10.0.0.0/8,172.16.0.0/12,localhost,*.local
+skip-proxy = 192.168.128.0/17,192.168.64.0/18,192.168.32.0/19,192.168.16.0/20,192.168.8.0/21,192.168.4.0/22,192.168.2.0/23,192.168.0.0/24,10.0.0.0/8,172.16.0.0/12,localhost,*.local,guzzoni.apple.com,*.guzzoni.apple.com,siri.apple.com,*.siri.apple.com,dejavu.apple.com,sequoia.apple.com,smoot.apple.com,*.smoot.apple.com
+# Loon 使用 real-ip，不是 Surge 的 always-real-ip；只排除 Siri，避免绕过 AI 中继。
+real-ip = guzzoni.apple.com,*.guzzoni.apple.com,siri.apple.com,*.siri.apple.com,dejavu.apple.com,sequoia.apple.com,smoot.apple.com,*.smoot.apple.com
 
 [Proxy]
 
@@ -23,7 +25,8 @@ skip-proxy = 192.168.128.0/17,192.168.64.0/18,192.168.32.0/19,192.168.16.0/20,19
 家庭WG订阅 = https://raw.githubusercontent.com/zlkent/loon/codex/wg-local-parameters/Probe/HomeWGSeed.txt,parser-enabled=true,parser-plugin=https://raw.githubusercontent.com/zlkent/loon/c374eb2b9f945c8f755aa710878a53756203e7a6/Plugin/HomeWGNodeParserPinned.lpx,enabled=true
 # 私人订阅只在本机添加，不提交到公共仓库。
 # Loon 3.5.2 (996)+：可保留节点独立 DNS；当前默认 DoH 不再依赖代理。
-# 我的订阅 = https://example.com/your-subscription,enabled=true,server-dns="223.5.5.5,119.29.29.29"
+# AI 中继需节点支持 UDP；本机已有订阅须自行确认 udp=true、block-quic=false。
+# 我的订阅 = https://example.com/your-subscription,enabled=true,udp=true,block-quic=false,server-dns="223.5.5.5,119.29.29.29"
 
 [Remote Filter]
 全部节点 = NameRegex, FilterKey="^(?!家庭WG$).*"
@@ -75,6 +78,19 @@ Gemini = select,美国节点选择,美国节点
 [Rule]
 # 优先于 LAN/ChinaMax；仅此家庭网段由家庭策略处理。
 IP-CIDR,192.168.1.0/24,家庭内网,no-resolve
+# Siri 核心直连；本地规则优先于远程 Apple / 广告集合。
+DOMAIN-SUFFIX,guzzoni.apple.com,DIRECT
+DOMAIN-SUFFIX,siri.apple.com,DIRECT
+DOMAIN,dejavu.apple.com,DIRECT
+DOMAIN,sequoia.apple.com,DIRECT
+DOMAIN-SUFFIX,smoot.apple.com,DIRECT
+# 仅指定的 AI 准入 / 中继走美国自动优选，TCP / UDP 均使用同一策略。
+DOMAIN,gspe1-ssl.ls.apple.com,美国自动优选
+DOMAIN,apple-relay.apple.com,美国自动优选
+DOMAIN,apple-relay.cloudflare.com,美国自动优选
+DOMAIN,apple-relay.fastly-edge.com,美国自动优选
+DOMAIN,apple-relay.akamaized.net,美国自动优选
+DOMAIN,cp4.cloudflare.com,美国自动优选
 # 国内 DoH 连接显式直连，手机使用 Rule 模式也不依赖代理节点。
 IP-CIDR,223.5.5.5/32,DIRECT,no-resolve
 IP-CIDR,1.12.12.12/32,DIRECT,no-resolve

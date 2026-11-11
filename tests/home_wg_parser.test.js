@@ -119,7 +119,7 @@ test("injects WG node, SSID strategy and rule; preserves existing routing and DN
 test("subtracts only home /24 from skip-proxy and preserves other private destinations", () => {
     const out = sections(success(execute()));
     const skip = out.General.find(x => x.startsWith("skip-proxy"));
-    assert.equal(skip, "skip-proxy = 192.168.0.0/24,192.168.2.0/23,192.168.4.0/22,192.168.8.0/21,192.168.16.0/20,192.168.32.0/19,192.168.64.0/18,192.168.128.0/17,10.0.0.0/8,172.16.0.0/12,localhost,*.local");
+    assert.equal(skip, "skip-proxy = 192.168.0.0/24,192.168.2.0/23,192.168.4.0/22,192.168.8.0/21,192.168.16.0/20,192.168.32.0/19,192.168.64.0/18,192.168.128.0/17,10.0.0.0/8,172.16.0.0/12,localhost,*.local,guzzoni.apple.com,*.guzzoni.apple.com,siri.apple.com,*.siri.apple.com,dejavu.apple.com,sequoia.apple.com,smoot.apple.com,*.smoot.apple.com");
 });
 
 test("handles repeated updates without duplicate sections, markers, nodes, plugins or rules", () => {
